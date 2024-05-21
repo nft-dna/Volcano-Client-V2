@@ -1,39 +1,34 @@
 let appConfig = {
     // app name - used in titles
-    name: 'Artion',
+    name: 'Volcano',
     // app main title
-    title: 'Artion, NFT marketplace',
+    title: 'Volcano, NFT marketplace',
     // app description
-    description: 'Artion, NFT marketplace',
+    description: 'Volcano, NFT marketplace',
     // app keywords
-    keywords: 'Artion, NFT, NFTs, Fantom',
+    keywords: 'Volcano, NFT, NFTs, Fantom',
     // app's favicon
     favicon: 'public/favicon.png',
     // app code
-    code: process.env.VUE_APP_FANTOM_MODULE || 'artion',
+    code: process.env.VUE_APP_FANTOM_MODULE || 'volcano',
     // app routes
-    module: process.env.VUE_APP_FANTOM_MODULE || 'artion',
+    module: process.env.VUE_APP_FANTOM_MODULE || 'volcano',
     // apollo client settings
     apollo: {
-        // Artion api
-        artion: {
+        // Volcano api
+        volcano: {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'https://artion-api-a.fantom.network/graphql',
+                    http: 'http://localhost:9090/graphql',
                     // for subscriptions
                     ws: '',
                 },
-                {
-                    http: 'https://artion-api-b.fantom.network/graphql',
-                    // for subscriptions
-                    ws: '',
-                },
-                {
-                    http: 'https://artion-api-c.fantom.network/graphql',
-                    // for subscriptions
-                    ws: '',
-                },
+                //{
+                //    http: 'http://localhost:9090/graphql',
+                //    // for subscriptions
+                //    ws: '',
+                //},
             ],
             // index into providers array of default provider or 'random' - takes index randomly
             defaultProviderIndex: 'random',
@@ -43,35 +38,15 @@ let appConfig = {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'https://xapi-nodea.fantom.network/',
+                    http: 'https://turbo.magma-rpc.com/',
                     // for subscriptions
                     ws: '',
                 },
-                {
-                    http: 'https://xapi-nodeb.fantom.network/',
-                    // for subscriptions
-                    ws: '',
-                },
-                {
-                    http: 'https://xapi-nodec.fantom.network/',
-                    // for subscriptions
-                    ws: '',
-                },
-                {
-                    http: 'https://xapi-noded.fantom.network/',
-                    // for subscriptions
-                    ws: '',
-                },
-                {
-                    http: 'https://xapi-nodee.fantom.network/',
-                    // for subscriptions
-                    ws: '',
-                },
-                {
-                    http: 'https://xapi-nodef.fantom.network/',
-                    // for subscriptions
-                    ws: '',
-                },
+                //{
+                //    http: 'https://xapi-nodeb.fantom.network/',
+                //    // for subscriptions
+                //    ws: '',
+                //},
             ],
             // index into providers array of default provider or 'random' - takes index randomly
             defaultProviderIndex: 'random',
@@ -93,7 +68,7 @@ let appConfig = {
     // pwa settings
     pwa: {
         // name used in pwa manifest
-        name: 'Artion',
+        name: 'Volcano',
         categories: ['finance'],
         mainColor: '#ffffff',
         assetsVersion: '1',
@@ -103,14 +78,14 @@ let appConfig = {
     // use hash in address
     routerHashMode: false,
     // Opera chain id
-    chainId: '0xfa',
+    chainId: '0x19f6d22c9',
     // JSON-RPC endpointAdd
     // rpc: 'https://rpcapi.fantom.network/',
-    rpc: 'https://rpc.ftm.tools/',
+    rpc: 'https://turbo.magma-rpc.com/',
     // used in links pointing to fantom explorer
-    explorerUrl: 'https://ftmscan.com/',
+    explorerUrl: 'https://testnet.magma.foundation/',
     // used in links pointing to validators
-    explorerUrl2: 'https://explorer.fantom.network/',
+    explorerUrl2: 'https://magmascan.org/',
     // default options for production build
     build: {
         // output dir for production build
@@ -122,34 +97,6 @@ let appConfig = {
         advertisedCollection: false,
     },
 };
-
-if (appConfig.module === 'pg') {
-    appConfig = {
-        ...appConfig,
-        // app name - used in titles
-        name: 'Pierre Gasly NFT drop',
-        // app main title
-        title: 'Pierre Gasly NFT drop',
-        // app description
-        description:
-            'Pierre Gasly launches his NFTs on Fantom, as the first NFT drop of an F1™ driver. The NFTs will be redeemable for VIP experiences, meet and greet, signed original helmets and merchandise',
-        // app keywords
-        keywords: 'Pierre Gasly, F1™ driver, Fantom, NFT, NFTs',
-        // meta image
-        imageUrl: '/img/PierreGaslyNFTdrop.png',
-        // app's favicon
-        favicon: 'public/favicon-pg.png',
-        // progressive web application
-        usePWA: false,
-        // specifies if auction is on or off
-        auctionOn: true,
-        // specifies auction start date - timestamp in UTC
-        auctionStart: 1634738400000,
-        // specifies if setting page is on/off
-        settingsOn: true,
-        routerHashMode: true,
-    };
-}
 
 appConfig.mainnet = {
     chainId: appConfig.chainId,
