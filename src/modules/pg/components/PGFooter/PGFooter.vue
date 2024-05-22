@@ -2,7 +2,7 @@
     <footer class="pg-footer">
         <a
             class="pg-footer__link"
-            href="https://gasly.artion.io/terms/Artion-Terms-v2.2-8-Oct-2021.pdf"
+            href=""
             target="_blank"
             >{{ $t('pgFooter.termsAndConditions') }}</a
         >

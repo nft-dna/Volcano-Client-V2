@@ -4,11 +4,11 @@ import Web3 from 'web3';
 // ZERO_AMOUNT represents zero amount transferred on some calls.
 const ZERO_AMOUNT = '0x0';
 
-// OPERA_CHAIN_ID is the chain id used by Fantom Opera blockchain.
-const OPERA_CHAIN_ID = '0xfa';
+// OPERA_CHAIN_ID is the chain id used by Magma Onyx blockchain.
+const OPERA_CHAIN_ID = '0x19f6d22c9';
 
-// TESTNET_CHAIN_ID is the chain id used by Fantom Opera test net.
-const TESTNET_CHAIN_ID = '0xfa2';
+// TESTNET_CHAIN_ID is the chain id used by Magma Onyx test net.
+const TESTNET_CHAIN_ID = '0x19f6d22c9';
 
 /**
  * erc20IncreaseAllowanceTx creates a transaction for increasing Allowance by the given

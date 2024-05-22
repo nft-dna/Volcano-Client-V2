@@ -1,6 +1,6 @@
 <template>
     <a-window ref="window" :title="$t('notice')" class="fwindow-width-3">
-        Please, select <b>Fantom Opera</b> network in the Metamask.
+        Please, select <b>Magma Onyx</b> network in the Metamask.
     </a-window>
 </template>
 

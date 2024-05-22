@@ -6,7 +6,7 @@ let appConfig = {
     // app description
     description: 'Volcano, NFT marketplace',
     // app keywords
-    keywords: 'Volcano, NFT, NFTs, Fantom',
+    keywords: 'Volcano, NFT, NFTs, Magma',
     // app's favicon
     favicon: 'public/favicon.png',
     // app code
@@ -20,7 +20,7 @@ let appConfig = {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'http://localhost:9090/graphql',
+                    http: 'http://10.94.0.245:8080/graphql',
                     // for subscriptions
                     ws: '',
                 },
@@ -33,8 +33,8 @@ let appConfig = {
             // index into providers array of default provider or 'random' - takes index randomly
             defaultProviderIndex: 'random',
         },
-        // Fantom api
-        fantom: {
+        // Magma api
+        magma: {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {

@@ -51,7 +51,7 @@
             >
                 {{ $t('pgBidForm.termsAndConditionsAgreement') }}
                 <!--                    <router-link :to="{ path: '/pg' }">{{ $t('pgBidForm.termsAndConditionsLink') }}</router-link>-->
-                <a href="https://gasly.artion.io/terms/Artion-Terms-v2.2-8-Oct-2021.pdf" target="_blank">
+                <a href="" target="_blank">
                     {{ $t('pgBidForm.termsAndConditionsLink') }}
                 </a>
             </f-option>

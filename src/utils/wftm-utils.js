@@ -9,11 +9,11 @@ const DEFAULT_GAS_LIMIT = '0x2dc6c0';
 // ZERO_AMOUNT represents zero amount transferred on some calls.
 const ZERO_AMOUNT = '0x0';
 
-// OPERA_CHAIN_ID is the chain id used by Fantom Opera blockchain.
-const OPERA_CHAIN_ID = '0xfa';
+// OPERA_CHAIN_ID is the chain id used by Magma Onyx blockchain.
+const OPERA_CHAIN_ID = '0x19f6d22c9';
 
-// TESTNET_CHAIN_ID is the chain id used by Fantom Opera test net.
-const TESTNET_CHAIN_ID = '0xfa2';
+// TESTNET_CHAIN_ID is the chain id used by Magma Onyx test net.
+const TESTNET_CHAIN_ID = '0x19f6d22c9';
 
 /**
  * defiWrapFtm creates a contract call transaction to wrap given amount

@@ -43,8 +43,7 @@ export const Wallet = () => ({
         return {
             wallet: {
                 address: '0xc0ffee254729296a45a3885639AC7E10F9d54979',
-                chain: 'Fantom',
-                // avatar: 'avatar.png',
+                chain: 'Magma',
                 avatar: 'avatar2.jpg',
             },
         };

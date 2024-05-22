@@ -14,7 +14,8 @@ import { faTranslations } from 'fantom-vue-components/src/locales/fa.js';
 import { psTranslations } from 'fantom-vue-components/src/locales/ps.js';
 import PortalVue from 'portal-vue';
 // import { isAnyComponentChanged } from 'fantom-vue-components/src/utils/vue-helpers.js';
-import { getRoutes, getMaintenanceRoutes, getPGModuleRoutes } from '@/router/routes.js';
+// import { getRoutes, getMaintenanceRoutes, getPGModuleRoutes } from '@/router/routes.js';
+import { getRoutes, getMaintenanceRoutes } from '@/router/routes.js';
 import appConfig from '@/app.config.js';
 import { authRoute, setBackButton, setRouteMetaInfo, setRouteTheme } from '@/router/middlewares.js';
 import { Wallet } from '@/plugins/wallet/Wallet.js';
@@ -37,10 +38,8 @@ let routes = [];
 
 if (appConfig.underMaintenance) {
     routes = getMaintenanceRoutes();
-} else if (appConfig.module === 'artion') {
+} else if (appConfig.module === 'volcano') {
     routes = getRoutes();
-} else if (appConfig.module === 'pg') {
-    routes = getPGModuleRoutes();
 }
 
 export const router = setupRouter({

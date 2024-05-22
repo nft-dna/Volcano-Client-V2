@@ -2,8 +2,8 @@
     <header class="appheader">
         <div class="appheader_logo">
             <router-link to="/" class="appheader_logo">
-                <img src="/artion.svg" width="56px" height="35px" alt="artion logo" />
-                <div class="appheader_title">Artion</div>
+                <img src="/volcano.svg" width="56px" height="35px" alt="volcano logo" />
+                <div class="appheader_title">Volcano</div>
             </router-link>
         </div>
         <div class="appheader_col">

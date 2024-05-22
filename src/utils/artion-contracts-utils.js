@@ -68,7 +68,7 @@ const ZERO_AMOUNT = '0x0';
 }
 
 /**
- * createNFTWithRoyalty Mints a new token on Artion NFT collection contract
+ * createNFTWithRoyalty Mints a new token on Volcano NFT collection contract
  *
  * @param {string} toAddress Address of the owner of newly created NFT
  * @param {string} tokenUri URI address of the NFT json object
@@ -831,7 +831,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * Auction can only be fail-resulted if the auction has expired and the auction.reservePrice has not been met.
  * If there have been no bids, the auction needs to be cancelled instead using `cancelAuction()`
  *
- * @since Artion-Contracts v2.0.0-rc.1
+ * @since Volcano-Contracts v0
  *
  * @param {string} nftAddress Address of the NFT token, ERC721 address
  * @param {int} tokenID NFT Token ID of the item being auctioned
@@ -1084,9 +1084,9 @@ function randomPurchase(tradeAddress, payToken, web3Client) {
 }
 
 /**
- * artionERC721Burn Executes an NFT token burn on Artion Tradable contract.
+ * volcanoERC721Burn Executes an NFT token burn on Volcano Tradable contract.
  *
- * @param {string} nftContract Address of the ERC-721 Artion NFT contract.
+ * @param {string} nftContract Address of the ERC-721 Volcano NFT contract.
  * @param {string} tokenID Identifier of the NFT token within the contract.
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @return {{to: address, data: string}}

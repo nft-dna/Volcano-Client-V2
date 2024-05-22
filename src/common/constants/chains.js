@@ -221,6 +221,7 @@ export const CHAINS = {
     '1666700003': 'Harmony Testnet Shard 3',
     '3125659152': 'Pirl',
     '4216137055': 'OneLedger Testnet Frankenstein',
+	'6969696969': 'Magma Onyx Testnet',
     '11297108099': 'Palm Testnet',
     '11297108109': 'Palm Mainnet',
 };

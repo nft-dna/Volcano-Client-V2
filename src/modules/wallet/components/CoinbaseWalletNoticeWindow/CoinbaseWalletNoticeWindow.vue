@@ -1,6 +1,6 @@
 <template>
     <a-window ref="window" :title="$t('notice')" class="fwindow-width-3">
-        Please select <b>Fantom Opera</b> network on Coinbase Wallet:
+        Please select <b>Magma Onyx</b> network on Coinbase Wallet:
         <ol>
             <li>
                 Tap the
@@ -12,7 +12,7 @@
                 in the mobile app.
             </li>
             <li>Tap <b>Active network</b>.</li>
-            <li>Select <b>Fantom Opera</b>.</li>
+            <li>Select <b>Magma Onyx</b>.</li>
         </ol>
     </a-window>
 </template>

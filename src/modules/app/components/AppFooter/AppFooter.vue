@@ -2,7 +2,7 @@
     <div class="appfooter">
         <div class="appfooter_item">
             <router-link to="/">
-                <img src="artion-logo-white.svg" width="138px" height="35px" alt="artion logo" />
+                <img src="volcano-logo-white.svg" width="138px" height="35px" alt="volcano logo" />
             </router-link>
         </div>
         <div class="appfooter_item">
@@ -35,10 +35,10 @@
         <div class="appfooter_item">
             <a
                 target="_blank"
-                href="https://fantom.foundation/?__cf_chl_jschl_tk__=pmd_E1oHTDXhwdz0vcFL0YFXwPOHh90x0.2yXjcuNnnha8E-1632371438-0-gqNtZGzNAdCjcnBszQyl"
+                href=""
                 rel="noopener"
             >
-                <img src="fantom_logo.svg" width="135px" height="35px" alt="fantom logo" />
+                <img src="magma_logo.svg" width="135px" height="35px" alt="magma logo" />
             </a>
         </div>
     </div>

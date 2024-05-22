@@ -7,13 +7,13 @@ import appConfig from '@/app.config.js';
 import { FApolloClient } from './FApolloClient.js';
 
 export const artionFApolloClient = new FApolloClient({
-    apolloProviders: appConfig.apollo.artion.providers,
-    defaultProviderIndex: appConfig.apollo.artion.defaultProviderIndex,
+    apolloProviders: appConfig.apollo.volcano.providers,
+    defaultProviderIndex: appConfig.apollo.volcano.defaultProviderIndex,
 });
 
 export const fantomFApolloClient = new FApolloClient({
-    apolloProviders: appConfig.apollo.fantom.providers,
-    defaultProviderIndex: appConfig.apollo.fantom.defaultProviderIndex,
+    apolloProviders: appConfig.apollo.magma.providers,
+    defaultProviderIndex: appConfig.apollo.magma.defaultProviderIndex,
 });
 
 export const artionApolloClient = new ApolloClient({
@@ -43,8 +43,8 @@ Vue.use(VueApollo);
 
 export const apolloProvider = new VueApollo({
     clients: {
-        artion: artionApolloClient,
-        fantom: fantomApolloClient,
+        volcano: artionApolloClient,
+        magma: fantomApolloClient,
     },
     defaultClient: artionApolloClient,
     defaultOptions: {

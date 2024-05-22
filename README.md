@@ -28,3 +28,7 @@ npm run build
 ```
 npm run lint
 ```
+
+
+####
+#NODE_OPTIONS=--openssl-legacy-provider npm run serve443

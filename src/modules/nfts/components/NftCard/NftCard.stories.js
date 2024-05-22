@@ -22,8 +22,8 @@ export const Default = () => ({
                 nftImage: 'nftcard1.jpg',
                 nftName: 'Digital Cobalt Blue (AF)',
                 crypto: 0.05,
-                cryptoName: 'Fantom',
-                cryptoLogo: 'fantom.svg',
+                cryptoName: 'Magma',
+                cryptoLogo: 'Magma.svg',
                 timeLeft: '22 hours',
                 lastPrice: {
                     crypto: 0.05,
