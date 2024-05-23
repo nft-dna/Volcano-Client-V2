@@ -73,6 +73,8 @@ let appConfig = {
         mainColor: '#ffffff',
         assetsVersion: '1',
     },
+    appBasePath: '/volcano',
+    //appBasePath: '',
     // if `true`, every route will be redirected to 'under maintenance' page
     underMaintenance: false,
     // use hash in address

@@ -1,5 +1,5 @@
 {
-    "name": "artion-client-v2",
+    "name": "volcano-client",
     "version": "0.0.1",
     "scripts": {
         "serve": "vue-cli-service serve --mode development",
