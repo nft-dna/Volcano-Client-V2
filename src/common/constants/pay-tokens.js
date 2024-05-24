@@ -21,9 +21,12 @@ const PAY_TOKEN_IMAGES = {
     fusdt: '/img/pay-tokens/fUSDT.png',
     usdc: '/img/pay-tokens/USDC.png',
     dai: '/img/pay-tokens/DAI.png',
+	lava: '/img/pay-tokens/LAVA.png',
+	pork: '/img/pay-tokens/PORK.png',
 };
 
-export const WFTMContract = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83';
+//export const WFTMContract = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83';
+export const NativeTokenContract = '0x0000000000000000000000000000000000000000';
 
 let PT = [];
 
@@ -71,6 +74,19 @@ async function fetchPayTokens() {
 
         payTokens.push(payToken);
     });
+	
+    const nativeToken = {
+		address: NativeTokenContract,
+		// name: t.name,
+		label: 'LAVA',
+		img: PAY_TOKEN_IMAGES['lava'] || '',
+		decimals: 18,
+		price: bFromTokenValue(1, 6).toNumber(),
+		priceDecimals: 6,
+		origPrice: 1,
+		value: 'lava',
+	};	
+	payTokens.push(nativeToken);
 
     return payTokens;
 }

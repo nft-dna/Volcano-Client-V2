@@ -20,7 +20,7 @@ export const WithNft = () => ({
     //language=HTML
     template: `
         <div>
-            <app-section-nft :nft="{ title: 'World of Umans', collection: 'Ancestral Uman', img: 'umans.png' }" />
+            <app-section-nft :nft="{ title: 'Magma BitBirds', collection: 'MagmaBitBirds', img: 'magmabitbirds.png' }" />
         </div>
     `,
 });
