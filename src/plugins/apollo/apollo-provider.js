@@ -12,8 +12,8 @@ export const artionFApolloClient = new FApolloClient({
 });
 
 export const fantomFApolloClient = new FApolloClient({
-    apolloProviders: appConfig.apollo.magma.providers,
-    defaultProviderIndex: appConfig.apollo.magma.defaultProviderIndex,
+    apolloProviders: appConfig.apollo.apinet.providers,
+    defaultProviderIndex: appConfig.apollo.apinet.defaultProviderIndex,
 });
 
 export const artionApolloClient = new ApolloClient({

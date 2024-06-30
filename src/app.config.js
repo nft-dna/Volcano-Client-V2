@@ -10,9 +10,9 @@ let appConfig = {
     // app's favicon
     favicon: 'public/favicon.png',
     // app code
-    code: process.env.VUE_APP_FANTOM_MODULE || 'volcano',
+    code: process.env.VUE_APP_MODULE || 'volcano',
     // app routes
-    module: process.env.VUE_APP_FANTOM_MODULE || 'volcano',
+    module: process.env.VUE_APP_MODULE || 'volcano',
     // apollo client settings
     apollo: {
         // Volcano api
@@ -33,12 +33,13 @@ let appConfig = {
             // index into providers array of default provider or 'random' - takes index randomly
             defaultProviderIndex: 'random',
         },
-        // Magma api
-        magma: {
+        // Magma\Sepolia api
+        apinet: {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'https://turbo.magma-rpc.com/',
+                    //http: 'https://turbo.magma-rpc.com/',
+					http: 'https://sepolia.drpc.org/',
                     // for subscriptions
                     ws: '',
                 },
@@ -50,7 +51,7 @@ let appConfig = {
             ],
             // index into providers array of default provider or 'random' - takes index randomly
             defaultProviderIndex: 'random',
-        },
+        },	
     },
     // app settings
     settings: {
@@ -80,14 +81,18 @@ let appConfig = {
     // use hash in address
     routerHashMode: false,
     // Opera chain id
-    chainId: '0x19f6d22c9',
+    //chainId: '0x19f6d22c9',
+	chainId: '0x13882',
     // JSON-RPC endpointAdd
     // rpc: 'https://rpcapi.fantom.network/',
-    rpc: 'https://turbo.magma-rpc.com/',
+    //rpc: 'https://turbo.magma-rpc.com/',
+	rpc: 'https://sepolia.drpc.org/',
     // used in links pointing to fantom explorer
-    explorerUrl: 'https://testnet.magma.foundation/',
+    //explorerUrl: 'https://testnet.magma.foundation/',
+	explorerUrl: 'https://sepolia.etherscan.io/',
     // used in links pointing to validators
-    explorerUrl2: 'https://magmascan.org/',
+    //explorerUrl2: 'https://magmascan.org/',
+	explorerUrl2: 'https://sepolia.etherscan.io/',
     // default options for production build
     build: {
         // output dir for production build

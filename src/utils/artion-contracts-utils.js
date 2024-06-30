@@ -11,7 +11,7 @@ const ZERO_AMOUNT = '0x0';
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function createNFTCollection(nftName, nftSymbol, amount, web3Client, contract = process.env.VUE_APP_FANTOM_NFT_FACTORY_CONTRACT_ADDRESS) {
+ function createNFTCollection(nftName, nftSymbol, amount, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
 
     const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createNFTContractAbi,[nftName, nftSymbol])
 
@@ -138,7 +138,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function createArtCollection(nftName, nftSymbol, amount, web3Client, contract = process.env.VUE_APP_FANTOM_ART_FACTORY_CONTRACT_ADDRESS) {
+ function createArtCollection(nftName, nftSymbol, amount, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
 
     // encode contract ABI with parameters
     const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createNFTContractAbi,[nftName, nftSymbol])
@@ -212,7 +212,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function registerTokenRoyalty(nftAddress, tokenID, royalty, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function registerTokenRoyalty(nftAddress, tokenID, royalty, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -262,7 +262,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function createOffer(nftAddress, tokenID, payToken, quantity, pricePerItem, deadline, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function createOffer(nftAddress, tokenID, payToken, quantity, pricePerItem, deadline, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -323,7 +323,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function cancelOffer(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function cancelOffer(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -365,7 +365,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function acceptOffer(nftAddress, tokenID, creator, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function acceptOffer(nftAddress, tokenID, creator, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -415,7 +415,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function listItem(nftAddress, tokenID, quantity, payToken, pricePerItem, startingTime, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function listItem(nftAddress, tokenID, quantity, payToken, pricePerItem, startingTime, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -476,7 +476,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function cancelListing(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function cancelListing(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -519,7 +519,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function updateListing(nftAddress, tokenID, payToken, newPricePerItem, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function updateListing(nftAddress, tokenID, payToken, newPricePerItem, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -572,7 +572,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function buyListedItemWithPayToken(nftAddress, tokenID, ownerAddress, payToken, web3Client, contract = process.env.VUE_APP_FANTOM_MARKETPLACE_CONTRACT_ADDRESS) {
+ function buyListedItemWithPayToken(nftAddress, tokenID, ownerAddress, payToken, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -632,7 +632,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function createAuction(nftAddress, tokenID, payToken, reservePrice, startTimestamp, endTimestamp, minBidReserve, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function createAuction(nftAddress, tokenID, payToken, reservePrice, startTimestamp, endTimestamp, minBidReserve, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -701,7 +701,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function placeAuctionBid(nftAddress, tokenID, amount, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function placeAuctionBid(nftAddress, tokenID, amount, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -748,7 +748,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function withdrawAuctionBid(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function withdrawAuctionBid(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -792,7 +792,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function resultAuction(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function resultAuction(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -838,7 +838,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
-function resultFailedAuction(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+function resultFailedAuction(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -880,7 +880,7 @@ function resultFailedAuction(nftAddress, tokenID, web3Client, contract = process
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function cancelAuction(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function cancelAuction(nftAddress, tokenID, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -921,7 +921,7 @@ function resultFailedAuction(nftAddress, tokenID, web3Client, contract = process
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function updateAuctionReservePrice(nftAddress, tokenID, reservePrice, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function updateAuctionReservePrice(nftAddress, tokenID, reservePrice, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -967,7 +967,7 @@ function resultFailedAuction(nftAddress, tokenID, web3Client, contract = process
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function updateAuctionStartTime(nftAddress, tokenID, startTime, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function updateAuctionStartTime(nftAddress, tokenID, startTime, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -1013,7 +1013,7 @@ function resultFailedAuction(nftAddress, tokenID, web3Client, contract = process
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function updateAuctionEndTime(nftAddress, tokenID, endTime, web3Client, contract = process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS) {
+ function updateAuctionEndTime(nftAddress, tokenID, endTime, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [

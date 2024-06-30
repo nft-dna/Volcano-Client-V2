@@ -148,7 +148,7 @@ import { getRandomTradeTokensAmount } from '@/modules/pg/queries/random-trade.js
 import contracts from '@/utils/artion-contracts-utils.js';
 import Web3 from 'web3';
 
-const RANDOM_TRADE_CONTRACT = process.env.VUE_APP_FANTOM_RANDOM_PURCHASE_CONTRACT_ADDRESS;
+const RANDOM_TRADE_CONTRACT = process.env.VUE_APP_RANDOM_PURCHASE_CONTRACT_ADDRESS;
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;

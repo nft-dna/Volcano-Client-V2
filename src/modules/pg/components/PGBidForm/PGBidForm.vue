@@ -266,7 +266,7 @@ export default {
 
             const tx = erc20Utils.erc20IncreaseAllowanceTx(
                 this.payToken.address,
-                process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS,
+                process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS,
                 toHex(amountB.plus(10))
             );
 
@@ -283,7 +283,7 @@ export default {
                 await getErc20TokenAllowance(
                     this.walletAddress,
                     this.payToken.address,
-                    process.env.VUE_APP_FANTOM_AUCTION_CONTRACT_ADDRESS
+                    process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS
                 )
             );
 

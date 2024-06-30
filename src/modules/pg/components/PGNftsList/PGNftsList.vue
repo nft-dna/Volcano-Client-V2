@@ -20,7 +20,7 @@ import { getWFTMToken } from '@/modules/pg/utils.js';
 import { getRandomTradePayTokenPrice } from '@/modules/pg/queries/random-trade.js';
 import appConfig from '@/app.config.js';
 
-const RANDOM_TRADE_CONTRACT = process.env.VUE_APP_FANTOM_RANDOM_PURCHASE_CONTRACT_ADDRESS;
+const RANDOM_TRADE_CONTRACT = process.env.VUE_APP_RANDOM_PURCHASE_CONTRACT_ADDRESS;
 const CONTRACT = '0x61af4d29f672e27a097291f72fc571304bc93521';
 const AUCTION_ON = appConfig.auctionOn;
 const AUCTION_START = appConfig.auctionStart;
