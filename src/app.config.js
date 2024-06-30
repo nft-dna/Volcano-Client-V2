@@ -74,7 +74,7 @@ let appConfig = {
         mainColor: '#ffffff',
         assetsVersion: '1',
     },
-    appBasePath: '/volcano',
+    appBasePath: '/sepolia-volcano',
     //appBasePath: '',
     // if `true`, every route will be redirected to 'under maintenance' page
     underMaintenance: false,
