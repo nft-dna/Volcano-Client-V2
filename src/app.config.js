@@ -20,7 +20,7 @@ let appConfig = {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'http://10.94.0.245:8080/graphql',
+                    http: 'http://127.0.0.1:8080/graphql',
                     // for subscriptions
                     ws: '',
                 },
@@ -79,7 +79,7 @@ let appConfig = {
     // if `true`, every route will be redirected to 'under maintenance' page
     underMaintenance: false,
     // use hash in address
-    routerHashMode: false,
+    routerHashMode: true,
     // Opera chain id
     //chainId: '0x19f6d22c9',
 	chainId: '0x13882',

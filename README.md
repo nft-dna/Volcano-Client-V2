@@ -31,4 +31,10 @@ npm run lint
 
 
 ####
-#NODE_OPTIONS=--openssl-legacy-provider npm run serve443
+####
+## linux
+# export NODE_OPTIONS=--openssl-legacy-provider
+## windows
+# set NODE_OPTIONS=--openssl-legacy-provider
+
+#NODE_OPTIONS=--openssl-legacy-provider npm run serve 443

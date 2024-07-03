@@ -6,7 +6,8 @@ console.log('--- app config ---');
 console.log(appConfig);
 
 module.exports = {
-    publicPath: appConfig.appBasePath + appConfig.routerHashMode ? '' : '/',
+    //publicPath: appConfig.appBasePath + appConfig.routerHashMode ? '' : '/',
+	publicPath: appConfig.appBasePath,
     outputDir: appConfig.build.outputDir,
 
     transpileDependencies: ['@walletconnect', '@web3modal'],
