@@ -9,11 +9,22 @@ export async function getErc20TokenBalance(ownerAddress = '', tokenAddress = '')
 		return getFTMBalance(ownerAddress);
 	
     const query = {
-        query: gql`
+        /*
+		query: gql`
             query GetErc20TokenBalance($owner: Address!, $token: Address!) {
                 ercTokenBalance(owner: $owner, token: $token)
             }
         `,
+		*/
+		query: gql`
+		  query GetTokenBalance($owner: String!, $token: String!) {
+			account(id: $owner) {
+			  tokenBalance(where: { token: $token }) {
+				value
+			  }
+			}
+		  }`
+		,		  
         variables: {
             owner: ownerAddress,
             token: tokenAddress,

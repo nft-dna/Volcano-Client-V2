@@ -262,13 +262,26 @@ export class Wallet {
     async getNonce(address, inHexFormat) {
         const nonce = await gqlQuery(
             {
-                query: gql`
+                /*
+				query: gql`
                     query AccountByAddress($address: Address!) {
                         account(address: $address) {
                             txCount
                         }
                     }
                 `,
+				*/
+				query: gql`
+				  query GetNonce($address: String!) {
+					ethereum {
+					  account(address: {is: $address}) {
+						transactionCount {
+						  count
+						}
+					  }
+					}
+				  }`
+				,				  
                 variables: {
                     address: address,
                 },
