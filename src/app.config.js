@@ -38,7 +38,8 @@ let appConfig = {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'https://turbo.magma-rpc.com/',
+                    //http: 'https://magmascan.org/graphiql',
+					http: 'https://magmascan.org/api/v1/graphql',
 					//http: 'https://sepolia.drpc.org/',
                     // for subscriptions
                     ws: '',
