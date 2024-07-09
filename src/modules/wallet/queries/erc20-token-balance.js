@@ -1,8 +1,13 @@
 import gql from 'graphql-tag';
 import { gqlQuery } from '@/utils/gql.js';
 import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
+import { getFTMBalance } from '@/modules/wallet/queries/ftm-balance.js';
 
 export async function getErc20TokenBalance(ownerAddress = '', tokenAddress = '') {
+	
+	if (tokenAddress == '0x0000000000000000000000000000000000000000')
+		return getFTMBalance(ownerAddress);
+	
     const query = {
         query: gql`
             query GetErc20TokenBalance($owner: Address!, $token: Address!) {

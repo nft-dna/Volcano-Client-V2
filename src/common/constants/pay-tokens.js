@@ -17,15 +17,15 @@ import { clone } from 'fantom-vue-components/src/utils';
  */
 
 const PAY_TOKEN_IMAGES = {
-    wftm: '/img/pay-tokens/WFTM.png',
-    fusdt: '/img/pay-tokens/fUSDT.png',
-    usdc: '/img/pay-tokens/USDC.png',
-    dai: '/img/pay-tokens/DAI.png',
-	lava: '/img/pay-tokens/LAVA.png',
-	pork: '/img/pay-tokens/PORK.png',
+    wftm: 'img/pay-tokens/WFTM.png',
+    fusdt: 'img/pay-tokens/fUSDT.png',
+    usdc: 'img/pay-tokens/USDC.png',
+    dai: 'img/pay-tokens/DAI.png',
+	lava: 'img/pay-tokens/LAVA.png',
+	wlava: 'img/pay-tokens/LAVA.png',
 };
 
-//export const WFTMContract = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83';
+export const WrappedNativeTokenContract = process.env.VUE_APP_WRAPPED_TOKEN_ADDRESS;
 export const NativeTokenContract = '0x0000000000000000000000000000000000000000';
 
 let PT = [];
@@ -75,7 +75,8 @@ async function fetchPayTokens() {
         payTokens.push(payToken);
     });
 	
-    const nativeToken = {
+    /* MM test
+	const nativeToken = {
 		address: NativeTokenContract,
 		// name: t.name,
 		label: 'LAVA',
@@ -87,6 +88,7 @@ async function fetchPayTokens() {
 		value: 'lava',
 	};	
 	payTokens.push(nativeToken);
+	*/
 
     return payTokens;
 }

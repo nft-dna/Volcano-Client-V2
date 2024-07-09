@@ -45,7 +45,7 @@
 
 <script>
 import ABPriceField from '@/common/components/ABPriceField/ABPriceField.vue';
-import { WFTMContract } from '@/common/constants/pay-tokens.js';
+import { WrappedNativeTokenContract } from '@/common/constants/pay-tokens.js';
 import { getPayTokenWithPrice } from '@/utils/pay-tokens.js';
 import { getFTMBalance } from '@/modules/wallet/queries/ftm-balance.js';
 import { getErc20TokenBalance } from '@/modules/wallet/queries/erc20-token-balance.js';
@@ -108,7 +108,7 @@ export default {
 
     methods: {
         async setTokens() {
-            const wftmToken = await getPayTokenWithPrice(WFTMContract);
+            const wftmToken = await getPayTokenWithPrice(WrappedNativeTokenContract);
 
             this.wftmToken = {
                 decimals: wftmToken.decimals,
@@ -131,7 +131,7 @@ export default {
         async setBalances() {
             const data = await Promise.all([
                 getFTMBalance(this.walletAddress),
-                getErc20TokenBalance(this.walletAddress, WFTMContract),
+                getErc20TokenBalance(this.walletAddress, WrappedNativeTokenContract),
             ]);
 
             this.ftmToken.balance = data[0];
@@ -148,10 +148,10 @@ export default {
             let tx = null;
 
             if (type === 'wrap') {
-                tx = contracts.defiWrapFtm(WFTMContract, amount);
+                tx = contracts.defiWrapFtm(WrappedNativeTokenContract, amount);
                 tx._code = 'wrap';
             } else {
-                tx = contracts.defiUnwrapFtm(WFTMContract, amount);
+                tx = contracts.defiUnwrapFtm(WrappedNativeTokenContract, amount);
                 tx._code = 'unwrap';
             }
 
