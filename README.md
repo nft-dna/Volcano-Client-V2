@@ -31,6 +31,7 @@ npm run lint
 
 
 ####
+# Works with node 17 and prior versions
 ####
 ## linux
 # export NODE_OPTIONS=--openssl-legacy-provider

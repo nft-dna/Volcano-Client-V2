@@ -291,7 +291,10 @@ export class Wallet {
      * @return {Promise<number|string|*|number>}
      */
     async getGasPrice(inHexFormat) {
-        let gasPrice = await gqlQuery(
+		const { wallet } = this;
+		let gasPrice = await wallet._web3.eth.getGasPrice()
+        /*
+		let gasPrice = await gqlQuery(
             {
                 query: gql`
                     query GasPrice {
@@ -303,7 +306,7 @@ export class Wallet {
             'gasPrice',
             fantomApolloClient
         );
-
+		*/
         // gasPrice * 1.2
         gasPrice = toHex(toBigNumber(gasPrice).multipliedBy(1.2));
 
@@ -317,8 +320,9 @@ export class Wallet {
      * @param {string} data
      * @return {Promise<string>}
      */
-    async estimateGas({ from = undefined, to = undefined, value = undefined, data = undefined }, silent = false) {
-        const estimateGas = await gqlQuery(
+    async estimateGas({ from = undefined, to = undefined, value = undefined, data = undefined }/*, silent = false*/) {
+        /*
+		const estimateGas = await gqlQuery(
             {
                 query: gql`
                     query EstimateGas($from: Address, $to: Address, $value: BigInt, $data: String) {
@@ -332,6 +336,14 @@ export class Wallet {
             fantomApolloClient,
             silent
         );
+		*/
+		const { wallet } = this;
+		let estimateGas = await wallet._web3.eth.estimateGas({
+			from: from,
+			to: to,
+			data: data,
+			value: value
+		});
 
         return estimateGas;
     }
@@ -366,11 +378,15 @@ export class Wallet {
 
         if (txHash) {
             while (status === null) {
+				try {
                 status = await this._getTransactionStatus(txHash);
+				} catch(error){
+					status = null					
+				}
                 await delay(400);
             }
 
-            ok = parseInt(status, 16) === 1;
+            ok = ((status.toUpperCase().localeCompare("OK") == 0) || parseInt(status, 16) === 1);
         }
 
         return ok;
@@ -384,13 +400,16 @@ export class Wallet {
     _getTransactionStatus(txHash) {
         return gqlQuery(
             {
-                query: gql`
+                /*
+				query: gql`
                     query TransactionByHash($hash: Bytes32!) {
                         transaction(hash: $hash) {
                             status
                         }
                     }
                 `,
+				*/
+				query: gql`query TransactionByHash( $hash : FullHash!) {transaction (hash: $hash) { status  }}`,
                 variables: {
                     hash: txHash,
                 },
