@@ -13,19 +13,10 @@ export async function getFTMBalance(ownerAddress = '') {
             }
         `,
 		*/
-		query: gql`
-		  query GetEthBalance($ownerAddress: String!) {
-			ethereum {
-			  address(address: {is: $ownerAddress}) {
-				balance {
-				  value
-				}
-			  }
-			}
-		  }`
+		query: gql`query AddressBalance( $hash : AddressHash!) {address (hash: $hash) { fetchedCoinBalance  }}`
 		,		
         variables: {
-            address: ownerAddress,
+            hash: ownerAddress,
         },
         fetchPolicy: 'network-only',
     };

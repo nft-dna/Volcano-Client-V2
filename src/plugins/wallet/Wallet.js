@@ -271,19 +271,10 @@ export class Wallet {
                     }
                 `,
 				*/
-				query: gql`
-				  query GetNonce($address: String!) {
-					ethereum {
-					  account(address: {is: $address}) {
-						transactionCount {
-						  count
-						}
-					  }
-					}
-				  }`
+				query: gql`query AddressNonce( $hash : AddressHash!) {address (hash: $hash) { nonce  }}`
 				,				  
                 variables: {
-                    address: address,
+                    hash: address,
                 },
                 fetchPolicy: 'network-only',
             },
