@@ -1,10 +1,17 @@
-import gql from 'graphql-tag';
-import { gqlQuery } from '@/utils/gql.js';
-import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
+// import gql from 'graphql-tag';
+// import { gqlQuery } from '@/utils/gql.js';
+// import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
+// MM
+import { wallet } from '@/plugins/wallet/Wallet.js';
 
 export async function getFTMBalance(ownerAddress = '') {
+	
+	// MM avoid using grpahql network api's (not standard here)
+	return wallet.getBalance(ownerAddress);
+	
+	/*
     const query = {
-        /*
+
 		query: gql`
             query GetFTMBalance($address: Address!) {
                 account(address: $address) {
@@ -12,9 +19,8 @@ export async function getFTMBalance(ownerAddress = '') {
                 }
             }
         `,
-		*/
-		query: gql`query AddressBalance( $hash : AddressHash!) {address (hash: $hash) { fetchedCoinBalance  }}`
-		,		
+		//query: gql`query AddressBalance( $hash : AddressHash!) {address (hash: $hash) { fetchedCoinBalance  }}`
+		//,		
         variables: {
             hash: ownerAddress,
         },
@@ -22,4 +28,5 @@ export async function getFTMBalance(ownerAddress = '') {
     };
 
     return gqlQuery(query, 'account.balance', fantomApolloClient);
+	*/	
 }

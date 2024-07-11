@@ -284,7 +284,41 @@ export class Wallet {
 
         return inHexFormat ? nonce : parseInt(nonce, 16);
     }
+	
+	// MM added to avoid using specific ('not standard') grpahql network api
+	async  getBalance(walletAddress) {
+		const { wallet } = this;
+		let balance = await wallet._web3.eth.getBalance(walletAddress);
+		return balance;//.toFixed();
+	}
+	
+	// MM added to avoid using specific ('not standard') grpahql network api
+	async  getErc20TokenBalance(walletAddress, tokenAddress) {
+		const { wallet } = this;
+		let minABI = [
+		  // balanceOf
+		  {
+			"constant":true,
+			"inputs":[{"name":"_owner","type":"address"}],
+			"name":"balanceOf",
+			"outputs":[{"name":"balance","type":"uint256"}],
+			"type":"function"
+		  },
+		  // decimals
+		  {
+			"constant":true,
+			"inputs":[],
+			"name":"decimals",
+			"outputs":[{"name":"","type":"uint8"}],
+			"type":"function"
+		  }
+		];
 
+		let contract = new wallet._web3.eth.Contract(minABI,tokenAddress);
+		let balance = await contract.methods.balanceOf(walletAddress).call();
+		return balance;
+	}
+	
     /**
      * @param {string} address
      * @param {boolean} [inHexFormat]
