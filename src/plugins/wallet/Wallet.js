@@ -323,7 +323,7 @@ export class Wallet {
 	async  getErc20Allowance(tokenAddress, ownerAddress, spenderAddress) {
 		const { wallet } = this;
 		let minABI = [
-		  // balanceOf
+		  // allowance
 		  {
 			"constant":true,
 			"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],

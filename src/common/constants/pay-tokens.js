@@ -22,7 +22,7 @@ const PAY_TOKEN_IMAGES = {
     usdc: 'img/pay-tokens/USDC.png',
     dai: 'img/pay-tokens/DAI.png',
 	lava: 'img/pay-tokens/LAVA.png',
-	wlava: 'img/pay-tokens/LAVA.png',
+	wlava: 'img/pay-tokens/WLAVA.png',
 };
 
 export const WrappedNativeTokenContract = process.env.VUE_APP_WRAPPED_TOKEN_ADDRESS;
