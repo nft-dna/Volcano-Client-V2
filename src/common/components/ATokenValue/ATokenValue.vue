@@ -118,7 +118,7 @@ export default {
                     fractionDigits = this.dToken.fractionDigits;
                 }
 
-                return formatTokenValue(value, this.dToken.decimals, fractionDigits, 3, true);
+                return formatTokenValue(value, this.dToken.decimals, fractionDigits, '', true);
             }
 
             return value;
