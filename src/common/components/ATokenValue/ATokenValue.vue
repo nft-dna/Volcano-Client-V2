@@ -118,7 +118,7 @@ export default {
                     fractionDigits = this.dToken.fractionDigits;
                 }
 
-                return formatTokenValue(value, this.dToken.decimals, fractionDigits, '', true);
+                return formatTokenValue(value, this.dToken.decimals, fractionDigits, 3, true);
             }
 
             return value;
@@ -133,7 +133,7 @@ export default {
             const { dToken } = this;
             const value$ = value ? toBigNumber(value).multipliedBy(dToken.price) : null;
 
-            return value$ ? formatTokenValue(value$, dToken.decimals, 2, true) : '';
+            return value$ ? formatTokenValue(value$, dToken.decimals, 5, true) : '';
         },
     },
 

@@ -251,7 +251,7 @@ export default {
         currentBid() {
             const { lastBid } = this.auction;
 
-            return lastBid ? formatTokenValue(lastBid, this.payToken.decimals, 1) : '';
+            return lastBid ? formatTokenValue(lastBid, this.payToken.decimals, 5) : '';
         },
 
         currentBid$() {
@@ -374,7 +374,7 @@ export default {
         to$(value) {
             const value$ = value ? toBigNumber(value).multipliedBy(this.payToken.price) : null;
 
-            return value$ ? formatTokenValue(value$, this.payToken.priceDecimals, 2, true) : '';
+            return value$ ? formatTokenValue(value$, this.payToken.priceDecimals, 5, true) : '';
         },
 
         format$(value, decimals = 2) {

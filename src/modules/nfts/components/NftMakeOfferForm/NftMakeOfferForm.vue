@@ -24,7 +24,7 @@
                         <a-token-value
                             :token="{ ...selectedPayToken, img: '' }"
                             :value="toHex(bAccountBalance)"
-                            :fraction-digits="2"
+                            :fraction-digits="5"
                             :is-pay-token="false"
                             :use-placeholder="false"
                         />

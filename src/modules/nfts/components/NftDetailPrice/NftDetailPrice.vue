@@ -3,7 +3,7 @@
         <template v-if="token.hasListing && listing.unitPrice">
             <div class="nftdetailprice_label">{{ $t('nftdetailprice.currentPrice') }}</div>
             <div class="nftdetailprice_price">
-                <a-token-value :value="listing.unitPrice" :token="payToken" :fraction-digits="1" no-symbol with-price />
+                <a-token-value :value="listing.unitPrice" :token="payToken" :fraction-digits="5" no-symbol with-price />
             </div>
         </template>
         <div class="nftdetailprice_buttons">

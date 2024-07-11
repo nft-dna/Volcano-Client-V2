@@ -25,7 +25,7 @@
                 <a-token-value
                     :token="item.payToken"
                     :value="value"
-                    :fraction-digits="2"
+                    :fraction-digits="5"
                     :use-placeholder="false"
                     no-symbol
                 />

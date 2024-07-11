@@ -58,7 +58,7 @@
                             :value="dAuction.lastBid"
                             :token="payToken"
                             no-symbol
-                            :fraction-digits="1"
+                            :fraction-digits="5"
                         />
                         <span v-else>-</span>
                         <span v-if="userIsLastBidder">({{ $t('nftauction.youAreTopBidder') }})</span>

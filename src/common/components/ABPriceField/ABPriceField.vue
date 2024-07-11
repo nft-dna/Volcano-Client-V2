@@ -102,7 +102,7 @@ export default {
 
     computed: {
         cBalance() {
-            return this.balance ? formatTokenValue(this.balance, this.token.decimals, 3) : 0;
+            return this.balance ? formatTokenValue(this.balance, this.token.decimals, 5) : 0;
         },
     },
 
@@ -185,7 +185,7 @@ export default {
             const { token } = this;
             const value$ = value ? toBigNumber(value).multipliedBy(token.price) : null;
 
-            return formatTokenValue(value$ || 0, token.priceDecimals, 2, true);
+            return formatTokenValue(value$ || 0, token.priceDecimals, 5, true);
         },
 
         validateInput() {

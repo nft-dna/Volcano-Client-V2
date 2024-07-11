@@ -36,14 +36,14 @@ let PT = [];
  */
 function getTokenFractionDigits(token) {
     const tokenPrice = token.price || 0;
-    let decimals = 1;
+    let decimals = 5;
 
     if (tokenPrice < 5 && tokenPrice >= 0) {
-        decimals = 1;
+        decimals = 5;
     } else if (tokenPrice < 100) {
         decimals = 2;
     } else if (tokenPrice < 1000) {
-        decimals = 5;
+        decimals = 1;
     }
 
     return decimals;

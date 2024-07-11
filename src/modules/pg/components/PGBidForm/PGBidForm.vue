@@ -297,7 +297,7 @@ export default {
         to$(value) {
             const value$ = value ? toBigNumber(value).multipliedBy(this.payToken.price) : null;
 
-            return value$ ? formatTokenValue(value$, this.payToken.priceDecimals, 2, true) : '';
+            return value$ ? formatTokenValue(value$, this.payToken.priceDecimals, 5, true) : '';
         },
 
         onPlaceBid() {
