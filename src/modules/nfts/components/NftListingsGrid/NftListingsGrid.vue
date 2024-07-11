@@ -178,7 +178,7 @@ export default {
          */
         async buyItem(listing, approve = false) {
             if (
-                (await checkUserBalance(
+                (await  checkUserBalance(
                     listing.unitPrice,
                     listing.payToken,
                     this.getPayTokenLabel(listing.payToken)
@@ -202,7 +202,9 @@ export default {
                 } else {
                     this.setBuyTx(listing);
                 }
-            }
+            } else {
+				console.log('buyItem listingGrid: getPayTokenLabel is null');
+			}
         },
 
         async cancelListing(listing) {

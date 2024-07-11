@@ -143,7 +143,9 @@ export default {
                 }
 
                 // console.log(token.contract, parseInt(token.tokenId, 16), listing.owner);
-            }
+            } else {
+				console.log('buyItem detailPrice: getPayTokenLabel is null');
+			}
         },
 
         setBuyTx() {

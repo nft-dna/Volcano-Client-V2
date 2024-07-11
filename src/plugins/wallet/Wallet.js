@@ -319,6 +319,27 @@ export class Wallet {
 		return balance;
 	}
 	
+	// MM added to avoid using specific ('not standard') grpahql network api
+	async  getErc20Allowance(tokenAddress, ownerAddress, spenderAddress) {
+		const { wallet } = this;
+		let minABI = [
+		  // balanceOf
+		  {
+			"constant":true,
+			"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],
+			"name":"allowance",
+			"outputs":[{"name":"","type":"uint256"}],
+			"payable": false,
+			"stateMutability": "view",
+			"type":"function"
+		  },
+		];
+
+		let contract = new wallet._web3.eth.Contract(minABI,tokenAddress);
+		let allowance = await contract.methods.allowance(ownerAddress, spenderAddress).call();
+		return allowance;
+	}	
+	
     /**
      * @param {string} address
      * @param {boolean} [inHexFormat]

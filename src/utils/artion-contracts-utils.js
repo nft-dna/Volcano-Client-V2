@@ -1146,7 +1146,7 @@ function setApprovalForAll(nftAddress, operator, approved, web3Client) {
         "stateMutability": "nonpayable",
         "type": "function"
     }
-
+	
     const encodedAbi = web3Client.eth.abi.encodeFunctionCall(abi,[operator, approved])
 
     // return tx object
