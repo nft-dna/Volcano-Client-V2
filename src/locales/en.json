@@ -19,7 +19,7 @@
     "from": "From",
     "unnamed": "Unnamed",
     "balance": "Balance",
-    "wrapStation": "FTM / WFTM Station",
+    "wrapStation": "LAVA / WLAVA Station",
     "notice": "Notice",
     "aproveSuccess": "Successfully approved",
     "me": "Me",
@@ -240,7 +240,7 @@
         "from": "From",
         "to": "To",
         "date": "Date",
-        "showTx": "Show transaction in FTMScan",
+        "showTx": "Show transaction in Network Scan",
         "types": {
             "LISTING_SOLD": "Sold in listing",
             "LISTING_CREATED": "Listing created",
@@ -353,8 +353,9 @@
         "about": "About",
         "chainInfo": "Chain Info",
         "network": "Network",
-        "magmaOnyx": "Magma Onyx",
+        "networkName": "Magma",		
         "chainId": "Chain ID",
+		"chainIdName": "6969696969",
         "fromCollection": "More from this collection",
         "itemActivity": "Item Activity",
         "attributes": "Attributes"
@@ -439,8 +440,8 @@
         "swapTokens": "Swap tokens",
         "wrap": "Wrap",
         "unwrap": "Unwrap",
-        "wrapSuccess": "You have successfully wrap FTM",
-        "unwrapSuccess": "You have successfully unwrap wFTM"
+        "wrapSuccess": "You have successfully wrap LAVA",
+        "unwrapSuccess": "You have successfully unwrap LAVA"
     },
 
     "nftlistfilters": {
@@ -525,7 +526,7 @@
         "royaltyError": "Registering royalty transaction failed. The token was minted, but royalty was not set.",
         "scanWaiting": "The token was successfully minted. Waiting for server-side token processing - this can take a while...",
         "success": "The token was successfully created.",
-        "messageFtm": "{fee} FTM are charged to create a new NFT.",
+        "messageFtm": "{fee} LAVA are charged to create a new NFT.",
         "estimatingFeeGas": "Estimating necessary fee for minting and the transaction...",
         "uploading": "Uploading file and token data into IPFS...",
         "waitingForTokenId": "Waiting for the minting transaction receipt with the token ID..."
@@ -560,7 +561,7 @@
         "newBidIsBelowCurrent": "Bid is below current bid",
         "newBidIsBelowMin": "Bid is below min bid",
         "mustBeNumber": "Bid must be number",
-        "bidMustBeDivisibleByHundred": "Bid must be in {amount} FTM increments minimum",
+        "bidMustBeDivisibleByHundred": "Bid must be in {amount} LAVA increments minimum",
         "insufficientBalance": "@:insufficientBalance"
     },
 

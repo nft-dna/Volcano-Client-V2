@@ -76,7 +76,7 @@ export default {
         /** Replacement text for FPlaceholder. */
         replacementText: {
             type: String,
-            default: '10,000.00 wFTM',
+            default: '10,000.00 wLAVA',
         },
         /** Currency symbol used in `formatNumberByLocale` function */
         numberCurrency: {

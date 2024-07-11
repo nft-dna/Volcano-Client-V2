@@ -381,6 +381,7 @@ export class Wallet {
 				try {
                 status = await this._getTransactionStatus(txHash);
 				} catch(error){
+					console.log('getTransactionStatus next try');
 					status = null					
 				}
                 await delay(400);

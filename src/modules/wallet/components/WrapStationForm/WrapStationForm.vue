@@ -71,8 +71,8 @@ export default {
         return {
             ftmToken: {},
             wftmToken: {},
-            tokenFrom: { label: 'FTM' },
-            tokenTo: { label: 'wFTM' },
+            tokenFrom: { label: 'LAVA' },
+            tokenTo: { label: 'wLAVA' },
             value: '',
             tx: {},
             txStatus: '',
@@ -82,7 +82,7 @@ export default {
 
     computed: {
         wrap() {
-            return this.tokenFrom.label === 'FTM';
+            return this.tokenFrom.label === 'LAVA';
         },
 
         buttonLabel() {
@@ -119,7 +119,7 @@ export default {
 
             this.ftmToken = {
                 ...this.wftmToken,
-                label: 'FTM',
+                label: 'LAVA',
             };
 
             await this.setBalances();

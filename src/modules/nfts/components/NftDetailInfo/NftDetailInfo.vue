@@ -73,11 +73,11 @@
                 </div>
                 <div class="nftdetailinfo_row">
                     <span>{{ $t('nftdetail.network') }}</span>
-                    <span>{{ $t('nftdetail.magmaOnyx') }}</span>
+                    <span>{{ $t('nftdetail.networkName') }}</span>
                 </div>
                 <div class="nftdetailinfo_row">
                     <span>{{ $t('nftdetail.chainId') }}</span>
-                    <span>250</span>
+                    <span>{{ $t('nftdetail.chainIdName') }}</span>
                 </div>
             </template>
         </a-details>

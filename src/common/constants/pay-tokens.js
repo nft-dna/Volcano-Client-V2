@@ -61,7 +61,7 @@ async function fetchPayTokens() {
         const payToken = {
             address: t.contract,
             // name: t.name,
-            label: t.symbol === 'WFTM' ? 'wFTM' : t.symbol,
+            label: t.symbol === 'WLAVA' ? 'wLAVA' : t.symbol,
             img: PAY_TOKEN_IMAGES[symbolLC] || '',
             decimals: t.decimals,
             price: bFromTokenValue(t.price, 6).toNumber(),
