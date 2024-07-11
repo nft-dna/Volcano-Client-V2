@@ -417,7 +417,8 @@ export class Wallet {
                 fetchPolicy: 'network-only',
             },
             'transaction.status',
-            fantomApolloClient
+            fantomApolloClient,
+			true // silent
         );
     }
 
