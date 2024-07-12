@@ -234,6 +234,7 @@ export default {
                 token.tokenId,
                 listing.owner,
                 listing.payToken,
+				listing.unitPrice,
                 web3,
                 listing.marketplace
             );

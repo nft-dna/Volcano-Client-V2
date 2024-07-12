@@ -159,6 +159,7 @@ export default {
             const tx = contracts.placeAuctionBid(
                 token.contract,
                 token.tokenId,
+				this.auction.payToken,				
                 toHex(priceB),
                 web3,
                 this.auction.auctionHall

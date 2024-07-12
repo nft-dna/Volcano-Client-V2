@@ -309,7 +309,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
     return {
         from: undefined,
         to: contract,
-        value: ZERO_AMOUNT,
+        value: (payToken == '0x0000000000000000000000000000000000000000') ? web3Client.utils.numberToHex(quantity * pricePerItem) : ZERO_AMOUNT, //ZERO_AMOUNT, MM 'transparent' 'native token' support added
         data: encodedAbi,
     };
 }
@@ -572,7 +572,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
  */
- function buyListedItemWithPayToken(nftAddress, tokenID, ownerAddress, payToken, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
+ function buyListedItemWithPayToken(nftAddress, tokenID, ownerAddress, payToken, amount, web3Client, contract = process.env.VUE_APP_MARKETPLACE_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -609,7 +609,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
     return {
         from: undefined,
         to: contract,
-        value: ZERO_AMOUNT,
+        value: (payToken == '0x0000000000000000000000000000000000000000') ? web3Client.utils.numberToHex(amount) : ZERO_AMOUNT, //ZERO_AMOUNT, MM 'transparent' 'native token' support added
         data: encodedAbi,
     };
 }
@@ -701,7 +701,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  */
- function placeAuctionBid(nftAddress, tokenID, amount, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
+ function placeAuctionBid(nftAddress, tokenID, payToken, amount, web3Client, contract = process.env.VUE_APP_AUCTION_CONTRACT_ADDRESS) {
 
     const abi = {
         "inputs": [
@@ -733,7 +733,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
     return {
         from: undefined,
         to: contract,
-        value: ZERO_AMOUNT,
+        value: (payToken == '0x0000000000000000000000000000000000000000') ? web3Client.utils.numberToHex(amount) : ZERO_AMOUNT, //ZERO_AMOUNT, MM 'transparent' 'native token' support added
         data: encodedAbi,
     };
 }

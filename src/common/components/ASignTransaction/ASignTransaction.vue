@@ -98,6 +98,7 @@ export default {
                     tx.chainId = $wallet.chainId;
                     tx.nonce = await $wallet.getNonce($wallet.account, true);
                     // tx.from = $wallet.account;
+
                     tx.gasPrice = await $wallet.getGasPrice(true);
                     tx.gasLimit = await $wallet.estimateGas(tx, this.silent);
 
@@ -106,8 +107,6 @@ export default {
                     if (!tx.from) {
                         tx.from = $wallet.account;
                     }
-
-                    // console.log('TX: ', tx);
 
                     const trx = await $wallet.signTransaction(tx, true);
 

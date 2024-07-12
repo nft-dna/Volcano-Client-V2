@@ -248,7 +248,7 @@ export default {
 
             // console.log('FINAL', amountB.toString(10));
 
-            const tx = contracts.placeAuctionBid(auction.contract, auction.tokenId, toHex(amountB), web3);
+            const tx = contracts.placeAuctionBid(auction.contract, auction.tokenId, this.payToken, toHex(amountB), web3);
 
             tx._code = 'bid';
 
