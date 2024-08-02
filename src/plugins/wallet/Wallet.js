@@ -260,17 +260,18 @@ export class Wallet {
      * @return {Promise<number|string|*|number>}
      */
     async getNonce(address, inHexFormat) {
-        const nonce = await gqlQuery(
+        /*
+		const nonce = await gqlQuery(
             {
-                /*
-				query: gql`
-                    query AccountByAddress($address: Address!) {
-                        account(address: $address) {
-                            txCount
-                        }
-                    }
-                `,
-				*/
+                
+				//query: gql`
+                //    query AccountByAddress($address: Address!) {
+                //        account(address: $address) {
+                //            txCount
+                //        }
+                //    }
+                //`,
+				
 				query: gql`query AddressNonce( $hash : AddressHash!) {address (hash: $hash) { nonce  }}`
 				,				  
                 variables: {
@@ -283,6 +284,10 @@ export class Wallet {
         );
 
         return inHexFormat ? nonce : parseInt(nonce, 16);
+		*/
+		const { wallet } = this;
+		const nonce = await wallet._web3.eth.getTransactionCount(address, "pending");
+		return inHexFormat ? wallet._web3.utils.toHex(nonce) : nonce;
     }
 	
 	// MM added to avoid using specific ('not standard') grpahql network api
@@ -414,7 +419,7 @@ export class Wallet {
             while (receipt === null && c < maxRetry) {
                 await delay(350);
                 receipt = await wallet._web3.eth.getTransactionReceipt(txHash);
-                console.log('getTransactionReceipt next try');
+                //console.log('getTransactionReceipt next try');
                 c += 1;
             }
         }
@@ -453,18 +458,19 @@ export class Wallet {
      * @return {Promise<number|string|*|undefined|null>}
      * @private
      */
-    _getTransactionStatus(txHash) {
-        return gqlQuery(
+    async _getTransactionStatus(txHash) {
+        /*
+		return gqlQuery(
             {
-                /*
-				query: gql`
-                    query TransactionByHash($hash: Bytes32!) {
-                        transaction(hash: $hash) {
-                            status
-                        }
-                    }
-                `,
-				*/
+
+				//query: gql`
+                //    query TransactionByHash($hash: Bytes32!) {
+                //        transaction(hash: $hash) {
+                //            status
+                //        }
+                //    }
+                //`,
+
 				query: gql`query TransactionByHash( $hash : FullHash!) {transaction (hash: $hash) { status  }}`,
                 variables: {
                     hash: txHash,
@@ -475,6 +481,16 @@ export class Wallet {
             fantomApolloClient,
 			true // silent
         );
+		*/
+		
+		//const { wallet } = this;
+		//let receipt = await wallet._web3.getTransactionReceipt(txHash);
+		let receipt = await this.getTransactionReceipt(txHash, 1);
+		if (receipt != null)
+		{
+			return receipt.status;
+		}
+		return null;		
     }
 
     /**

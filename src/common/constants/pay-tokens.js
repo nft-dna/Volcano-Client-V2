@@ -74,22 +74,6 @@ async function fetchPayTokens() {
 
         payTokens.push(payToken);
     });
-	
-    /* MM test
-	const nativeToken = {
-		address: NativeTokenContract,
-		// name: t.name,
-		label: 'LAVA',
-		img: PAY_TOKEN_IMAGES['lava'] || '',
-		decimals: 18,
-		price: bFromTokenValue(1, 6).toNumber(),
-		priceDecimals: 6,
-		origPrice: 1,
-		value: 'lava',
-	};	
-	payTokens.push(nativeToken);
-	*/
-
     return payTokens;
 }
 

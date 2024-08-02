@@ -1,3 +1,5 @@
+// MM
+/*
 import gql from 'graphql-tag';
 import { gqlQuery } from '@/utils/gql.js';
 import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
@@ -25,3 +27,4 @@ export async function getWalletInfo(address = '') {
 
     return gqlQuery(query, 'erc20Assets', fantomApolloClient);
 }
+*/

@@ -29,10 +29,14 @@ export class FApolloClient {
     }
 
     setHttpProvider(httpProvider = '') {
-        const url = new URL(httpProvider);
+        //const url = new URL(httpProvider);
 
         this.httpProvider = httpProvider;
-        this.httpProviderOrigin = url.origin;
+        // MM
+		//this.httpProviderOrigin = url.origin;
+		//alert(httpProvider);
+		this.httpProviderOrigin = httpProvider.substring(0, httpProvider.lastIndexOf('/'));
+		
     }
 
     setHttpApolloProviders(_providers, _defaultHttpProvider) {

@@ -1,3 +1,5 @@
+// MM
+/*
 import gql from 'graphql-tag';
 import { gqlQuery } from '@/utils/gql.js';
 import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
@@ -21,3 +23,4 @@ export async function getDefiTokens() {
 
     return gqlQuery(query, 'defiTokens', fantomApolloClient);
 }
+*/

@@ -11,10 +11,13 @@ export const artionFApolloClient = new FApolloClient({
     defaultProviderIndex: appConfig.apollo.volcano.defaultProviderIndex,
 });
 
+// MM
+/*
 export const fantomFApolloClient = new FApolloClient({
     apolloProviders: appConfig.apollo.apinet.providers,
     defaultProviderIndex: appConfig.apollo.apinet.defaultProviderIndex,
 });
+*/
 
 export const artionApolloClient = new ApolloClient({
     link: ApolloLink.from([
@@ -28,6 +31,8 @@ export const artionApolloClient = new ApolloClient({
     connectToDevTools: true,
 });
 
+// MM
+/*
 export const fantomApolloClient = new ApolloClient({
     link: ApolloLink.from([
         fantomFApolloClient.getNetErrorLink(),
@@ -38,13 +43,15 @@ export const fantomApolloClient = new ApolloClient({
     cache: new InMemoryCache(),
     connectToDevTools: true,
 });
+*/
 
 Vue.use(VueApollo);
 
 export const apolloProvider = new VueApollo({
     clients: {
         volcano: artionApolloClient,
-        magma: fantomApolloClient,
+		// MM
+        //magma: fantomApolloClient,
     },
     defaultClient: artionApolloClient,
     defaultOptions: {
