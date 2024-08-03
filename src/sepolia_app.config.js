@@ -56,10 +56,14 @@ let appConfig = {
     },
     // app settings
     settings: {
+		// memo: adjust ./src/locales/en.json
         languages: [
             { label: 'English', value: 'en' },
             // { label: 'русский', value: 'ru' },
         ],
+		networkName: 'Magma Onyx',
+		nativeToken: 'ETH',
+		wrappedToken: 'wETH',		
         defaultLanguage: 'en',
         mobileViewBreakpoint: '64em', // set also variable $breakpoint-mw in assets/scss/_variables.scss
         themes: ['default', 'theme-dark'],
@@ -84,7 +88,7 @@ let appConfig = {
     routerHashMode: true,
     // Opera chain id
     //chainId: '0x19f6d22c9',
-    chainId: '0x13882',
+    chainId: '0xaa36a7',
     // JSON-RPC endpointAdd
     // rpc: 'https://rpcapi.fantom.network/',
     //rpc: 'https://turbo.magma-rpc.com/',

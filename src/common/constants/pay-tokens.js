@@ -23,6 +23,8 @@ const PAY_TOKEN_IMAGES = {
     dai: 'img/pay-tokens/DAI.png',
 	lava: 'img/pay-tokens/LAVA.png',
 	wlava: 'img/pay-tokens/WLAVA.png',
+	eth: 'img/pay-tokens/ETH.png',
+	weth: 'img/pay-tokens/WETH.png',	
 };
 
 export const WrappedNativeTokenContract = process.env.VUE_APP_WRAPPED_TOKEN_ADDRESS;
@@ -61,7 +63,8 @@ async function fetchPayTokens() {
         const payToken = {
             address: t.contract,
             // name: t.name,
-            label: t.symbol === 'WLAVA' ? 'wLAVA' : t.symbol,
+            //label: t.symbol === 'WLAVA' ? 'wLAVA' : t.symbol,
+			label: t.symbol,
             img: PAY_TOKEN_IMAGES[symbolLC] || '',
             decimals: t.decimals,
             price: bFromTokenValue(t.price, 6).toNumber(),

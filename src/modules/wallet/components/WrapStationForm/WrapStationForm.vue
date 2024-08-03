@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import appConfig from '@/app.config.js';
 import ABPriceField from '@/common/components/ABPriceField/ABPriceField.vue';
 import { WrappedNativeTokenContract } from '@/common/constants/pay-tokens.js';
 import { getPayTokenWithPrice } from '@/utils/pay-tokens.js';
@@ -71,8 +72,8 @@ export default {
         return {
             ftmToken: {},
             wftmToken: {},
-            tokenFrom: { label: 'LAVA' },
-            tokenTo: { label: 'wLAVA' },
+            tokenFrom: { label: appConfig.settings.nativeToken },
+            tokenTo: { label: appConfig.settings.wrappedToken },
             value: '',
             tx: {},
             txStatus: '',
@@ -82,7 +83,7 @@ export default {
 
     computed: {
         wrap() {
-            return this.tokenFrom.label === 'LAVA';
+            return this.tokenFrom.label === appConfig.settings.nativeToken;
         },
 
         buttonLabel() {
@@ -119,7 +120,7 @@ export default {
 
             this.ftmToken = {
                 ...this.wftmToken,
-                label: 'LAVA',
+                label: appConfig.settings.nativeToken,
             };
 
             await this.setBalances();

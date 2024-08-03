@@ -20,7 +20,7 @@ let appConfig = {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'http://127.0.0.1:8080/graphql',
+                    http: 'http://localhost:8080/graphql',
                     // for subscriptions
                     ws: '',
                 },
@@ -60,6 +60,12 @@ let appConfig = {
             { label: 'English', value: 'en' },
             // { label: 'русский', value: 'ru' },
         ],
+		//networkName: 'Magma Onyx',
+		networkName: 'Sepolia Testnet',
+		//nativeToken: 'LAVA',
+		nativeToken: 'ETH',
+		//wrappedToken: 'wLAVA',
+		wrappedToken: 'wETH',
         defaultLanguage: 'en',
         mobileViewBreakpoint: '64em', // set also variable $breakpoint-mw in assets/scss/_variables.scss
         themes: ['default', 'theme-dark'],
@@ -75,26 +81,26 @@ let appConfig = {
         mainColor: '#ffffff',
         assetsVersion: '1',
     },
-    appBasePath: '/volcano',
-	//appBasePath: '/sepolia-volcano',
+    //appBasePath: '/volcano',
+    appBasePath: '/sepolia-volcano',
     //appBasePath: '',
     // if `true`, every route will be redirected to 'under maintenance' page
     underMaintenance: false,
     // use hash in address
     routerHashMode: true,
     // Opera chain id
-    chainId: '0x19f6d22c9',
-	//chainId: '0x13882',
+    //chainId: '0x19f6d22c9',
+    chainId: '0xaa36a7',
     // JSON-RPC endpointAdd
     // rpc: 'https://rpcapi.fantom.network/',
-    rpc: 'https://turbo.magma-rpc.com/',
-	//rpc: 'https://sepolia.drpc.org/',
+    //rpc: 'https://turbo.magma-rpc.com/',
+    rpc: 'https://rpc2.sepolia.org/',
     // used in links pointing to fantom explorer
-    explorerUrl: 'https://testnet.magma.foundation/',
-	//explorerUrl: 'https://sepolia.etherscan.io/',
+    //explorerUrl: 'https://testnet.magma.foundation/',
+    explorerUrl: 'https://sepolia.etherscan.io/',
     // used in links pointing to validators
-    explorerUrl2: 'https://magmascan.org/',
-	//explorerUrl2: 'https://sepolia.etherscan.io/',
+    //explorerUrl2: 'https://magmascan.org/',
+    explorerUrl2: 'https://sepolia.etherscan.io/',
     // default options for production build
     build: {
         // output dir for production build

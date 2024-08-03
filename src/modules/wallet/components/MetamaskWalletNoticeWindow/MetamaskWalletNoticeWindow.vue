@@ -1,10 +1,11 @@
 <template>
     <a-window ref="window" :title="$t('notice')" class="fwindow-width-3">
-        Please, select <b>Magma Onyx</b> network in the Metamask.
+        Please, select <b> {{ networkLabel }} </b> network in the Metamask.
     </a-window>
 </template>
 
 <script>
+import appConfig from '@/app.config.js';
 import { copyMethods } from 'fantom-vue-components/src/utils/vue-helpers.js';
 import AWindow from '@/common/components/AWindow/AWindow.vue';
 import { mapState } from 'vuex';
@@ -23,6 +24,9 @@ export default {
         ...mapState('wallet', {
             chainId: 'chainId',
         }),
+        networkLabel() {
+            return appConfig.settings.networkName;
+        },		
     },
 
     watch: {

@@ -11,14 +11,14 @@ import {
 } from '@/plugins/wallet/store/mutations.js';
 import appConfig from '@/app.config.js';
 import { implementsWalletInterface } from '@/plugins/wallet/interface.js';
-import gql from 'graphql-tag';
-import { gqlQuery } from '@/utils/gql.js';
+//import gql from 'graphql-tag';
+//import { gqlQuery } from '@/utils/gql.js';
 import { Metamask } from '@/plugins/wallet/metamask/Metamask.js';
 import { Coinbase } from '@/plugins/wallet/coinbase/Coinbase.js';
 import { WalletConnect } from '@/plugins/wallet/walletconnect/WalletConnect20.js';
 import { clone, defer } from 'fantom-vue-components/src/utils';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
-import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
+//import { fantomApolloClient } from '@/plugins/apollo/apollo-provider.js';
 import { delay } from 'fantom-vue-components/src/utils/function.js';
 import { toBigNumber, toHex, toInt } from '@/utils/big-number.js';
 import { compareAddresses } from '@/utils/address.js';
@@ -447,7 +447,7 @@ export class Wallet {
                 await delay(400);
             }
 
-            ok = ((status.toUpperCase().localeCompare("OK") == 0) || parseInt(status, 16) === 1);
+            ok = ((status == true) || (parseInt(status, 16) === 1));
         }
 
         return ok;

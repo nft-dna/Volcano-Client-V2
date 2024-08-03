@@ -19,7 +19,7 @@
     "from": "From",
     "unnamed": "Unnamed",
     "balance": "Balance",
-    "wrapStation": "ETH / WETH Station",
+    "wrapStation": "LAVA / WLAVA Station",
     "notice": "Notice",
     "aproveSuccess": "Successfully approved",
     "me": "Me",
@@ -172,7 +172,7 @@
 
     "appsectionnft": {
         "title": "Trade without platform fees on Volcano",
-        "text": "Volcano is an NFT marketplace built on Sepolia. Create and trade NFTs instantly with low network costs."
+        "text": "Volcano is an NFT marketplace built on Magma. Create and trade NFTs instantly with low network costs."
     },
 
     "appsectionabout": {
@@ -183,7 +183,7 @@
         },
         "card2": {
             "title": "Super Fast",
-            "text": "Since Volcano runs on the Sepolia Network, transactions are usually confirmed within 1-2 seconds."
+            "text": "Since Volcano runs on the Magma Opera Network, transactions are usually confirmed within 1-2 seconds."
         },
         "card3": {
             "title": "Low Transaction Fees",
@@ -348,14 +348,14 @@
         "ipRights": "IP Rights",
         "notAvailable": "Not available",
         "collection": "Collection",
-        "nftCollection": "Sepolia Powered NFT Collection",
+        "nftCollection": "Magma Powered NFT Collection",
         "tokenId": "Token ID",
         "about": "About",
         "chainInfo": "Chain Info",
         "network": "Network",
-        "networkName": "Sepolia",		
+        "networkName": "Magma",		
         "chainId": "Chain ID",
-		"chainIdName": "11155111",
+		"chainIdName": "6969696969",
         "fromCollection": "More from this collection",
         "itemActivity": "Item Activity",
         "attributes": "Attributes"
@@ -440,8 +440,8 @@
         "swapTokens": "Swap tokens",
         "wrap": "Wrap",
         "unwrap": "Unwrap",
-        "wrapSuccess": "You have successfully wrap ETH",
-        "unwrapSuccess": "You have successfully unwrap ETH"
+        "wrapSuccess": "You have successfully wrap LAVA",
+        "unwrapSuccess": "You have successfully unwrap LAVA"
     },
 
     "nftlistfilters": {
@@ -466,7 +466,7 @@
 
     "collectionregisterform": {
         "registerCollection": "@:registerCollection",
-        "useOwnerAddressOfCollection": "Please submit using the owner address of the collection. If you cannot use the owner address, please email us on contact@sepolia.foundation with the information below (and proof of collection ownership, such as from the collection's official email address).",
+        "useOwnerAddressOfCollection": "Please submit using the owner address of the collection. If you cannot use the owner address, please email us on contact@magma.foundation with the information below (and proof of collection ownership, such as from the collection's official email address).",
         "logoImage": "Logo Image",
         "alsoBeUsedForNavigation": "This image will also be used for navigation. 300x300 recommended.",
         "name": "@:name",
@@ -477,7 +477,7 @@
         "royaltyErr": "Value should be between 1 and 100",
         "royaltyTooltip": "Each NFT under this collection exchanged through Volcano will have a percentage of sale given to nominated wallet address.",
         "feeRecipient": "Fee Recipient",
-        "feesTooltip": "The nominated Sepolia Network wallet address to receive royalties from each sale in this collection.",
+        "feesTooltip": "The nominated Magma Onyx Network wallet address to receive royalties from each sale in this collection.",
         "contactEmail": "Contact Email",
         "emailAddress": "Email Address",
         "emailTooltip": "We will use this email to notify you about your collection application. This will not be shared with others.",
@@ -526,7 +526,7 @@
         "royaltyError": "Registering royalty transaction failed. The token was minted, but royalty was not set.",
         "scanWaiting": "The token was successfully minted. Waiting for server-side token processing - this can take a while...",
         "success": "The token was successfully created.",
-        "messageFtm": "{fee} ETH are charged to create a new NFT.",
+        "messageFtm": "{fee} LAVA are charged to create a new NFT.",
         "estimatingFeeGas": "Estimating necessary fee for minting and the transaction...",
         "uploading": "Uploading file and token data into IPFS...",
         "waitingForTokenId": "Waiting for the minting transaction receipt with the token ID..."
@@ -561,7 +561,7 @@
         "newBidIsBelowCurrent": "Bid is below current bid",
         "newBidIsBelowMin": "Bid is below min bid",
         "mustBeNumber": "Bid must be number",
-        "bidMustBeDivisibleByHundred": "Bid must be in {amount} ETH increments minimum",
+        "bidMustBeDivisibleByHundred": "Bid must be in {amount} LAVA increments minimum",
         "insufficientBalance": "@:insufficientBalance"
     },
 
