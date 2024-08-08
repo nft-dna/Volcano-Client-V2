@@ -92,6 +92,9 @@
                 <button v-if="showBanButton" :data-tooltip="$t('nftcard.banUnban')" @click.prevent="onBanClick">
                     <app-iconset icon="ban" size="16px" :color="dBanned ? '#f00' : ''" />
                 </button>
+                <button :data-tooltip="$t('nftcard.refreshMetadata')" @click.prevent="onRefreshMetadataClick">
+                    <app-iconset icon="recycle" size="16px" />
+                </button>				
                 <nft-like :token="nftData" />
             </div>
         </router-link>
@@ -103,6 +106,7 @@ import { getImageThumbUrl } from '@/utils/url.js';
 import ATokenValue from '@/common/components/ATokenValue/ATokenValue.vue';
 import dayjs from 'dayjs';
 import { banToken, unbanToken } from '@/modules/nfts/mutations/ban.js';
+import { refreshTokenMetadata } from '@/modules/nfts/mutations/refreshmetadata.js';
 import NftLike from '@/modules/nfts/components/NftLike/NftLike';
 
 export default {
@@ -155,6 +159,19 @@ export default {
             }
         },
 
+        async onRefreshMetadataClick() {
+            
+			await refreshTokenMetadata(this.nftData);
+
+			//this.$emit('token-refresh-metadata', { token: this.nftData });
+
+			this.$notifications.add({
+				type: 'success',
+				text: this.$t('nftRefreshQueued'),
+			});
+
+        },
+		
         getImageThumbUrl,
     },
 };

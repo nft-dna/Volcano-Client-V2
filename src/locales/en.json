@@ -25,6 +25,7 @@
     "me": "Me",
     "nftBanned": "NFT banned",
     "nftUnbanned": "NFT unbanned",
+	"nftRefreshQueued": "NFT Metadata refresh queued",
     "name": "Name",
     "skipToContent": "Skip to content",
     "mainNav": "Main",
@@ -227,7 +228,8 @@
         "minBid": "Min Bid",
         "topBid": "Top Bid",
         "left": "left",
-        "banUnban": "Ban/Unban"
+        "banUnban": "Ban/Unban",
+		"refreshMetadata": "Refresh Metadata"
     },
 
     "nfttradehistorygrid": {
