@@ -228,8 +228,7 @@
         "minBid": "Min Bid",
         "topBid": "Top Bid",
         "left": "left",
-        "banUnban": "Ban/Unban",
-		"refreshMetadata": "Refresh Metadata"
+        "banUnban": "Ban/Unban"
     },
 
     "nfttradehistorygrid": {
@@ -422,6 +421,10 @@
         "transferSuccessful": "You have successfully transferred the token",
         "inEscrow": "The token is listed or in an auction - please cancel the listing/auction before the transfer"
     },
+	
+    "nftrefreshmetadata": {
+        "refreshmetadata": "Refresh Metadata"
+    },		
 
     "ashareButton": {
         "copy": "Copy Link",

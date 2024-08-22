@@ -86,6 +86,17 @@
                     />
 
                     <div class="topcornerbuttons">
+						<!-- <nft-refreshmetadata-button :token="token" @tx-success="update" /> -->
+						<f-button
+							class="btn btn-light btn-secondary"
+							
+							@click.native="onRefreshMetadataClick"
+							:data-tooltip="$t('nftrefreshmetadata.refreshmetadata')"
+							:aria-label="$t('nftrefreshmetadata.refreshmetadata')"
+							:token="token" @tx-success="update"
+							
+						> <app-iconset icon="recycle" original style="opacity: 0.35" />
+						</f-button>						
                         <nft-transfer-button v-if="userOwnsToken" :token="token" @tx-success="update" />
                         <a-share-button
                             :twitter-text="$t('ashareButton.checkOutItem')"
@@ -232,6 +243,8 @@ import NftUnlockable from '@/modules/nfts/components/NftUnlockable/NftUnlockable
 import NftLike from '@/modules/nfts/components/NftLike/NftLike';
 import FEllipsis from 'fantom-vue-components/src/components/FEllipsis/FEllipsis.vue';
 import NftTransferButton from '@/modules/nfts/components/NftTransferButton/NftTransferButton';
+//import NftRefreshMetadataButton from '@/modules/nfts/components/NftRefreshMetadataButton/NftRefreshMetadataButton';
+import { refreshTokenMetadata } from '@/modules/nfts/mutations/refreshmetadata.js';
 
 export default {
     name: 'NftDetail',
@@ -262,6 +275,7 @@ export default {
         NftItemActivity,
         NftLike,
         NftTransferButton,
+		//NftRefreshMetadataButton,
         FEllipsis,
     },
 
@@ -432,6 +446,19 @@ export default {
                 this.update();
             }
         },
+		
+        async onRefreshMetadataClick() {
+            
+			const { token } = this;
+					
+			await refreshTokenMetadata(token);
+
+			this.$notifications.add({
+				type: 'success',
+				text: this.$t('nftRefreshQueued'),
+			});
+
+        },		
 
         toInt,
         toBigNumber,

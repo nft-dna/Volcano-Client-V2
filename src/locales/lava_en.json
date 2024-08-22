@@ -25,6 +25,7 @@
     "me": "Me",
     "nftBanned": "NFT banned",
     "nftUnbanned": "NFT unbanned",
+	"nftRefreshQueued": "NFT Metadata refresh queued",
     "name": "Name",
     "skipToContent": "Skip to content",
     "mainNav": "Main",
@@ -420,6 +421,10 @@
         "transferSuccessful": "You have successfully transferred the token",
         "inEscrow": "The token is listed or in an auction - please cancel the listing/auction before the transfer"
     },
+	
+    "nftrefreshmetadata": {
+        "refreshmetadata": "Refresh Metadata"
+    },		
 
     "ashareButton": {
         "copy": "Copy Link",
