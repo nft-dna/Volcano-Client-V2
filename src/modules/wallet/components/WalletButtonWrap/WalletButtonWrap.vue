@@ -48,6 +48,10 @@ export default {
                         route: 'collection-register',
                     },
                     {
+                        label: this.$t('walletMenu.newcollection'),
+                        route: 'collection-create',
+                    },
+                    {
                         label: this.$t('wrapStation'),
                         action: 'show-wrap-station',
                     },

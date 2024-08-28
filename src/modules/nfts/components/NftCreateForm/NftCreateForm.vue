@@ -303,7 +303,7 @@ export default {
                 text: this.$t('nftcreate.signMint'),
             });
             const web3 = new Web3();
-            this.tx = contracts.createNFTWithRoyalty(
+            this.tx = contracts.createERC721TokenWithRoyalty(
                 this.$wallet.account, // owner of the created token
                 tokenUri,
                 estimation.platformFee,

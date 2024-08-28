@@ -2,7 +2,7 @@
 const ZERO_AMOUNT = '0x0';
 
 /**
- * createNFTCollection Creates a new ERC721 collection contract thru factory
+ * createERC721Collection Creates a new ERC721 collection contract thru factory
  *
  * @param {string} nftName Name of the new NFT collection.
  * @param {string} nftSymbol Symbol of the new NFT collection.
@@ -10,10 +10,12 @@ const ZERO_AMOUNT = '0x0';
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
+ 
+ // VolcanoERC721Factory::createNFTContract(string memory _name, string memory _symbol, bool _isprivate, uint256 _mintFee, uint256 _creatorFee, address payable _feeRecipient)
  */
- function createNFTCollection(nftName, nftSymbol, amount, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
-
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createNFTContractAbi,[nftName, nftSymbol])
+ function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
+	
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERCTokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient])
 
     // return tx object
     return {
@@ -26,7 +28,7 @@ const ZERO_AMOUNT = '0x0';
 
 
 /**
- * createNFT Mints a new token on given NFT collection contract
+ * createERC721Token Mints a new token on given NFT collection contract
  *
  * @param {string} toAddress Address of the owner of newly created NFT
  * @param {string} tokenUri URI address of the NFT json object
@@ -35,7 +37,7 @@ const ZERO_AMOUNT = '0x0';
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @return {{to: address, data: string, value string}}
  */
- function createNFT(toAddress, tokenUri, amount, collectionAddress, web3Client) {
+ function createERC721Token(toAddress, tokenUri, amount, collectionAddress, web3Client) {
 
     const abi = {
         "inputs": [
@@ -68,7 +70,7 @@ const ZERO_AMOUNT = '0x0';
 }
 
 /**
- * createNFTWithRoyalty Mints a new token on Volcano NFT collection contract
+ * createERC721TokenWithRoyalty Mints a new token on Volcano NFT collection contract
  *
  * @param {string} toAddress Address of the owner of newly created NFT
  * @param {string} tokenUri URI address of the NFT json object
@@ -79,7 +81,7 @@ const ZERO_AMOUNT = '0x0';
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @return {{to: address, data: string, value string}}
  */
-function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, royaltyRecipient, royaltyValue, web3Client) {
+function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAddress, royaltyRecipient, royaltyValue, web3Client) {
 
     const abi = {
         "inputs": [
@@ -129,7 +131,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
 
 
 /**
- * createArtCollection Creates a new ERC1155 collection contract thru factory
+ * createERC1155Collection Creates a new ERC1155 collection contract thru factory
  *
  * @param {string} nftName Name of the new NFT collection.
  * @param {string} nftSymbol Symbol of the new NFT collection.
@@ -137,11 +139,13 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @param {string} [contract] Contract address
  * @return {{to: address, data: string, value string}}
+ 
+  // VolcanoERC1155Factory::createNFTContract(string memory _name, string memory _symbol, bool _isprivate, uint256 _mintFee, uint256 _creatorFee, address payable _feeRecipient)
  */
- function createArtCollection(nftName, nftSymbol, amount, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
+ function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
 
     // encode contract ABI with parameters
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createNFTContractAbi,[nftName, nftSymbol])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERCTokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient])
 
     // return tx object
     return {
@@ -154,7 +158,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
 
 
 /**
- * createArt Mints a new token on given ERC1155 collection contract
+ * createERC1155Token Mints a new token on given ERC1155 collection contract
  * and assigns supply to an address
  *
  * @param {string} toAddress Address of the owner of newly created NFT
@@ -165,7 +169,7 @@ function createNFTWithRoyalty(toAddress, tokenUri, amount, collectionAddress, ro
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @return {{to: address, data: string, value string}}
  */
- function createArt(toAddress, tokenUri, supply, amount, collectionAddress, web3Client) {
+ function createERC1155Token(toAddress, tokenUri, supply, amount, collectionAddress, web3Client) {
 
     const abi = {
         "inputs": [
@@ -1200,12 +1204,51 @@ function decodeMintedNftTokenId(receipt, web3Client) {
     return decoded.tokenId;
 }
 
+/**
+ * decodeContractCreatedAddress decodes address of the created contract from the transaction receipt.
+ *
+ * @param {TransactionReceipt} receipt The minting transaction receipt.
+ * @param {Web3} web3Client Instance of an initialized Web3 client.
+ * @return {string|null} The address
+ 
+ // event ContractCreated(address creator, address nft, bool isprivate);
+ */
+function decodeContractCreatedAddress(receipt, web3Client) {
+    const createdTopic = '0xbbe78d8749296d5db350f8a76bbc6f2f85649a62516790be41dc6a67393aecde';
+    const abiInputs = [
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "nft",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "isprivate",
+            "type": "bool"
+        }
+    ];
+
+    const log = receipt.logs.find(log => log.topics.includes(createdTopic));
+    if (!log) throw "Created topic not present in the transaction log";
+    const decoded = web3Client.eth.abi.decodeLog(abiInputs, log.data, log.topics.slice(1));
+    console.log('decodeContractCreated', decoded);
+    return decoded.nft;
+}
+
 export default {
-    createNFTCollection,
-    createNFT,
-    createNFTWithRoyalty,
-    createArtCollection,
-    createArt,
+    createERC721Collection,
+    createERC721Token,
+    createERC721TokenWithRoyalty,
+    createERC1155Collection,
+    createERC1155Token,
     registerTokenRoyalty,
     listItem,
     cancelListing,
@@ -1226,10 +1269,11 @@ export default {
     randomPurchase,
     artionERC721Burn,
     decodeMintedNftTokenId,
+	decodeContractCreatedAddress,
     setApprovalForAll,
 }
 
-const createNFTContractAbi = {
+const createERCTokenContractAbi = {
     "inputs": [
         {
         "internalType": "string",
@@ -1240,7 +1284,27 @@ const createNFTContractAbi = {
         "internalType": "string",
         "name": "_symbol",
         "type": "string"
-        }
+        },
+		{
+		"internalType": "bool",
+		"name": "_isprivate",
+		"type": "bool"
+		},
+		{
+		"internalType": "uint256",
+		"name": "_mintFee",
+		"type": "uint256"
+		},
+		{
+		"internalType": "uint256",
+		"name": "_creatorFee",
+		"type": "uint256"
+		},
+		{
+		"internalType": "address",
+		"name": "_feeRecipient",
+		"type": "address"
+		}
     ],
     "name": "createNFTContract",
     "outputs": [
@@ -1253,3 +1317,4 @@ const createNFTContractAbi = {
     "stateMutability": "payable",
     "type": "function"
 }
+
