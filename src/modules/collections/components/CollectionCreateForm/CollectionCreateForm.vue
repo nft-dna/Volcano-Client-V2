@@ -6,7 +6,7 @@
         <div class="collectioncreateform__desc">
             {{ $t('collectioncreateform.useOwnerAddressOfCollection') }}
         </div>
-        <a-upload-area :validator="imageValidator" @input="setTokenImage" class="auploadarea-nobackground">
+        <a-upload-area :validator="imageValidator" @input="setCollectionImage" class="auploadarea-nobackground">
             {{ $t('collectioncreateform.alsoBeUsedForNavigation') }}
         </a-upload-area>
         <div v-if="fileError" class="pat-5 flex juc-center">
@@ -23,6 +23,15 @@
             validate-on-input
         />
         <f-form-input
+            :label="$t('collectioncreateform.symbol')"
+            field-size="large"
+            type="text"
+            name="symbol"
+            :placeholder="$t('collectioncreateform.provideYourSymbol')"
+            required
+            validate-on-input
+        />		
+        <f-form-input
             :label="$t('collectioncreateform.description')"
             field-size="large"
             type="textarea"
@@ -32,6 +41,32 @@
             validate-on-input
             rows="5"
         />
+		<f-form-input type="toggle" 
+			:label="$t('collectioncreateform.publicMintable')" 
+			v-if="false"
+			name="publicMintableToogle" 
+		/>
+		<f-form-input
+			:label="$t('collectioncreateform.publicMintFee')"
+			v-if="values.publicMintableToogle"
+            :validator="publicMintFeeValidator"
+            validate-on-change
+            validate-on-input
+            :error-message="$t('collectioncreateform.publicMintFeeErr')"
+            type="number"
+            name="publicMintFee"
+            field-size="large"
+		/>		
+		<f-form-input
+			:label="$t('collectioncreateform.itemsUriPath')"
+			v-if="values.publicMintableToogle"
+            field-size="large"
+            type="text"
+            name="itemsUriPath"
+            :placeholder="$t('collectioncreateform.provideItemsUriPath')"
+            required
+            validate-on-input
+		/>				
         <f-form-input
             :validator="royaltyValidator"
             validate-on-change
@@ -77,7 +112,8 @@
             <AddCategory @change="values.categories = $event" />
         </div>
         <div class="collectioncreateform_group">
-            <f-form-input
+            <!--
+			<f-form-input
                 type="text"
                 field-size="large"
                 :placeholder="$t('collectioncreateform.enterCollection')"
@@ -90,6 +126,7 @@
                     <app-iconset icon="nft" size="24px" />
                 </template>
             </f-form-input>
+			-->			
             <f-form-input
                 type="text"
                 field-size="large"
@@ -194,7 +231,7 @@ import ASignTransaction from '@/common/components/ASignTransaction/ASignTransact
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
 import AddCategory from '@/modules/collections/components/AddCategory/AddCategory.vue';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
-//import { uploadCollection } from '@/utils/upload';
+import { uploadCollection } from '@/utils/upload';
 import { checkSignIn } from '@/modules/account/auth';
 import AButton from '@/common/components/AButton/AButton';
 import { focusElem } from 'fantom-vue-components/src/utils/aria.js';
@@ -202,7 +239,7 @@ import { imageValidator } from '@/common/components/AUploadArea/validators.js';
 import FMessage from 'fantom-vue-components/src/components/FMessage/FMessage.vue';
 import Web3 from 'web3';
 //import { bFromWei, toHex } from '@/utils/big-number';
-import { toHex } from '@/utils/big-number';
+//import { toHex } from '@/utils/big-number';
 import contracts from '@/utils/artion-contracts-utils';
 
 export default {
@@ -218,6 +255,7 @@ export default {
             progressMessage: '',
             tx: {},
             collectionAddress: null,
+			collectionApplication: {},
             fee: null,			
             imageFile: null,
             isLoading: false,
@@ -249,6 +287,12 @@ export default {
             _value = Number(_value);
             return !(_value >= 1 && _value <= 100);
         },
+		
+        publicMintFeeValidator(_value) {
+            if (_value === '') return _value;
+            _value = Number(_value);
+            return !(_value >= 0);
+        },		
 
         addressValidator(_value) {
             return !(Web3.utils.isHexStrict(_value) && Web3.utils.isAddress(_value))
@@ -260,7 +304,7 @@ export default {
             return !this.emailRE.test(_value) ? this.$t('collectioncreateform.invalidEmail') : '';
         },
 
-        setTokenImage(_files) {
+        setCollectionImage(_files) {
             this.imageFile = _files[0] || null;
 
             if (this.imageFile) {
@@ -278,7 +322,7 @@ export default {
             const vals = _data.values;
 
             if (!this.imageFile) {
-                this.fileError = this.$t('nftcreate.fileError');
+                this.fileError = this.$t('collectioncreateform.fileError');
                 return;
             } else {
                 this.fileError = '';
@@ -302,38 +346,9 @@ export default {
                 type: 'info',
                 text: this.$t('collectioncreateform.signMint'),
             });
-            const web3 = new Web3();
-            this.tx = contracts.createERC721Collection(
-                vals.name,
-                vals.description, // TODO.. symbol
-                '50000000000000000',  // TODO.. amount as platformFee for contract creation				
-				true, // isPrivate
-				0, // mintFee
-				vals.royalty ? vals.royalty : 0, // creatorFee
-				vals.feeRecipient,	// FeeRecipient
-                web3
-            );	
-
-			/*
-            const _metadata = {
-                name: val.name,
-                description: val.description,
-                properties: {
-                    symbol: val.symbol,
-                    royalty: Number(val.royalty) ? val.royalty : null,
-                    IP_Rights: val.linkToIp,
-                    //collection: this.collection.label,
-                },
-            };			
-			*/	
 			
-			/* 
-			// MM TODO.. should work but need to wait for transaction completitionn first.. see waitForCollectionAddressAndFinish
-			
-			alert('uploadCreatedCollection: ' + this.collectionAddress)
-			
-            const collectionApplication = {
-                contract: this.collectionAddress,
+            this.collectionApplication = {
+                contract: null,
                 name: vals.name,
                 description: vals.description,
                 royalty: vals.royalty ? vals.royalty : 0,
@@ -346,9 +361,27 @@ export default {
                 mediumHandle: vals.mediumHandle,
                 twitterHandle: vals.twitterHandle,
                 instagramHandle: vals.instagramHandle,
-            };
+            };			
+			
+            const web3 = new Web3();			
+			// itemsUriPath
+            this.tx = contracts.createERC721Collection(
+                vals.name,
+                vals.symbol, // TODO.. symbol
+                '50000000000000000',  // TODO.. amount as platformFee for contract creation				
+				!vals.publicMintableToogle, // isPrivate
+				(vals.publicMintableToogle) ? vals.publicMintFee : 0, // mintFee
+				vals.royalty ? vals.royalty : 0, // creatorFee
+				vals.feeRecipient,	// FeeRecipient
+                web3
+            );	
+			
+			// not needed I guess..
+			// we are observing Factory::event ContractCreated(address creator, address nft, _isprivate)
+
+			/*
             try {
-                await uploadCollection(collectionApplication, this.imageFile);
+                await uploadCollection(this.collectionApplication, this.imageFile);
             } catch (err) {
                 console.error('uploadCollection failed', err);
                 notifications.add({
@@ -408,11 +441,34 @@ export default {
 
             // collectionAddress loaded
 
+            //notifications.add({
+            //    type: 'success',
+            //    text: this.$t('collectioncreateform.success'),
+            //});
+            //await this.waitForScanAndRedirect();			
+			
+			this.collectionApplication.contract = this.collectionAddress;
+			
+			//alert('uploadCreatedCollection: ' + JSON.stringify(this.collectionApplication));			
+			console.log('Uploading - collectionApplication: ', JSON.stringify(this.collectionApplication));
+			
+            try {
+                await uploadCollection(this.collectionApplication, this.imageFile);
+            } catch (err) {
+                console.error('uploadCollection failed', err);
+                notifications.add({
+                    type: 'error',
+                    text: this.$t('collectioncreateform.wasntUploaded') + err,
+                });
+                this.isLoading = false;
+                return;
+            }
+
             notifications.add({
                 type: 'success',
                 text: this.$t('collectioncreateform.success'),
             });
-            //await this.waitForScanAndRedirect();
+            this.isLoading = false;				
         },		
 		
         async getCollectionAddress(txHash) {
@@ -424,8 +480,10 @@ export default {
                 return null;
             }
             const collectionAddress = contracts.decodeContractCreatedAddress(receipt, web3);
-            console.log('collectionAddress', collectionAddress, toHex(collectionAddress));
-            return toHex(collectionAddress);
+            //console.log('collectionAddress', collectionAddress, toHex(collectionAddress));
+			console.log('collectionAddress', collectionAddress);
+            //return toHex(collectionAddress);
+			return collectionAddress;
         },		
 
         imageValidator,

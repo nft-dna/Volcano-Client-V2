@@ -7,6 +7,7 @@
                     :max-file-size="maxNFTSize"
                     :validator="imageValidator"
                     class="auploadarea-nobackground"
+					v-if="false"
                 >
                     Drop files here or browse <br />
                     JPG, PNG, BMP, GIF, SVG, Max 15mb.
@@ -53,13 +54,29 @@
                         </template>
                     </f-form-input>
 
-                    <f-form-input :label="$t('nftcreate.name')" field-size="large" type="text" name="name" required />
+                    <f-form-input 
+						:label="$t('nftcreate.name')" 
+						field-size="large" 
+						type="text" 
+						name="name" 
+						required
+						v-if="false"
+					/>
+					<f-form-input 
+						:label="$t('nftcreate.tokenUri')" 
+						field-size="large" 
+						type="text" 
+						name="tokenUri" 
+						:placeholder="$t('nftcreate.tokenUriPlaceholder')" 
+						required 
+					/>
                     <f-form-input
                         :label="$t('nftcreate.symbol')"
                         field-size="large"
                         type="text"
                         name="symbol"
                         class="fforminput_symbol"
+						v-if="false"
                     />
                     <f-form-input
                         :label="$t('nftcreate.description')"
@@ -67,6 +84,7 @@
                         type="textarea"
                         name="description"
                         rows="5"
+						v-if="false"
                     />
                 </div>
                 <div class="nftcreate_panel">
@@ -79,6 +97,7 @@
                         type="number"
                         name="royalty"
                         field-size="large"
+						v-if="false"
                     >
                         <template #label>
                             {{ $t('nftcreate.royalty') }}
@@ -91,7 +110,11 @@
                             </span>
                         </template>
                     </f-form-input>
-                    <f-form-input field-size="large" type="text" name="linkToIp">
+                    <f-form-input field-size="large" 
+						type="text" 
+						name="linkToIp"
+						v-if="false"
+					>
                         <template #label>
                             {{ $t('nftcreate.linkToIp') }}
                             <span class="label_btn" :data-tooltip="$t('nftcreate.linkToIpTooltip')">
@@ -137,7 +160,7 @@ import FMessage from 'fantom-vue-components/src/components/FMessage/FMessage.vue
 import AppIconset from '@/modules/app/components/AppIconset/AppIconset';
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
 import { getCollections } from '@/modules/collections/queries/collections.js';
-import { uploadTokenData } from '@/utils/upload';
+//import { uploadTokenData } from '@/utils/upload';
 import Web3 from 'web3';
 import contracts from '@/utils/artion-contracts-utils';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications';
@@ -206,10 +229,15 @@ export default {
         },
 
         async collectionValidator(_collectionId) {
+			/* MM		
             const estimation = await this.getEstimation(_collectionId, 1000);
             console.log('collectionValidator', _collectionId, 'estimation error:', estimation.error);
             await this.setFee(estimation.platformFee);
             return estimation.error != null;
+			*/
+			console.log('collectionValidator', _collectionId);
+			await this.setFee(0);
+			return false;
         },
 
         setTokenImage(_files) {
@@ -233,19 +261,22 @@ export default {
 
         async onSubmit(_data) {
             console.log('onSubmit', _data);
+			/*
             if (!this.imageFile) {
                 this.fileError = this.$t('nftcreate.fileError');
                 return;
             } else {
                 this.fileError = '';
             }
+			*/
 
             this.isLoading = true;
             const val = _data.values;
 
             this.collection = this.collections.filter(col => col.value === val.collectionId)[0];
 
-            const _metadata = {
+            /*
+			const _metadata = {
                 name: val.name,
                 description: val.description,
                 properties: {
@@ -255,6 +286,7 @@ export default {
                     collection: this.collection.label,
                 },
             };
+			*/
 
             let signed = await checkSignIn();
             if (!signed) {
@@ -267,7 +299,8 @@ export default {
                 return;
             }
 
-            this.progressMessage = this.$t('nftcreate.estimatingFeeGas');
+            /*
+			this.progressMessage = this.$t('nftcreate.estimatingFeeGas');
             const royalty = this.getRoyalty();
             const estimation = await this.getEstimation(val.collectionId, royalty);
             console.log('estimation', estimation);
@@ -281,8 +314,11 @@ export default {
                 this.isLoading = false;
                 return;
             }
+			*/
 
-            this.progressMessage = this.$t('nftcreate.uploading');
+			let tokenUri = val.tokenUri;
+            /*
+			this.progressMessage = this.$t('nftcreate.uploading');
             let tokenUri;
             try {
                 tokenUri = await uploadTokenData(_metadata, this.imageFile);
@@ -296,6 +332,7 @@ export default {
                 this.isLoading = false;
                 return;
             }
+			*/
 
             this.progressMessage = this.$t('nftcreate.signMint');
             notifications.add({
@@ -303,7 +340,8 @@ export default {
                 text: this.$t('nftcreate.signMint'),
             });
             const web3 = new Web3();
-            this.tx = contracts.createERC721TokenWithRoyalty(
+            /*
+			this.tx = contracts.createERC721TokenWithRoyalty(
                 this.$wallet.account, // owner of the created token
                 tokenUri,
                 estimation.platformFee,
@@ -312,6 +350,14 @@ export default {
                 royalty,
                 web3
             );
+			*/
+			this.tx = contracts.createERC721Token(
+                this.$wallet.account, // owner of the created token
+                tokenUri,
+                0, // estimation.platformFee,
+                val.collectionId,
+                web3
+            );			
         },
 
         async onMintTransactionStatus(payload) {
