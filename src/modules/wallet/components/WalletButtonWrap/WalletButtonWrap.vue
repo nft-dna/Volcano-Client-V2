@@ -52,6 +52,10 @@ export default {
                         route: 'collection-create',
                     },
                     {
+                        label: this.$t('walletMenu.newmemetoken'),
+                        route: 'memetoken-create',
+                    },
+                    {
                         label: this.$t('wrapStation'),
                         action: 'show-wrap-station',
                     },
