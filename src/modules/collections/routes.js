@@ -1,5 +1,6 @@
 import Collection from '@/modules/collections/views/Collection/Collection.vue';
 import Collections from '@/modules/collections/views/Collections/Collections.vue';
+import MemePool from '@/modules/collections/views/MemePool/MemePool.vue';
 import CollectionCreate from '@/modules/collections/views/CollectionCreate/CollectionCreate.vue';
 import CollectionRegister from '@/modules/collections/views/CollectionRegister/CollectionRegister.vue';
 import MemeTokenCreate from '@/modules/collections/views/MemeTokenCreate/MemeTokenCreate.vue';
@@ -42,6 +43,11 @@ export function getCollectionsRoutes() {
             path: '/collections',
             name: 'collections',
             component: Collections,
+        },
+        {
+            path: '/memepool',
+            name: 'memepool',
+            component: MemePool,
         },
     ];
 }

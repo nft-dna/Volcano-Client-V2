@@ -1,6 +1,7 @@
 {
     "explore": "Explore",
     "create": "Mint",
+	"memepool": "Meme",
     "home": "Home",
     "categories": "Categories",
     "collections": "Collections",
@@ -44,6 +45,7 @@
         "explore": "@:explore",
         "collections": "@:collections",
         "create": "@:create",
+        "memepool": "@:memepool",			
         "drop": "The Drop",
         "nfts": "The NFTs",
         "myNfts": "My NFTs"
