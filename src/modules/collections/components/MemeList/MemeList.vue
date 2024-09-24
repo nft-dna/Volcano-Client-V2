@@ -1,13 +1,13 @@
 <template>
-    <div class="collectionlist">
-        <div class="collectionlist_search">
+    <div class="memelist">
+        <div class="memelist_search">
             <a-search-field
-                id="collectionlistsearch_input"
+                id="memelistsearch_input"
                 field-size="large"
                 no-label
                 :value="searchTextValue"
-                :aria-label="$t('collectionlist.label')"
-                :placeholder="$t('collectionlist.placeholder')"
+                :aria-label="$t('memelist.label')"
+                :placeholder="$t('memelist.placeholder')"
                 :throttle-input-interval="250"
                 :loading="loading"
                 @input="onInput"
@@ -27,7 +27,7 @@
             :root-margin="rootMargin"
             v-on="$listeners"
         >
-            <div class="collectionlist_cards">
+            <div class="memelist_cards">
                 <collection-card
                     v-for="(collection, index) in collections"
                     :collection="collection"

@@ -1,4 +1,5 @@
 <template>
+<!-- <div class="memepool">MemePool</div> -->
     <div class="memepool">
         <div class="collections_cont">
             <meme-pool-list />

@@ -1,6 +1,7 @@
 <template>
+    <!-- <div class="memetokencreate">MemeTokenCreate</div> -->
     <div class="memetokencreate">
-        <memetoken-create-form />
+        <meme-token-create-form />
     </div>	
 </template>
 

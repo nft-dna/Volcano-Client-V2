@@ -1,6 +1,6 @@
 <template>
     <div class="memepoollist">
-        <memepool-list
+        <meme-list
             :collections="items"
             :loading="loading"
             :total-items="totalItems"

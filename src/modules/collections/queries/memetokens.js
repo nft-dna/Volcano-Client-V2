@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { gqlQuery } from '@/utils/gql.js';
 
-export async function getCollections(pagination = { first: 5000 }, search = null, mintableBy = null) {
+export async function getMemeTokens(pagination = { first: 5000 }, search = null, mintableBy = null) {
     const query = {
         query: gql`
             query GetMemeTokens(

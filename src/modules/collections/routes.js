@@ -48,6 +48,6 @@ export function getCollectionsRoutes() {
             path: '/memepool',
             name: 'memepool',
             component: MemePool,
-        },
+        },		
     ];
 }
