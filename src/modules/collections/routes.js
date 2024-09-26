@@ -29,7 +29,7 @@ export function getCollectionsRoutes() {
                         title: i18n.t('page.collectionRegister.title'),
                     },
                 },
-				{
+                {
                     path: 'meme',
                     name: 'memetoken-create',
                     component: MemeTokenCreate,
@@ -48,6 +48,6 @@ export function getCollectionsRoutes() {
             path: '/memepool',
             name: 'memepool',
             component: MemePool,
-        },		
+        },
     ];
 }

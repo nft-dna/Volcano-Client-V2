@@ -26,7 +26,7 @@ export default {
         }),
         networkLabel() {
             return appConfig.settings.networkName;
-        },		
+        },
     },
 
     watch: {

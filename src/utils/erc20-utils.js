@@ -1,3 +1,4 @@
+import appConfig from '../app.config.js';
 // import needed libs
 import Web3 from 'web3';
 
@@ -5,10 +6,11 @@ import Web3 from 'web3';
 const ZERO_AMOUNT = '0x0';
 
 // OPERA_CHAIN_ID is the chain id used by Magma Onyx blockchain.
-const OPERA_CHAIN_ID = '0x19f6d22c9';
+//const OPERA_CHAIN_ID = '0x19f6d22c9';
 
 // TESTNET_CHAIN_ID is the chain id used by Magma Onyx test net.
-const TESTNET_CHAIN_ID = '0x19f6d22c9';
+//const TESTNET_CHAIN_ID = '0x19f6d22c9';
+const APP_CHAIN_ID = parseInt(appConfig.mainnet.chainId, 16);
 
 /**
  * erc20IncreaseAllowanceTx creates a transaction for increasing Allowance by the given
@@ -56,7 +58,7 @@ function erc20IncreaseAllowanceTx(erc20Address, delegatedToAddress, addAmount) {
             },
             [delegatedToAddress, addAmount]
         ),
-        chainId: OPERA_CHAIN_ID,
+        chainId: APP_CHAIN_ID,
     };
 }
 
@@ -102,7 +104,7 @@ function erc20ApproveTx(tokenAddress, delegatedToAddress, addAmount) {
             },
             [delegatedToAddress, addAmount]
         ),
-        chainId: OPERA_CHAIN_ID,
+        chainId: APP_CHAIN_ID,
     };
 }
 
@@ -110,6 +112,6 @@ function erc20ApproveTx(tokenAddress, delegatedToAddress, addAmount) {
 export default {
     erc20IncreaseAllowanceTx,
     erc20ApproveTx,
-    OPERA_CHAIN_ID,
-    TESTNET_CHAIN_ID,
+    APP_CHAIN_ID,
+    //TESTNET_CHAIN_ID,
 };

@@ -4,8 +4,9 @@
             <h1 data-focus>{{ $t('collectioncreateform.createCollection') }}</h1>
         </div>
         <div class="collectioncreateform__desc">
-            {{ $t('collectioncreateform.useOwnerAddressOfCollection') }}
+            {{ $t('collectioncreateform.createCollectionDesc') }}
         </div>
+
         <a-upload-area :validator="imageValidator" @input="setCollectionImage" class="auploadarea-nobackground">
             {{ $t('collectioncreateform.alsoBeUsedForNavigation') }}
         </a-upload-area>
@@ -22,6 +23,7 @@
             required
             validate-on-input
         />
+
         <f-form-input
             :label="$t('collectioncreateform.symbol')"
             field-size="large"
@@ -30,7 +32,109 @@
             :placeholder="$t('collectioncreateform.provideYourSymbol')"
             required
             validate-on-input
-        />		
+        />
+
+        <f-form-input type="toggle" :label="$t('collectioncreateform.publicMintable')" name="publicMintableToogle" />
+        <div class="collectioncreateform__publicMintabledesc">
+            {{ $t('collectioncreateform.publicMintabledesc') }}
+        </div>
+
+        <f-form-input
+            :label="$t('collectioncreateform.publicMintFee')"
+            v-if="values.publicMintableToogle"
+            :validator="publicMintFeeValidator"
+            validate-on-change
+            validate-on-input
+            :error-message="$t('collectioncreateform.publicMintFeeErr')"
+            type="number"
+            name="publicMintFee"
+            field-size="large"
+            required
+        />
+        <div class="collectioncreateform__publicMintFeedesc" v-if="values.publicMintableToogle">
+            {{ $t('collectioncreateform.publicMintFeedesc') }}
+        </div>
+
+        <f-form-input
+            :label="$t('collectioncreateform.maxItems')"
+            :validator="maxItemsValidator"
+            validate-on-change
+            validate-on-input
+            :placeholder="$t('collectioncreateform.maxItemsValue')"
+            :error-message="$t('collectioncreateform.maxItemsErr')"
+            type="number"
+            name="maxItems"
+            field-size="large"
+            required
+        />
+
+        <f-form-input type="toggle" :label="$t('collectioncreateform.startdateToogle')" name="startdateToogle" />
+        <f-form-input
+            v-if="values.startdateToogle"
+            type="datetime"
+            name="startdate"
+            :validator="startdateValidator"
+            :in-formatter="datetimeInFormatterTimestamp"
+            :out-formatter="dateOutFormatterTimestamp"
+            validate-on-input
+            field-size="large"
+            :label="$t('collectioncreateform.startdate')"
+        />
+
+        <f-form-input type="toggle" :label="$t('collectioncreateform.enddateToogle')" name="enddateToogle" />
+        <f-form-input
+            v-if="values.enddateToogle"
+            type="datetime"
+            name="enddate"
+            :validator="enddateValidator"
+            :in-formatter="datetimeInFormatterTimestamp"
+            :out-formatter="dateOutFormatterTimestamp"
+            validate-on-input
+            field-size="large"
+            :label="$t('collectioncreateform.enddate')"
+        />
+
+        <f-form-input type="toggle" :label="$t('collectioncreateform.isErc1155')" name="isErc1155Toogle" />
+        <div class="collectioncreateform__isErc1155desc">
+            {{ $t('collectioncreateform.isErc1155desc') }}
+        </div>
+
+        <f-form-input
+            :label="$t('collectioncreateform.maxReplica')"
+            v-if="values.isErc1155Toogle"
+            :validator="maxReplicaValidator"
+            validate-on-change
+            validate-on-input
+            :placeholder="$t('collectioncreateform.maxReplicaValue')"
+            :error-message="$t('collectioncreateform.maxReplicaErr')"
+            type="number"
+            name="maxReplica"
+            field-size="large"
+            required
+        />
+
+        <f-form-input
+            type="toggle"
+            :label="$t('collectioncreateform.useBaseUri')"
+            name="useBaseUriToogle"
+            v-if="baseUriAvailable()"
+        />
+
+        <f-form-input
+            type="text"
+            field-size="large"
+            :label="$t('collectioncreateform.baseUri')"
+            v-if="baseUriNeeded()"
+            name="baseUri"
+            :placeholder="$t('collectioncreateform.baseUriExample')"
+            required
+            validate-on-input
+        />
+
+        <div class="collectioncreateform__useBaseUridesc" v-if="baseUriNeeded()">
+            {{ $t('collectioncreateform.useBaseUridesc') }}
+        </div>
+
         <f-form-input
             :label="$t('collectioncreateform.description')"
             field-size="large"
@@ -41,32 +145,7 @@
             validate-on-input
             rows="5"
         />
-		<f-form-input type="toggle" 
-			:label="$t('collectioncreateform.publicMintable')" 
-			v-if="false"
-			name="publicMintableToogle" 
-		/>
-		<f-form-input
-			:label="$t('collectioncreateform.publicMintFee')"
-			v-if="values.publicMintableToogle"
-            :validator="publicMintFeeValidator"
-            validate-on-change
-            validate-on-input
-            :error-message="$t('collectioncreateform.publicMintFeeErr')"
-            type="number"
-            name="publicMintFee"
-            field-size="large"
-		/>		
-		<f-form-input
-			:label="$t('collectioncreateform.itemsUriPath')"
-			v-if="values.publicMintableToogle"
-            field-size="large"
-            type="text"
-            name="itemsUriPath"
-            :placeholder="$t('collectioncreateform.provideItemsUriPath')"
-            required
-            validate-on-input
-		/>				
+
         <f-form-input
             :validator="royaltyValidator"
             validate-on-change
@@ -126,7 +205,7 @@
                     <app-iconset icon="nft" size="24px" />
                 </template>
             </f-form-input>
-			-->			
+			-->
             <f-form-input
                 type="text"
                 field-size="large"
@@ -222,7 +301,7 @@
                 {{ $t('collectioncreateform.submit') }}
             </a-button>
         </div>
-		<a-sign-transaction :tx="tx" @transaction-status="onMintTransactionStatus" />
+        <a-sign-transaction :tx="tx" @transaction-status="onMintTransactionStatus" />
     </f-form>
 </template>
 
@@ -241,6 +320,9 @@ import Web3 from 'web3';
 //import { bFromWei, toHex } from '@/utils/big-number';
 //import { toHex } from '@/utils/big-number';
 import contracts from '@/utils/artion-contracts-utils';
+import { datetimeInFormatterTimestamp, dateOutFormatterTimestamp } from '@/utils/date.js';
+import dayjs from 'dayjs';
+import { bToTokenValue, toHex } from '@/utils/big-number.js';
 
 export default {
     name: 'CollectionCreateForm',
@@ -251,12 +333,12 @@ export default {
         return {
             values: {
                 categories: [],
-            },		
+            },
             progressMessage: '',
             tx: {},
             collectionAddress: null,
-			collectionApplication: {},
-            fee: null,			
+            collectionApplication: {},
+            fee: null,
             imageFile: null,
             isLoading: false,
             fileError: '',
@@ -287,12 +369,28 @@ export default {
             _value = Number(_value);
             return !(_value >= 1 && _value <= 100);
         },
-		
+
         publicMintFeeValidator(_value) {
-            if (_value === '') return _value;
+            if (_value === '') return false;
+            const val = parseFloat(_value);
+            if (isNaN(val) || val <= 0) {
+                return true;
+            }
+            return false;
+        },
+
+        maxItemsValidator(_value) {
+            if (_value === '') return true;
+            _value = Number(_value);
+            if (this.values.publicMintableToogle) return !(_value > 0);
+            else return !(_value >= 0);
+        },
+
+        maxReplicaValidator(_value) {
+            if (_value === '') return true;
             _value = Number(_value);
             return !(_value >= 0);
-        },		
+        },
 
         addressValidator(_value) {
             return !(Web3.utils.isHexStrict(_value) && Web3.utils.isAddress(_value))
@@ -317,6 +415,38 @@ export default {
             }
         },
 
+        baseUriNeeded() {
+            return this.values.useBaseUriToogle || this.values.isErc1155Toogle || this.values.publicMintableToogle;
+        },
+
+        baseUriAvailable() {
+            return !this.values.isErc1155Toogle && !this.values.publicMintableToogle;
+        },
+
+        startdateValidator(value) {
+            //alert(value);
+            if (value == 0) return '';
+            const now = dayjs().valueOf();
+            if (dayjs(value).valueOf() < now) return this.$t('collectioncreateform.badstartdate');
+            if (this.values.enddateToogle) {
+                const end = dayjs(this.values.enddate).valueOf();
+                if (dayjs(value).valueOf() >= end) return this.$t('collectioncreateform.badstartdate');
+            }
+            return '';
+        },
+
+        enddateValidator(value) {
+            //alert(value);
+            if (value == 0) return '';
+            const now = dayjs().valueOf();
+            if (dayjs(value).valueOf() <= now) return this.$t('collectioncreateform.badenddate');
+            if (this.values.startdateToogle) {
+                const start = dayjs(this.values.startdate).valueOf();
+                if (dayjs(value).valueOf() <= start) return this.$t('collectioncreateform.badenddate');
+            }
+            return '';
+        },
+
         async onSubmit(_data) {
             console.log('onSubmit', _data);
             const vals = _data.values;
@@ -339,14 +469,14 @@ export default {
                 });
                 this.isLoading = false;
                 return;
-            }				
-			
+            }
+
             this.progressMessage = this.$t('collectioncreateform.signMint');
             notifications.add({
                 type: 'info',
                 text: this.$t('collectioncreateform.signMint'),
             });
-			
+
             this.collectionApplication = {
                 contract: null,
                 name: vals.name,
@@ -361,25 +491,108 @@ export default {
                 mediumHandle: vals.mediumHandle,
                 twitterHandle: vals.twitterHandle,
                 instagramHandle: vals.instagramHandle,
-            };			
-			
-            const web3 = new Web3();			
-			// itemsUriPath
-            this.tx = contracts.createERC721Collection(
-                vals.name,
-                vals.symbol, // TODO.. symbol
-                '50000000000000000',  // TODO.. amount as platformFee for contract creation				
-				!vals.publicMintableToogle, // isPrivate
-				(vals.publicMintableToogle) ? vals.publicMintFee : 0, // mintFee
-				vals.royalty ? vals.royalty : 0, // creatorFee
-				vals.feeRecipient,	// FeeRecipient
-                web3
-            );	
-			
-			// not needed I guess..
-			// we are observing Factory::event ContractCreated(address creator, address nft, _isprivate)
+            };
 
-			/*
+            /*
+			name
+			symbol
+			publicMintableToogle
+			publicMintFee
+			maxItems
+			startdateToogle startdate
+			enddateToogle enddate
+			isErc1155Toogle
+			maxReplica
+			useBaseUriToogle
+			baseUri
+			royalty
+			feeRecipient			
+			*/
+            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, web3Client
+            //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, web3Client
+            const web3 = new Web3();
+
+            let useBaseUri = vals.useBaseUriToogle;
+            if (vals.isErc1155Toogle || vals.publicMintableToogle) {
+                if (vals.baseUri != null && vals.baseUri.length) {
+                    useBaseUri = true;
+                } else {
+                    alert('baseUri must be set');
+                    return;
+                }
+            }
+
+            let baseUri = '';
+            let baseUriExt = '';
+            let usebaseUriOnly = false;
+            if (useBaseUri) {
+                baseUri = vals.baseUri;
+                //alert(baseUri);
+                const idtoken = '/{id}';
+                const idtokenIndex = baseUri.toLowerCase().indexOf(idtoken);
+                usebaseUriOnly = idtokenIndex === -1;
+                if (!usebaseUriOnly) {
+                    baseUriExt = baseUri.slice(idtokenIndex + idtoken.length);
+                    baseUri = baseUri.slice(0, idtokenIndex);
+                }
+                //alert(baseUri + ' - ' + baseUriExt);
+            }
+
+            let startdate = 0;
+            let enddate = 0;
+            if (vals.startdateToogle) {
+                startdate = dayjs(this.values.startdate).valueOf() / 1000;
+            }
+            if (vals.enddateToogle) {
+                enddate = dayjs(this.values.enddate).valueOf() / 1000;
+            }
+            //alert(startdate + ' - ' + enddate);
+
+            const amount = await (vals.isErc1155Toogle
+                ? this.getErc1155FactoryContractFee()
+                : this.getErc721FactoryContractFee());
+            //alert(amount);
+
+            if (vals.isErc1155Toogle) {
+                this.tx = contracts.createERC1155Collection(
+                    vals.name,
+                    vals.symbol,
+                    amount,
+                    !vals.publicMintableToogle, // isPrivate
+                    vals.publicMintableToogle ? toHex(bToTokenValue(vals.publicMintFee, 18)) : 0, // mintFee
+                    vals.royalty ? vals.royalty : 0, // creatorFee
+                    vals.feeRecipient, // FeeRecipient
+                    baseUri,
+                    usebaseUriOnly,
+                    baseUriExt,
+                    vals.maxItems,
+                    vals.maxReplica,
+                    startdate,
+                    enddate,
+                    web3
+                );
+            } else {
+                this.tx = contracts.createERC721Collection(
+                    vals.name,
+                    vals.symbol,
+                    amount,
+                    !vals.publicMintableToogle, // isPrivate
+                    vals.publicMintableToogle ? toHex(bToTokenValue(vals.publicMintFee, 18)) : 0, // mintFee
+                    vals.royalty ? vals.royalty : 0, // creatorFee
+                    vals.feeRecipient, // FeeRecipient
+                    baseUri,
+                    baseUriExt,
+                    vals.maxItems,
+                    startdate,
+                    enddate,
+                    web3
+                );
+            }
+
+            // not needed I guess..
+            // we are observing Factory::event ContractCreated(address creator, address nft, _isprivate)
+
+            /*
             try {
                 await uploadCollection(this.collectionApplication, this.imageFile);
             } catch (err) {
@@ -397,9 +610,9 @@ export default {
                 text: this.$t('collectioncreateform.success'),
             });
             this.isLoading = false;	
-			*/			
+			*/
         },
-				
+
         async onMintTransactionStatus(payload) {
             console.log('onMintTransactionStatus', payload);
             if (payload.status === 'error') {
@@ -416,8 +629,8 @@ export default {
                 console.log('minting transaction succeed - txHash', payload.data);
                 await this.waitForCollectionAddressAndFinish(payload.data);
             }
-        },		
-		
+        },
+
         async waitForCollectionAddressAndFinish(txHash) {
             try {
                 this.collectionAddress = await this.getCollectionAddress(txHash);
@@ -445,13 +658,13 @@ export default {
             //    type: 'success',
             //    text: this.$t('collectioncreateform.success'),
             //});
-            //await this.waitForScanAndRedirect();			
-			
-			this.collectionApplication.contract = this.collectionAddress;
-			
-			//alert('uploadCreatedCollection: ' + JSON.stringify(this.collectionApplication));			
-			console.log('Uploading - collectionApplication: ', JSON.stringify(this.collectionApplication));
-			
+            //await this.waitForScanAndRedirect();
+
+            this.collectionApplication.contract = this.collectionAddress;
+
+            //alert('uploadCreatedCollection: ' + JSON.stringify(this.collectionApplication));
+            console.log('Uploading - collectionApplication: ', JSON.stringify(this.collectionApplication));
+
             try {
                 await uploadCollection(this.collectionApplication, this.imageFile);
             } catch (err) {
@@ -468,9 +681,9 @@ export default {
                 type: 'success',
                 text: this.$t('collectioncreateform.success'),
             });
-            this.isLoading = false;				
-        },		
-		
+            this.isLoading = false;
+        },
+
         async getCollectionAddress(txHash) {
             const web3 = this.$wallet.wallet._web3;
             const receipt = await web3.eth.getTransactionReceipt(txHash);
@@ -481,12 +694,60 @@ export default {
             }
             const collectionAddress = contracts.decodeContractCreatedAddress(receipt, web3);
             //console.log('collectionAddress', collectionAddress, toHex(collectionAddress));
-			console.log('collectionAddress', collectionAddress);
+            console.log('collectionAddress', collectionAddress);
             //return toHex(collectionAddress);
-			return collectionAddress;
-        },		
+            return collectionAddress;
+        },
+
+        async getErc721FactoryContractFee() {
+            const web3 = this.$wallet.wallet._web3;
+            let minABI = [
+                {
+                    inputs: [],
+                    name: 'platformContractFee',
+                    outputs: [
+                        {
+                            internalType: 'uint256',
+                            name: '',
+                            type: 'uint256',
+                        },
+                    ],
+                    stateMutability: 'view',
+                    type: 'function',
+                },
+            ];
+
+            let contract = new web3.eth.Contract(minABI, process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS);
+            let fee = await contract.methods.platformContractFee().call();
+            return fee;
+        },
+
+        async getErc1155FactoryContractFee() {
+            const web3 = this.$wallet.wallet._web3;
+            let minABI = [
+                {
+                    inputs: [],
+                    name: 'platformContractFee',
+                    outputs: [
+                        {
+                            internalType: 'uint256',
+                            name: '',
+                            type: 'uint256',
+                        },
+                    ],
+                    stateMutability: 'view',
+                    type: 'function',
+                },
+            ];
+
+            let contract = new web3.eth.Contract(minABI, process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS);
+            let fee = await contract.methods.platformContractFee().call();
+            return fee;
+        },
 
         imageValidator,
+        datetimeInFormatterTimestamp,
+        dateOutFormatterTimestamp,
     },
 };
 </script>

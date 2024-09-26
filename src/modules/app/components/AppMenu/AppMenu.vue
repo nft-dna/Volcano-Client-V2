@@ -31,7 +31,7 @@ export default {
                 {
                     route: 'memepool',
                     label: this.$t('navigation.memepool'),
-                },				
+                },
                 /*{
                     route: 'pg',
                     label: 'PG',

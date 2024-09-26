@@ -33,11 +33,7 @@
             </a>
         </div>
         <div class="appfooter_item">
-            <a
-                target="_blank"
-                href=""
-                rel="noopener"
-            >
+            <a target="_blank" href="" rel="noopener">
                 <img src="magma_logo.svg" width="135px" height="35px" alt="magma logo" />
             </a>
         </div>

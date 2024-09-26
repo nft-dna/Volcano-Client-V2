@@ -6,13 +6,11 @@ import { wallet } from '@/plugins/wallet/Wallet.js';
 import { getFTMBalance } from '@/modules/wallet/queries/ftm-balance.js';
 
 export async function getErc20TokenAllowance(ownerAddress = '', tokenAddress = '', spenderAddress = '') {
-	
-	// MM 'transparent' 'native token' support added
-	if (tokenAddress == '0x0000000000000000000000000000000000000000')
-		return getFTMBalance(ownerAddress);	
+    // MM 'transparent' 'native token' support added
+    if (tokenAddress == '0x0000000000000000000000000000000000000000') return getFTMBalance(ownerAddress);
     // MM avoid using specific ('not standard') grpahql network api
-	return wallet.getErc20Allowance(tokenAddress, ownerAddress, spenderAddress);
-	/*
+    return wallet.getErc20Allowance(tokenAddress, ownerAddress, spenderAddress);
+    /*
 	const query = {
         query: gql`
             query GetErc20TokenAllowance($token: Address!, $owner: Address!, $spender: Address!) {

@@ -27,7 +27,7 @@ import { compareAddresses } from '@/utils/address.js';
 // import store from '@/store';
 // import { SET_ACCOUNT, SET_CHAIN_ID } from '@/plugins/metamask/store.js';
 
-const OPERA_CHAIN_ID = parseInt(appConfig.chainId, 16);
+const APP_CHAIN_ID = parseInt(appConfig.chainId, 16);
 export let wallet = null;
 
 implementsWalletInterface(Metamask);
@@ -108,7 +108,7 @@ export class Wallet {
      * @return {boolean}
      */
     isCorrectChainId() {
-        return this.wallet ? toInt(this.wallet.getChainId()) === toInt(OPERA_CHAIN_ID) : false;
+        return this.wallet ? toInt(this.wallet.getChainId()) === toInt(APP_CHAIN_ID) : false;
     }
 
     /**
@@ -285,74 +285,77 @@ export class Wallet {
 
         return inHexFormat ? nonce : parseInt(nonce, 16);
 		*/
-		const { wallet } = this;
-		const nonce = await wallet._web3.eth.getTransactionCount(address, "pending");
-		return inHexFormat ? wallet._web3.utils.toHex(nonce) : nonce;
+        const { wallet } = this;
+        const nonce = await wallet._web3.eth.getTransactionCount(address, 'pending');
+        return inHexFormat ? wallet._web3.utils.toHex(nonce) : nonce;
     }
-	
-	// MM added to avoid using specific ('not standard') grpahql network api
-	async  getBalance(walletAddress) {
-		const { wallet } = this;
-		let balance = await wallet._web3.eth.getBalance(walletAddress);
-		return balance;//.toFixed();
-	}
-	
-	// MM added to avoid using specific ('not standard') grpahql network api
-	async  getErc20TokenBalance(walletAddress, tokenAddress) {
-		const { wallet } = this;
-		let minABI = [
-		  // balanceOf
-		  {
-			"constant":true,
-			"inputs":[{"name":"_owner","type":"address"}],
-			"name":"balanceOf",
-			"outputs":[{"name":"balance","type":"uint256"}],
-			"type":"function"
-		  },
-		  // decimals
-		  {
-			"constant":true,
-			"inputs":[],
-			"name":"decimals",
-			"outputs":[{"name":"","type":"uint8"}],
-			"type":"function"
-		  }
-		];
 
-		let contract = new wallet._web3.eth.Contract(minABI,tokenAddress);
-		let balance = await contract.methods.balanceOf(walletAddress).call();
-		return balance;
-	}
-	
-	// MM added to avoid using specific ('not standard') grpahql network api
-	async  getErc20Allowance(tokenAddress, ownerAddress, spenderAddress) {
-		const { wallet } = this;
-		let minABI = [
-		  // allowance
-		  {
-			"constant":true,
-			"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],
-			"name":"allowance",
-			"outputs":[{"name":"","type":"uint256"}],
-			"payable": false,
-			"stateMutability": "view",
-			"type":"function"
-		  },
-		];
+    // MM added to avoid using specific ('not standard') grpahql network api
+    async getBalance(walletAddress) {
+        const { wallet } = this;
+        let balance = await wallet._web3.eth.getBalance(walletAddress);
+        return balance; //.toFixed();
+    }
 
-		let contract = new wallet._web3.eth.Contract(minABI,tokenAddress);
-		let allowance = await contract.methods.allowance(ownerAddress, spenderAddress).call();
-		return allowance;
-	}	
-	
+    // MM added to avoid using specific ('not standard') grpahql network api
+    async getErc20TokenBalance(walletAddress, tokenAddress) {
+        const { wallet } = this;
+        let minABI = [
+            // balanceOf
+            {
+                constant: true,
+                inputs: [{ name: '_owner', type: 'address' }],
+                name: 'balanceOf',
+                outputs: [{ name: 'balance', type: 'uint256' }],
+                type: 'function',
+            },
+            // decimals
+            {
+                constant: true,
+                inputs: [],
+                name: 'decimals',
+                outputs: [{ name: '', type: 'uint8' }],
+                type: 'function',
+            },
+        ];
+
+        let contract = new wallet._web3.eth.Contract(minABI, tokenAddress);
+        let balance = await contract.methods.balanceOf(walletAddress).call();
+        return balance;
+    }
+
+    // MM added to avoid using specific ('not standard') grpahql network api
+    async getErc20Allowance(tokenAddress, ownerAddress, spenderAddress) {
+        const { wallet } = this;
+        let minABI = [
+            // allowance
+            {
+                constant: true,
+                inputs: [
+                    { name: '_owner', type: 'address' },
+                    { name: '_spender', type: 'address' },
+                ],
+                name: 'allowance',
+                outputs: [{ name: '', type: 'uint256' }],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+        ];
+
+        let contract = new wallet._web3.eth.Contract(minABI, tokenAddress);
+        let allowance = await contract.methods.allowance(ownerAddress, spenderAddress).call();
+        return allowance;
+    }
+
     /**
      * @param {string} address
      * @param {boolean} [inHexFormat]
      * @return {Promise<number|string|*|number>}
      */
     async getGasPrice(inHexFormat) {
-		const { wallet } = this;
-		let gasPrice = await wallet._web3.eth.getGasPrice()
+        const { wallet } = this;
+        let gasPrice = await wallet._web3.eth.getGasPrice();
         /*
 		let gasPrice = await gqlQuery(
             {
@@ -380,7 +383,7 @@ export class Wallet {
      * @param {string} data
      * @return {Promise<string>}
      */
-    async estimateGas({ from = undefined, to = undefined, value = undefined, data = undefined }/*, silent = false*/) {
+    async estimateGas({ from = undefined, to = undefined, value = undefined, data = undefined } /*, silent = false*/) {
         /*
 		const estimateGas = await gqlQuery(
             {
@@ -397,13 +400,13 @@ export class Wallet {
             silent
         );
 		*/
-		const { wallet } = this;
-		let estimateGas = await wallet._web3.eth.estimateGas({
-			from: from,
-			to: to,
-			data: data,
-			value: value
-		});
+        const { wallet } = this;
+        let estimateGas = await wallet._web3.eth.estimateGas({
+            from: from,
+            to: to,
+            data: data,
+            value: value,
+        });
 
         return estimateGas;
     }
@@ -438,16 +441,16 @@ export class Wallet {
 
         if (txHash) {
             while (status === null) {
-				try {
-                status = await this._getTransactionStatus(txHash);
-				} catch(error){
-					console.log('getTransactionStatus next try');
-					status = null					
-				}
+                try {
+                    status = await this._getTransactionStatus(txHash);
+                } catch (error) {
+                    console.log('getTransactionStatus next try');
+                    status = null;
+                }
                 await delay(400);
             }
 
-            ok = ((status == true) || (parseInt(status, 16) === 1));
+            ok = status == true || parseInt(status, 16) === 1;
         }
 
         return ok;
@@ -482,15 +485,14 @@ export class Wallet {
 			true // silent
         );
 		*/
-		
-		//const { wallet } = this;
-		//let receipt = await wallet._web3.getTransactionReceipt(txHash);
-		let receipt = await this.getTransactionReceipt(txHash, 1);
-		if (receipt != null)
-		{
-			return receipt.status;
-		}
-		return null;		
+
+        //const { wallet } = this;
+        //let receipt = await wallet._web3.getTransactionReceipt(txHash);
+        let receipt = await this.getTransactionReceipt(txHash, 1);
+        if (receipt != null) {
+            return receipt.status;
+        }
+        return null;
     }
 
     /**

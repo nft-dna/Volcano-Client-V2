@@ -26,12 +26,12 @@ npm run build
 
 ### Lints and fixes files
 ```
-npm run lint
+npm run lint --fix
 ```
 
 
 ####
-# Works with node 17 and prior versions
+# Works with node 17 and prior versions (should work on node 18 too)
 ####
 ## linux
 # export NODE_OPTIONS=--openssl-legacy-provider

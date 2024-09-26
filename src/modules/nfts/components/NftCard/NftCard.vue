@@ -91,7 +91,7 @@
             <div class="nftcard_header">
                 <button v-if="showBanButton" :data-tooltip="$t('nftcard.banUnban')" @click.prevent="onBanClick">
                     <app-iconset icon="ban" size="16px" :color="dBanned ? '#f00' : ''" />
-                </button>			
+                </button>
                 <nft-like :token="nftData" />
             </div>
         </router-link>
@@ -154,7 +154,7 @@ export default {
                 });
             }
         },
-		
+
         getImageThumbUrl,
     },
 };

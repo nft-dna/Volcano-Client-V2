@@ -30,7 +30,7 @@
             :placeholder="$t('memetokencreateform.provideYourSymbol')"
             required
             validate-on-input
-        />		
+        />
         <f-form-input
             :label="$t('memetokencreateform.description')"
             field-size="large"
@@ -41,92 +41,87 @@
             validate-on-input
             rows="5"
         />
-		<f-form-input type="toggle" 
-			:label="$t('memetokencreateform.publicMintable')" 
-			v-if="false"
-			name="publicMintableToogle" 
-		/>
-		<f-form-input
-			:label="$t('memetokencreateform.publicMintFee')"
-			v-if="values.publicMintableToogle"
-            :validator="publicMintFeeValidator"
-            validate-on-change
-            validate-on-input
-            :error-message="$t('memetokencreateform.publicMintFeeErr')"
-            type="number"
-            name="publicMintFee"
-            field-size="large"
-		/>		
-		<f-form-input
-			:label="$t('memetokencreateform.itemsUriPath')"
-			v-if="values.publicMintableToogle"
+
+        <f-form-input
+            :label="$t('memetokencreateform.uri')"
             field-size="large"
             type="text"
-            name="itemsUriPath"
-            :placeholder="$t('memetokencreateform.provideItemsUriPath')"
+            name="uri"
+            :placeholder="$t('memetokencreateform.provideUri')"
             required
             validate-on-input
-		/>				
+        />
+
         <f-form-input
-            :validator="royaltyValidator"
+            :label="$t('memetokencreateform.capAmount')"
+            :validator="capAmountValidator"
             validate-on-change
             validate-on-input
-            :error-message="$t('memetokencreateform.royaltyErr')"
+            :placeholder="$t('memetokencreateform.provideCapAmount')"
+            :error-message="$t('memetokencreateform.capAmountErr')"
             type="number"
-            name="royalty"
+            name="capAmount"
             field-size="large"
-        >
-            <template #label>
-                {{ $t('memetokencreateform.royalty') }}
-                <span class="label_btn" :data-tooltip="$t('memetokencreateform.royaltyTooltip')">
-                    <app-iconset
-                        icon="question"
-                        :aria-hidden="false"
-                        :aria-label="$t('memetokencreateform.royaltyTooltip')"
-                    />
-                </span>
-            </template>
-        </f-form-input>
+            required
+        />
+
         <f-form-input
-            type="text"
-            name="feeRecipient"
+            :label="$t('memetokencreateform.initialAmount')"
+            :validator="initialAmountValidator"
+            validate-on-change
+            validate-on-input
+            :placeholder="$t('memetokencreateform.provideInitialAmount')"
+            :error-message="$t('memetokencreateform.initialAmountErr')"
+            type="number"
+            name="initialAmount"
             field-size="large"
-            :placeholder="$t('memetokencreateform.feeRecipient')"
+            required
+        />
+
+        <f-form-input
+            :label="$t('memetokencreateform.initialReceiver')"
+            type="text"
+            name="initialReceiver"
+            field-size="large"
+            :placeholder="$t('memetokencreateform.provideInitialReceiver')"
             required
             validate-on-input
             :validator="addressValidator"
-        >
-            <template #label>
-                {{ $t('memetokencreateform.feeRecipient') }}
-                <span class="label_btn" :data-tooltip="$t('memetokencreateform.feesTooltip')">
-                    <app-iconset
-                        icon="question"
-                        :aria-hidden="false"
-                        :aria-label="$t('memetokencreateform.feesTooltip')"
-                    />
-                </span>
-            </template>
-        </f-form-input>
-        <div class="memetokencreateform_categories">
-            <div class="memetokencreateform_categories_label">{{ $t('memetokencreateform.category') }}</div>
-            <AddCategory @change="values.categories = $event" />
+        />
+
+        <f-form-input
+            :label="$t('memetokencreateform.mintBlocks')"
+            :validator="mintBlocksValidator"
+            validate-on-change
+            validate-on-input
+            :placeholder="$t('memetokencreateform.provideMintBlocks')"
+            :error-message="$t('memetokencreateform.mintBlocksErr')"
+            type="number"
+            name="mintBlocks"
+            field-size="large"
+            required
+        />
+        <div class="memetokencreateform__umintBlocksdesc">
+            {{ $t('memetokencreateform.mintBlocksdesc') }}
         </div>
+
+        <f-form-input
+            :label="$t('memetokencreateform.mintBlocksFee')"
+            :validator="mintBlocksFeeValidator"
+            validate-on-change
+            validate-on-input
+            :placeholder="$t('memetokencreateform.provideMintBlocksFee')"
+            :error-message="$t('memetokencreateform.mintBlocksFeeErr')"
+            type="number"
+            name="mintBlocksFee"
+            field-size="large"
+            required
+        />
+        <div class="memetokencreateform__umintBlocksFeedesc">
+            {{ $t('memetokencreateform.mintBlocksFeedesc') }}
+        </div>
+
         <div class="memetokencreateform_group">
-            <!--
-			<f-form-input
-                type="text"
-                field-size="large"
-                :placeholder="$t('memetokencreateform.enterCollection')"
-                name="contract"
-                no-label
-                validate-on-input
-                :validator="addressValidator"
-            >
-                <template #prefix>
-                    <app-iconset icon="nft" size="24px" />
-                </template>
-            </f-form-input>
-			-->			
             <f-form-input
                 type="text"
                 field-size="large"
@@ -222,14 +217,13 @@
                 {{ $t('memetokencreateform.submit') }}
             </a-button>
         </div>
-		<a-sign-transaction :tx="tx" @transaction-status="onMintTransactionStatus" />
+        <a-sign-transaction :tx="tx" @transaction-status="onMintTransactionStatus" />
     </f-form>
 </template>
 
 <script>
 import ASignTransaction from '@/common/components/ASignTransaction/ASignTransaction.vue';
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
-import AddCategory from '@/modules/collections/components/AddCategory/AddCategory.vue';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
 import { uploadCollection } from '@/utils/upload';
 import { checkSignIn } from '@/modules/account/auth';
@@ -241,22 +235,23 @@ import Web3 from 'web3';
 //import { bFromWei, toHex } from '@/utils/big-number';
 //import { toHex } from '@/utils/big-number';
 import contracts from '@/utils/artion-contracts-utils';
+import { bToTokenValue, toHex } from '@/utils/big-number.js';
 
 export default {
     name: 'MemeTokenCreateForm',
 
-    components: { AUploadArea, AddCategory, AButton, FMessage, ASignTransaction },
+    components: { AUploadArea, AButton, FMessage, ASignTransaction },
 
     data() {
         return {
             values: {
                 categories: [],
-            },		
+            },
             progressMessage: '',
             tx: {},
             collectionAddress: null,
-			collectionApplication: {},
-            fee: null,			
+            collectionApplication: {},
+            fee: null,
             imageFile: null,
             isLoading: false,
             fileError: '',
@@ -282,22 +277,37 @@ export default {
     },
 
     methods: {
-        royaltyValidator(_value) {
-            if (_value === '') return _value;
-            _value = Number(_value);
-            return !(_value >= 1 && _value <= 100);
-        },
-		
-        publicMintFeeValidator(_value) {
-            if (_value === '') return _value;
-            _value = Number(_value);
-            return !(_value >= 0);
-        },		
-
         addressValidator(_value) {
             return !(Web3.utils.isHexStrict(_value) && Web3.utils.isAddress(_value))
                 ? this.$t('memetokencreateform.invalidAddress')
                 : '';
+        },
+
+        mintBlocksValidator(_value) {
+            if (_value === '') return true;
+            _value = Number(_value);
+            return !(_value > 0);
+        },
+
+        mintBlocksFeeValidator(_value) {
+            if (_value === '') return true;
+            const val = parseFloat(_value);
+            if (isNaN(val) || val <= 0) {
+                return true;
+            }
+            return false;
+        },
+
+        initialAmountValidator(_value) {
+            if (_value === '') return true;
+            _value = Number(_value);
+            return !(_value >= 0);
+        },
+
+        capAmountValidator(_value) {
+            if (_value === '') return true;
+            _value = Number(_value);
+            return !(_value >= Number(this.values.initialAmount));
         },
 
         emailValidator(_value) {
@@ -339,14 +349,14 @@ export default {
                 });
                 this.isLoading = false;
                 return;
-            }				
-			
+            }
+
             this.progressMessage = this.$t('memetokencreateform.signMint');
             notifications.add({
                 type: 'info',
                 text: this.$t('memetokencreateform.signMint'),
             });
-			
+
             this.collectionApplication = {
                 contract: null,
                 name: vals.name,
@@ -361,25 +371,31 @@ export default {
                 mediumHandle: vals.mediumHandle,
                 twitterHandle: vals.twitterHandle,
                 instagramHandle: vals.instagramHandle,
-            };			
-			
-            const web3 = new Web3();			
-			// itemsUriPath
-            this.tx = contracts.createERC721Collection(
-                vals.name,
-                vals.symbol, // TODO.. symbol
-                '50000000000000000',  // TODO.. amount as platformFee for contract creation				
-				!vals.publicMintableToogle, // isPrivate
-				(vals.publicMintableToogle) ? vals.publicMintFee : 0, // mintFee
-				vals.royalty ? vals.royalty : 0, // creatorFee
-				vals.feeRecipient,	// FeeRecipient
-                web3
-            );	
-			
-			// not needed I guess..
-			// we are observing Factory::event ContractCreated(address creator, address nft, _isprivate)
+            };
 
-			/*
+            const web3 = new Web3();
+
+            const amount = await this.getErc20FactoryContractFee();
+            //alert(amount);
+
+            //createERC20TokenContract(nftName, nftSymbol, amount, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, web3Client)
+            this.tx = contracts.createERC20TokenContract(
+                vals.name,
+                vals.symbol,
+                amount,
+                vals.uri,
+                vals.initialReceiver,
+                toHex(bToTokenValue(vals.initialAmount, 18)), //vals.initialAmount,
+                toHex(bToTokenValue(vals.capAmount, 18)), //vals.capAmount,
+                vals.mintBlocks,
+                toHex(bToTokenValue(vals.mintBlocksFee, 18)), //vals.mintBlocksFee,
+                web3
+            );
+
+            // not needed I guess..
+            // we are observing Factory::event ContractCreated(address creator, address nft, _isprivate)
+
+            /*
             try {
                 await uploadCollection(this.collectionApplication, this.imageFile);
             } catch (err) {
@@ -397,9 +413,9 @@ export default {
                 text: this.$t('memetokencreateform.success'),
             });
             this.isLoading = false;	
-			*/			
+			*/
         },
-				
+
         async onMintTransactionStatus(payload) {
             console.log('onMintTransactionStatus', payload);
             if (payload.status === 'error') {
@@ -416,8 +432,8 @@ export default {
                 console.log('minting transaction succeed - txHash', payload.data);
                 await this.waitForCollectionAddressAndFinish(payload.data);
             }
-        },		
-		
+        },
+
         async waitForCollectionAddressAndFinish(txHash) {
             try {
                 this.collectionAddress = await this.getCollectionAddress(txHash);
@@ -445,13 +461,13 @@ export default {
             //    type: 'success',
             //    text: this.$t('memetokencreateform.success'),
             //});
-            //await this.waitForScanAndRedirect();			
-			
-			this.collectionApplication.contract = this.collectionAddress;
-			
-			//alert('uploadCreatedCollection: ' + JSON.stringify(this.collectionApplication));			
-			console.log('Uploading - collectionApplication: ', JSON.stringify(this.collectionApplication));
-			
+            //await this.waitForScanAndRedirect();
+
+            this.collectionApplication.contract = this.collectionAddress;
+
+            //alert('uploadCreatedCollection: ' + JSON.stringify(this.collectionApplication));
+            console.log('Uploading - collectionApplication: ', JSON.stringify(this.collectionApplication));
+
             try {
                 await uploadCollection(this.collectionApplication, this.imageFile);
             } catch (err) {
@@ -468,9 +484,9 @@ export default {
                 type: 'success',
                 text: this.$t('memetokencreateform.success'),
             });
-            this.isLoading = false;				
-        },		
-		
+            this.isLoading = false;
+        },
+
         async getCollectionAddress(txHash) {
             const web3 = this.$wallet.wallet._web3;
             const receipt = await web3.eth.getTransactionReceipt(txHash);
@@ -481,10 +497,33 @@ export default {
             }
             const collectionAddress = contracts.decodeContractCreatedAddress(receipt, web3);
             //console.log('collectionAddress', collectionAddress, toHex(collectionAddress));
-			console.log('collectionAddress', collectionAddress);
+            console.log('collectionAddress', collectionAddress);
             //return toHex(collectionAddress);
-			return collectionAddress;
-        },		
+            return collectionAddress;
+        },
+
+        async getErc20FactoryContractFee() {
+            const web3 = this.$wallet.wallet._web3;
+            let minABI = [
+                {
+                    inputs: [],
+                    name: 'platformContractFee',
+                    outputs: [
+                        {
+                            internalType: 'uint256',
+                            name: '',
+                            type: 'uint256',
+                        },
+                    ],
+                    stateMutability: 'view',
+                    type: 'function',
+                },
+            ];
+
+            let contract = new web3.eth.Contract(minABI, process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS);
+            let fee = await contract.methods.platformContractFee().call();
+            return fee;
+        },
 
         imageValidator,
     },

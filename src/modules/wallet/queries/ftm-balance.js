@@ -5,11 +5,10 @@
 import { wallet } from '@/plugins/wallet/Wallet.js';
 
 export async function getFTMBalance(ownerAddress = '') {
-	
-	// MM avoid using grpahql network api's (not standard here)
-	return wallet.getBalance(ownerAddress);
-	
-	/*
+    // MM avoid using grpahql network api's (not standard here)
+    return wallet.getBalance(ownerAddress);
+
+    /*
     const query = {
 
 		query: gql`
@@ -28,5 +27,5 @@ export async function getFTMBalance(ownerAddress = '') {
     };
 
     return gqlQuery(query, 'account.balance', fantomApolloClient);
-	*/	
+	*/
 }

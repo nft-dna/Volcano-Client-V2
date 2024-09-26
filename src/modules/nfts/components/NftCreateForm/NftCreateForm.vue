@@ -7,7 +7,7 @@
                     :max-file-size="maxNFTSize"
                     :validator="imageValidator"
                     class="auploadarea-nobackground"
-					v-if="false"
+                    v-if="false"
                 >
                     Drop files here or browse <br />
                     JPG, PNG, BMP, GIF, SVG, Max 15mb.
@@ -54,29 +54,29 @@
                         </template>
                     </f-form-input>
 
-                    <f-form-input 
-						:label="$t('nftcreate.name')" 
-						field-size="large" 
-						type="text" 
-						name="name" 
-						required
-						v-if="false"
-					/>
-					<f-form-input 
-						:label="$t('nftcreate.tokenUri')" 
-						field-size="large" 
-						type="text" 
-						name="tokenUri" 
-						:placeholder="$t('nftcreate.tokenUriPlaceholder')" 
-						required 
-					/>
+                    <f-form-input
+                        :label="$t('nftcreate.name')"
+                        field-size="large"
+                        type="text"
+                        name="name"
+                        required
+                        v-if="false"
+                    />
+                    <f-form-input
+                        :label="$t('nftcreate.tokenUri')"
+                        field-size="large"
+                        type="text"
+                        name="tokenUri"
+                        :placeholder="$t('nftcreate.tokenUriPlaceholder')"
+                        required
+                    />
                     <f-form-input
                         :label="$t('nftcreate.symbol')"
                         field-size="large"
                         type="text"
                         name="symbol"
                         class="fforminput_symbol"
-						v-if="false"
+                        v-if="false"
                     />
                     <f-form-input
                         :label="$t('nftcreate.description')"
@@ -84,7 +84,7 @@
                         type="textarea"
                         name="description"
                         rows="5"
-						v-if="false"
+                        v-if="false"
                     />
                 </div>
                 <div class="nftcreate_panel">
@@ -97,7 +97,7 @@
                         type="number"
                         name="royalty"
                         field-size="large"
-						v-if="false"
+                        v-if="false"
                     >
                         <template #label>
                             {{ $t('nftcreate.royalty') }}
@@ -110,11 +110,7 @@
                             </span>
                         </template>
                     </f-form-input>
-                    <f-form-input field-size="large" 
-						type="text" 
-						name="linkToIp"
-						v-if="false"
-					>
+                    <f-form-input field-size="large" type="text" name="linkToIp" v-if="false">
                         <template #label>
                             {{ $t('nftcreate.linkToIp') }}
                             <span class="label_btn" :data-tooltip="$t('nftcreate.linkToIpTooltip')">
@@ -229,15 +225,15 @@ export default {
         },
 
         async collectionValidator(_collectionId) {
-			/* MM		
+            /* MM		
             const estimation = await this.getEstimation(_collectionId, 1000);
             console.log('collectionValidator', _collectionId, 'estimation error:', estimation.error);
             await this.setFee(estimation.platformFee);
             return estimation.error != null;
 			*/
-			console.log('collectionValidator', _collectionId);
-			await this.setFee(0);
-			return false;
+            console.log('collectionValidator', _collectionId);
+            await this.setFee(0);
+            return false;
         },
 
         setTokenImage(_files) {
@@ -261,7 +257,7 @@ export default {
 
         async onSubmit(_data) {
             console.log('onSubmit', _data);
-			/*
+            /*
             if (!this.imageFile) {
                 this.fileError = this.$t('nftcreate.fileError');
                 return;
@@ -316,7 +312,7 @@ export default {
             }
 			*/
 
-			let tokenUri = val.tokenUri;
+            let tokenUri = val.tokenUri;
             /*
 			this.progressMessage = this.$t('nftcreate.uploading');
             let tokenUri;
@@ -351,13 +347,13 @@ export default {
                 web3
             );
 			*/
-			this.tx = contracts.createERC721Token(
+            this.tx = contracts.createERC721Token(
                 this.$wallet.account, // owner of the created token
                 tokenUri,
                 0, // estimation.platformFee,
                 val.collectionId,
                 web3
-            );			
+            );
         },
 
         async onMintTransactionStatus(payload) {

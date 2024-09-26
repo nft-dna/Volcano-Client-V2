@@ -1,3 +1,4 @@
+import appConfig from '../app.config.js';
 // import needed libs
 import Web3 from 'web3';
 import web3Utils from 'web3-utils';
@@ -10,10 +11,11 @@ const DEFAULT_GAS_LIMIT = '0x2dc6c0';
 const ZERO_AMOUNT = '0x0';
 
 // OPERA_CHAIN_ID is the chain id used by Magma Onyx blockchain.
-const OPERA_CHAIN_ID = '0x19f6d22c9';
+//const OPERA_CHAIN_ID = '0x19f6d22c9';
 
 // TESTNET_CHAIN_ID is the chain id used by Magma Onyx test net.
-const TESTNET_CHAIN_ID = '0x19f6d22c9';
+//const TESTNET_CHAIN_ID = '0x19f6d22c9';
+const APP_CHAIN_ID = parseInt(appConfig.mainnet.chainId, 16);
 
 /**
  * defiWrapFtm creates a contract call transaction to wrap given amount
@@ -52,7 +54,7 @@ function defiWrapFtm(erc20Address, amount) {
             },
             []
         ),
-        chainId: OPERA_CHAIN_ID,
+        chainId: APP_CHAIN_ID,
     };
 }
 
@@ -99,7 +101,7 @@ function defiUnwrapFtm(erc20Address, amount) {
             },
             [amount]
         ),
-        chainId: OPERA_CHAIN_ID,
+        chainId: APP_CHAIN_ID,
     };
 }
 
@@ -107,6 +109,6 @@ function defiUnwrapFtm(erc20Address, amount) {
 export default {
     defiWrapFtm,
     defiUnwrapFtm,
-    OPERA_CHAIN_ID,
-    TESTNET_CHAIN_ID,
+    APP_CHAIN_ID,
+    //TESTNET_CHAIN_ID,
 };

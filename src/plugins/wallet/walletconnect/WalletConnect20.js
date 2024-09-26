@@ -7,7 +7,7 @@ import { delay } from 'fantom-vue-components/src/utils/function.js';
 import Web3 from 'web3';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
 
-const OPERA_CHAIN_ID = parseInt(appConfig.mainnet.chainId, 16);
+const APP_CHAIN_ID = parseInt(appConfig.mainnet.chainId, 16);
 const RPC_URL = appConfig.rpc;
 
 export class WalletConnect {
@@ -171,7 +171,7 @@ export class WalletConnect {
     }
 
     isCorrectChainId(chainId) {
-        return toInt(this.chainId) === (chainId || toInt(OPERA_CHAIN_ID));
+        return toInt(this.chainId) === (chainId || toInt(APP_CHAIN_ID));
     }
 
     async _checkPersistedSession() {

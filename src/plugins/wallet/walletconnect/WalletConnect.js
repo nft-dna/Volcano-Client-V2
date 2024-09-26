@@ -5,7 +5,7 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from 'web3';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
 
-const OPERA_CHAIN_ID = parseInt(appConfig.mainnet.chainId, 16);
+const APP_CHAIN_ID = parseInt(appConfig.mainnet.chainId, 16);
 
 export class WalletConnect {
     /**
@@ -32,9 +32,9 @@ export class WalletConnect {
             const provider = new WalletConnectProvider({
                 // infuraId: '27e484dcd9e3efcfd25a83a78777cdf1',
                 rpc: {
-                    [OPERA_CHAIN_ID]: appConfig.mainnet.rpc,
+                    [APP_CHAIN_ID]: appConfig.mainnet.rpc,
                 },
-                chainId: OPERA_CHAIN_ID,
+                chainId: APP_CHAIN_ID,
             });
 
             this._web3 = new Web3(provider);
@@ -173,7 +173,7 @@ export class WalletConnect {
 
     async connect() {
         const { accounts, chainId } = await this._walletConnect.connect({
-            chainId: OPERA_CHAIN_ID,
+            chainId: APP_CHAIN_ID,
             rpcUrl: appConfig.mainnet.rpc,
         });
 

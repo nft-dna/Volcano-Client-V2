@@ -50,7 +50,7 @@ Vue.use(VueApollo);
 export const apolloProvider = new VueApollo({
     clients: {
         volcano: artionApolloClient,
-		// MM
+        // MM
         //magma: fantomApolloClient,
     },
     defaultClient: artionApolloClient,

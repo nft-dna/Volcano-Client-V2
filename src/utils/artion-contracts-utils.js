@@ -1,21 +1,10 @@
 // ZERO_AMOUNT represents zero amount transferred on some calls.
 const ZERO_AMOUNT = '0x0';
 
-/**
- * createERC721Collection Creates a new ERC721 collection contract thru factory
- *
- * @param {string} nftName Name of the new NFT collection.
- * @param {string} nftSymbol Symbol of the new NFT collection.
- * @param {number|BN|string} amount Amount of FTM tokens in WEI units as platform fee.
- * @param {Web3} web3Client Instance of an initialized Web3 client.
- * @param {string} [contract] Contract address
- * @return {{to: address, data: string, value string}}
- 
- // VolcanoERC721Factory::createNFTContract(string memory _name, string memory _symbol, bool _isprivate, uint256 _mintFee, uint256 _creatorFee, address payable _feeRecipient)
- */
- function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
+
+ function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
 	
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERCTokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC721TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime]])
 
     // return tx object
     return {
@@ -26,36 +15,25 @@ const ZERO_AMOUNT = '0x0';
     };
 }
 
-
-/**
- * createERC721Token Mints a new token on given NFT collection contract
- *
- * @param {string} toAddress Address of the owner of newly created NFT
- * @param {string} tokenUri URI address of the NFT json object
- * @param {number|BN|string} amount Amount of FTM tokens in WEI units as platform fee.
- * @param {string} collectionAddress Address of the collection for new NFT.
- * @param {Web3} web3Client Instance of an initialized Web3 client.
- * @return {{to: address, data: string, value string}}
- */
  function createERC721Token(toAddress, tokenUri, amount, collectionAddress, web3Client) {
 
     const abi = {
-        "inputs": [
-            {
-            "internalType": "address",
-            "name": "_to",
-            "type": "address"
-            },
-            {
-            "internalType": "string",
-            "name": "_tokenUri",
-            "type": "string"
-            }
-        ],
-        "name": "mint",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
     }
 
     const encodedAbi = web3Client.eth.abi.encodeFunctionCall(abi,[toAddress, tokenUri])
@@ -129,23 +107,11 @@ function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAdd
     };
 }
 
-
-/**
- * createERC1155Collection Creates a new ERC1155 collection contract thru factory
- *
- * @param {string} nftName Name of the new NFT collection.
- * @param {string} nftSymbol Symbol of the new NFT collection.
- * @param {number|BN|string} amount Amount of FTM tokens in WEI units as platform fee.
- * @param {Web3} web3Client Instance of an initialized Web3 client.
- * @param {string} [contract] Contract address
- * @return {{to: address, data: string, value string}}
- 
-  // VolcanoERC1155Factory::createNFTContract(string memory _name, string memory _symbol, bool _isprivate, uint256 _mintFee, uint256 _creatorFee, address payable _feeRecipient)
- */
- function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
+	
+ function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
 
     // encode contract ABI with parameters
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERCTokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC1155TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime]])
 
     // return tx object
     return {
@@ -157,50 +123,64 @@ function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAdd
 }
 
 
-/**
- * createERC1155Token Mints a new token on given ERC1155 collection contract
- * and assigns supply to an address
- *
- * @param {string} toAddress Address of the owner of newly created NFT
- * @param {string} tokenUri URI address of the NFT json object
- * @param {number|BN|string} supply Amount of tokens to supply the first owner
- * @param {number|BN|string} amount Amount of FTM tokens in WEI units as platform fee.
- * @param {string} collectionAddress Address of the collection for new NFT.
- * @param {Web3} web3Client Instance of an initialized Web3 client.
- * @return {{to: address, data: string, value string}}
- */
- function createERC1155Token(toAddress, tokenUri, supply, amount, collectionAddress, web3Client) {
+ function createERC1155Token(toAddress, data, supply, amount, collectionAddress, web3Client) {
 
     const abi = {
-        "inputs": [
-            {
-            "internalType": "address",
-            "name": "_to",
-            "type": "address"
-            },
-            {
-            "internalType": "uint256",
-            "name": "_supply",
-            "type": "uint256"
-            },
-            {
-            "internalType": "string",
-            "name": "_uri",
-            "type": "string"
-            }
-        ],
-        "name": "mint",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
     }
 
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(abi,[toAddress, supply, tokenUri])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(abi,[toAddress, supply, data])
 
     // return tx object
     return {
         from: undefined,
         to: collectionAddress,
+        value: web3Client.utils.numberToHex(amount),
+        data: encodedAbi,
+    };
+}
+
+ function createERC20TokenContract(nftName, nftSymbol, amount, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, web3Client, contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS) {
+	
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC20TokenContractAbi,[nftName, nftSymbol, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee])
+
+    // return tx object
+    return {
+        from: undefined,
+        to: contract,
+        value: web3Client.utils.numberToHex(amount),
+        data: encodedAbi,
+    };
+}
+
+ function mintERC20TokenBlock(token, receiver, amount, web3Client, contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS) {
+	
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(mintERC20TokenBlockAbi,[token, receiver])
+
+    // return tx object
+    return {
+        from: undefined,
+        to: contract,
         value: web3Client.utils.numberToHex(amount),
         data: encodedAbi,
     };
@@ -1249,6 +1229,8 @@ export default {
     createERC721TokenWithRoyalty,
     createERC1155Collection,
     createERC1155Token,
+	createERC20TokenContract,
+	mintERC20TokenBlock,
     registerTokenRoyalty,
     listItem,
     cancelListing,
@@ -1273,48 +1255,242 @@ export default {
     setApprovalForAll,
 }
 
-const createERCTokenContractAbi = {
-    "inputs": [
-        {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
-        },
-        {
-        "internalType": "string",
-        "name": "_symbol",
-        "type": "string"
-        },
+const createERC721TokenContractAbi = {
+	"inputs": [
 		{
-		"internalType": "bool",
-		"name": "_isprivate",
-		"type": "bool"
+			"internalType": "string",
+			"name": "_name",
+			"type": "string"
 		},
 		{
-		"internalType": "uint256",
-		"name": "_mintFee",
-		"type": "uint256"
+			"internalType": "string",
+			"name": "_symbol",
+			"type": "string"
 		},
 		{
-		"internalType": "uint256",
-		"name": "_creatorFee",
-		"type": "uint256"
+			"internalType": "bool",
+			"name": "_isprivate",
+			"type": "bool"
 		},
 		{
-		"internalType": "address",
-		"name": "_feeRecipient",
-		"type": "address"
+			"internalType": "uint256",
+			"name": "_mintFee",
+			"type": "uint256"
+		},
+		{
+			"internalType": "uint96",
+			"name": "_creatorFeePerc",
+			"type": "uint96"
+		},
+		{
+			"internalType": "address payable",
+			"name": "_feeRecipient",
+			"type": "address"
+		},
+		{
+			"components": [
+				{
+					"internalType": "string",
+					"name": "baseUri",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "baseUriExt",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxItems",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "mintStartTime",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "mintStopTime",
+					"type": "uint256"
+				}
+			],
+			"internalType": "struct VolcanoERC721Tradable.contractERC721Options",
+			"name": "_options",
+			"type": "tuple"
 		}
-    ],
-    "name": "createNFTContract",
-    "outputs": [
-        {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-        }
-    ],
-    "stateMutability": "payable",
-    "type": "function"
+	],
+	"name": "createNFTContract",
+	"outputs": [
+		{
+			"internalType": "address",
+			"name": "",
+			"type": "address"
+		}
+	],
+	"stateMutability": "payable",
+	"type": "function"
 }
+
+const createERC1155TokenContractAbi = {
+	"inputs": [
+		{
+			"internalType": "string",
+			"name": "_name",
+			"type": "string"
+		},
+		{
+			"internalType": "string",
+			"name": "_symbol",
+			"type": "string"
+		},
+		{
+			"internalType": "bool",
+			"name": "_private",
+			"type": "bool"
+		},
+		{
+			"internalType": "uint256",
+			"name": "_mintFee",
+			"type": "uint256"
+		},
+		{
+			"internalType": "uint96",
+			"name": "_creatorFeePerc",
+			"type": "uint96"
+		},
+		{
+			"internalType": "address payable",
+			"name": "_feeRecipient",
+			"type": "address"
+		},
+		{
+			"components": [
+				{
+					"internalType": "string",
+					"name": "baseUri",
+					"type": "string"
+				},
+				{
+					"internalType": "bool",
+					"name": "usebaseUriOnly",
+					"type": "bool"
+				},
+				{
+					"internalType": "string",
+					"name": "baseUriExt",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxItems",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxItemSupply",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "mintStartTime",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "mintStopTime",
+					"type": "uint256"
+				}
+			],
+			"internalType": "struct VolcanoERC1155Tradable.contractERC1155Options",
+			"name": "_options",
+			"type": "tuple"
+		}
+	],
+	"name": "createNFTContract",
+	"outputs": [
+		{
+			"internalType": "address",
+			"name": "",
+			"type": "address"
+		}
+	],
+	"stateMutability": "payable",
+	"type": "function"	
+}
+
+const createERC20TokenContractAbi = {
+	"inputs": [
+		{
+			"internalType": "string",
+			"name": "_name",
+			"type": "string"
+		},
+		{
+			"internalType": "string",
+			"name": "_symbol",
+			"type": "string"
+		},
+		{
+			"internalType": "string",
+			"name": "_uri",
+			"type": "string"
+		},
+		{
+			"internalType": "address",
+			"name": "_initialReceiver",
+			"type": "address"
+		},
+		{
+			"internalType": "uint256",
+			"name": "_initialAmount",
+			"type": "uint256"
+		},
+		{
+			"internalType": "uint256",
+			"name": "_capAmount",
+			"type": "uint256"
+		},
+		{
+			"internalType": "uint256",
+			"name": "_mintBlocks",
+			"type": "uint256"
+		},
+		{
+			"internalType": "uint256",
+			"name": "_mintBlocksFee",
+			"type": "uint256"
+		}
+	],
+	"name": "createTokenContract",
+	"outputs": [
+		{
+			"internalType": "address",
+			"name": "",
+			"type": "address"
+		}
+	],
+	"stateMutability": "payable",
+	"type": "function"	
+}
+
+const mintERC20TokenBlockAbi = {
+	"inputs": [
+		{
+			"internalType": "address",
+			"name": "tokenContractAddress",
+			"type": "address"
+		},
+		{
+			"internalType": "address",
+			"name": "to",
+			"type": "address"
+		}
+	],
+	"name": "mintTokenBlock",
+	"outputs": [],
+	"stateMutability": "payable",
+	"type": "function"	
+}
+
 

@@ -178,7 +178,7 @@ export default {
          */
         async buyItem(listing, approve = false) {
             if (
-                (await  checkUserBalance(
+                (await checkUserBalance(
                     listing.unitPrice,
                     listing.payToken,
                     this.getPayTokenLabel(listing.payToken)
@@ -203,8 +203,8 @@ export default {
                     this.setBuyTx(listing);
                 }
             } else {
-				console.log('buyItem listingGrid: getPayTokenLabel is null');
-			}
+                console.log('buyItem listingGrid: getPayTokenLabel is null');
+            }
         },
 
         async cancelListing(listing) {
@@ -234,7 +234,7 @@ export default {
                 token.tokenId,
                 listing.owner,
                 listing.payToken,
-				listing.unitPrice,
+                listing.unitPrice,
                 web3,
                 listing.marketplace
             );

@@ -39,8 +39,8 @@ let appConfig = {
             providers: [
                 {
                     //http: 'https://magmascan.org/graphiql',
-					http: 'https://magmascan.org/api/v1/graphql',
-					//http: 'https://sepolia.drpc.org/',
+                    http: 'https://magmascan.org/api/v1/graphql',
+                    //http: 'https://sepolia.drpc.org/',
                     // for subscriptions
                     ws: '',
                 },
@@ -52,18 +52,18 @@ let appConfig = {
             ],
             // index into providers array of default provider or 'random' - takes index randomly
             defaultProviderIndex: 'random',
-        },	
+        },
     },
     // app settings
     settings: {
-		// memo: adjust ./src/locales/en.json
+        // memo: adjust ./src/locales/en.json
         languages: [
             { label: 'English', value: 'en' },
             // { label: 'русский', value: 'ru' },
         ],
-		networkName: 'Magma Onyx',
-		nativeToken: 'ETH',
-		wrappedToken: 'wETH',		
+        networkName: 'Magma Onyx',
+        nativeToken: 'ETH',
+        wrappedToken: 'wETH',
         defaultLanguage: 'en',
         mobileViewBreakpoint: '64em', // set also variable $breakpoint-mw in assets/scss/_variables.scss
         themes: ['default', 'theme-dark'],
