@@ -32,8 +32,8 @@
     "mainNav": "Main",
     "accountNav": "Account",
     "registerCollection": "Register Collection",
-    "createCollection": "Create Collection",
-	"createMemeToken": "Create Meme Token",
+    "createCollection": "Create a Collection",
+	"createMemeToken": "Create a Meme Token",
     "items": "Items",
     "like": "Like",
     "rtlDirection": "Right-to-left direction",
@@ -130,9 +130,6 @@
             "title": "Browse NFT's",
             "filters": "Filters",
             "nftList": "List of NFTs"
-        },
-        "collectionCreate": {
-            "title": "Create Collection"
         },
         "collectionRegister": {
             "title": "@:registerCollection"
@@ -548,6 +545,11 @@
 		"enddateToogle": "Set a minting end date",
 		"enddate": "Minting end date (0 no limit)",		
 		"badenddate": "Invalid minting end date",
+		"revealdateToogle": "Set a 'Reveal' date",
+		"revealdate": "Real Uri url will be shown only after this date",
+		"preRevealUri": "Temporay Uri",
+		"preRevealUriExample": "ipfs://site.com/image.jpeg",
+		"badrevealdate": "Invalid reveal date",		
         "royalty": "Royalty (%)",
         "royaltyErr": "Value should be between 1 and 100",
         "royaltyTooltip": "Each NFT under this collection exchanged through Volcano will have a percentage of sale given to nominated wallet address.",
@@ -601,7 +603,7 @@
         "mintBlocksFee": "Liquidity needed to mint each Block (in ETH)",
         "provideMintBlocksFee": "0.1",
         "mintBlocksFeeErr": "Wrong Mint Blocks Liquidity Value",
-		"mintBlocksFeedesc": "Each minted block liquidity will be added to the Dex LP (liquidity pool)",
+		"mintBlocksFeedesc": "Each minted block liquidity will be added to the Dex liquidity pool (LP)",
         "contactEmail": "Contact Email",
         "emailAddress": "Email Address",
         "emailTooltip": "We will use this email to notify you about your collection application. This will not be shared with others.",

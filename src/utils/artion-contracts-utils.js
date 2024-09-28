@@ -2,9 +2,9 @@
 const ZERO_AMOUNT = '0x0';
 
 
- function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
+ function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
 	
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC721TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime]])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC721TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri]])
 
     // return tx object
     return {
@@ -108,10 +108,10 @@ function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAdd
 }
 
 	
- function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
+ function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
 
     // encode contract ABI with parameters
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC1155TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime]])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC1155TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri]])
 
     // return tx object
     return {
@@ -1223,6 +1223,30 @@ function decodeContractCreatedAddress(receipt, web3Client) {
     return decoded.nft;
 }
 
+function decodeMemeTokenCreatedAddress(receipt, web3Client) {
+    const createdTopic = '0xd5f9bdf12adf29dab0248c349842c3822d53ae2bb4f36352f301630d018c8139';
+    const abiInputs = [
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "caller",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+        }
+    ];
+
+    const log = receipt.logs.find(log => log.topics.includes(createdTopic));
+    if (!log) throw "Created topic not present in the transaction log";
+    const decoded = web3Client.eth.abi.decodeLog(abiInputs, log.data, log.topics.slice(1));
+    console.log('decodeMemeTokenCreated', decoded);
+    return decoded.token;
+}
+
 export default {
     createERC721Collection,
     createERC721Token,
@@ -1252,6 +1276,7 @@ export default {
     artionERC721Burn,
     decodeMintedNftTokenId,
 	decodeContractCreatedAddress,
+	decodeMemeTokenCreatedAddress,
     setApprovalForAll,
 }
 
@@ -1313,6 +1338,16 @@ const createERC721TokenContractAbi = {
 					"internalType": "uint256",
 					"name": "mintStopTime",
 					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "revealTime",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "preRevealUri",
+					"type": "string"
 				}
 			],
 			"internalType": "struct VolcanoERC721Tradable.contractERC721Options",
@@ -1400,6 +1435,16 @@ const createERC1155TokenContractAbi = {
 					"internalType": "uint256",
 					"name": "mintStopTime",
 					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "revealTime",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "preRevealUri",
+					"type": "string"
 				}
 			],
 			"internalType": "struct VolcanoERC1155Tradable.contractERC1155Options",

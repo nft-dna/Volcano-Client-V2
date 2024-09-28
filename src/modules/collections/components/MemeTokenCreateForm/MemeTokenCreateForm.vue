@@ -225,7 +225,7 @@
 import ASignTransaction from '@/common/components/ASignTransaction/ASignTransaction.vue';
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
-import { uploadCollection } from '@/utils/upload';
+import { uploadToken } from '@/utils/upload';
 import { checkSignIn } from '@/modules/account/auth';
 import AButton from '@/common/components/AButton/AButton';
 import { focusElem } from 'fantom-vue-components/src/utils/aria.js';
@@ -397,9 +397,9 @@ export default {
 
             /*
             try {
-                await uploadCollection(this.collectionApplication, this.imageFile);
+                await uploadToken(this.collectionApplication, this.imageFile);
             } catch (err) {
-                console.error('uploadCollection failed', err);
+                console.error('uploadToken failed', err);
                 notifications.add({
                     type: 'error',
                     text: this.$t('memetokencreateform.wasntUploaded') + err,
@@ -469,9 +469,9 @@ export default {
             console.log('Uploading - collectionApplication: ', JSON.stringify(this.collectionApplication));
 
             try {
-                await uploadCollection(this.collectionApplication, this.imageFile);
+                await uploadToken(this.collectionApplication, this.imageFile);
             } catch (err) {
-                console.error('uploadCollection failed', err);
+                console.error('uploadToken failed', err);
                 notifications.add({
                     type: 'error',
                     text: this.$t('memetokencreateform.wasntUploaded') + err,
@@ -495,7 +495,7 @@ export default {
                 console.log('getTransactionReceipt return null receipt for ' + txHash + ' - not in chain yet?');
                 return null;
             }
-            const collectionAddress = contracts.decodeContractCreatedAddress(receipt, web3);
+            const collectionAddress = contracts.decodeMemeTokenCreatedAddress(receipt, web3);
             //console.log('collectionAddress', collectionAddress, toHex(collectionAddress));
             console.log('collectionAddress', collectionAddress);
             //return toHex(collectionAddress);

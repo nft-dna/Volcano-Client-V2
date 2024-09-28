@@ -12,7 +12,7 @@ export async function getMemeTokens(pagination = { first: 5000 }, search = null,
                 $last: Int
                 $before: Cursor
             ) {
-                collections(
+                memeTokens(
                     search: $search
                     mintableBy: $mintableBy
                     first: $first
@@ -46,13 +46,13 @@ export async function getMemeTokens(pagination = { first: 5000 }, search = null,
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'collections');
+    return gqlQuery(query, 'memetokens');
 }
 
-export async function getCollectionsMod(pagination = { first: 5000 }, search = null, mintableBy = null) {
+export async function getMemeTokensMod(pagination = { first: 5000 }, search = null, mintableBy = null) {
     const query = {
         query: gql`
-            query GetCollections(
+            query GetMemeTokens(
                 $search: String
                 $mintableBy: Address
                 $first: Int
@@ -60,7 +60,7 @@ export async function getCollectionsMod(pagination = { first: 5000 }, search = n
                 $last: Int
                 $before: Cursor
             ) {
-                collections(
+                memeTokens(
                     search: $search
                     mintableBy: $mintableBy
                     first: $first
@@ -114,14 +114,14 @@ export async function getCollectionsMod(pagination = { first: 5000 }, search = n
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'collections');
+    return gqlQuery(query, 'memetokens');
 }
 
-export async function getBannedCollections(pagination = { first: 5000 }, search = null) {
+export async function getBannedMemeTokens(pagination = { first: 5000 }, search = null) {
     const query = {
         query: gql`
-            query GetBannedCollections($search: String, $first: Int, $after: Cursor, $last: Int, $before: Cursor) {
-                bannedCollections(search: $search, first: $first, after: $after, last: $last, before: $before) {
+            query GetBannedMemeTokens($search: String, $first: Int, $after: Cursor, $last: Int, $before: Cursor) {
+                bannedMemeTokens(search: $search, first: $first, after: $after, last: $last, before: $before) {
                     totalCount
                     pageInfo {
                         startCursor
@@ -167,14 +167,14 @@ export async function getBannedCollections(pagination = { first: 5000 }, search 
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'bannedCollections');
+    return gqlQuery(query, 'bannedMemeTokens');
 }
 
-export async function getCollectionsInReview(pagination = { first: 5000 }, search = null) {
+export async function getMemeTokensInReview(pagination = { first: 5000 }, search = null) {
     const query = {
         query: gql`
-            query GetCollectionsInReview($search: String, $first: Int, $after: Cursor, $last: Int, $before: Cursor) {
-                collectionsInReview(search: $search, first: $first, after: $after, last: $last, before: $before) {
+            query GetMemeTokensInReview($search: String, $first: Int, $after: Cursor, $last: Int, $before: Cursor) {
+                memetokensInReview(search: $search, first: $first, after: $after, last: $last, before: $before) {
                     totalCount
                     pageInfo {
                         startCursor
@@ -220,5 +220,5 @@ export async function getCollectionsInReview(pagination = { first: 5000 }, searc
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'collectionsInReview');
+    return gqlQuery(query, 'memetokensInReview');
 }

@@ -93,6 +93,29 @@
             field-size="large"
             :label="$t('collectioncreateform.enddate')"
         />
+		
+        <f-form-input type="toggle" :label="$t('collectioncreateform.revealdateToogle')" name="revealdateToogle" />
+        <f-form-input
+            v-if="values.revealdateToogle"
+            type="datetime"
+            name="revealdate"
+            :validator="revealdateValidator"
+            :in-formatter="datetimeInFormatterTimestamp"
+            :out-formatter="dateOutFormatterTimestamp"
+            validate-on-input
+            field-size="large"
+            :label="$t('collectioncreateform.revealdate')"
+        />
+        <f-form-input
+            type="text"
+            field-size="large"
+            :label="$t('collectioncreateform.preRevealUri')"
+            v-if="values.revealdateToogle"
+            name="preRevealUri"
+            :placeholder="$t('collectioncreateform.preRevealUriExample')"
+            required
+            validate-on-input
+        />
 
         <f-form-input type="toggle" :label="$t('collectioncreateform.isErc1155')" name="isErc1155Toogle" />
         <div class="collectioncreateform__isErc1155desc">
@@ -446,6 +469,14 @@ export default {
             }
             return '';
         },
+		
+		revealdateValidator(value) {
+            //alert(value);
+            if (value == 0) return '';
+            const now = dayjs().valueOf();
+            if (dayjs(value).valueOf() <= now) return this.$t('collectioncreateform.badrevealdate');
+            return '';
+        },
 
         async onSubmit(_data) {
             console.log('onSubmit', _data);
@@ -501,15 +532,16 @@ export default {
 			maxItems
 			startdateToogle startdate
 			enddateToogle enddate
+			revealdateToogle revealdate preRevealUri
 			isErc1155Toogle
 			maxReplica
 			useBaseUriToogle
 			baseUri
 			royalty
-			feeRecipient			
+			feeRecipient
 			*/
-            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, web3Client
-            //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, web3Client
+            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
+            //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
             const web3 = new Web3();
 
             let useBaseUri = vals.useBaseUriToogle;
@@ -540,13 +572,16 @@ export default {
 
             let startdate = 0;
             let enddate = 0;
+			let revealdate = 0;
             if (vals.startdateToogle) {
                 startdate = dayjs(this.values.startdate).valueOf() / 1000;
             }
             if (vals.enddateToogle) {
                 enddate = dayjs(this.values.enddate).valueOf() / 1000;
             }
-            //alert(startdate + ' - ' + enddate);
+            if (vals.revealdateToogle) {
+                revealdate = dayjs(this.values.revealdate).valueOf() / 1000;
+            }			
 
             const amount = await (vals.isErc1155Toogle
                 ? this.getErc1155FactoryContractFee()
@@ -569,6 +604,8 @@ export default {
                     vals.maxReplica,
                     startdate,
                     enddate,
+					revealdate,
+					revealdate ? vals.preRevealUri : "",
                     web3
                 );
             } else {
@@ -585,6 +622,8 @@ export default {
                     vals.maxItems,
                     startdate,
                     enddate,
+					revealdate,
+					revealdate ? vals.preRevealUri : "",
                     web3
                 );
             }
