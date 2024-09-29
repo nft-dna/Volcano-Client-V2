@@ -46,7 +46,7 @@ export async function getMemeTokens(pagination = { first: 5000 }, search = null,
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'memetokens');
+    return gqlQuery(query, 'memeTokens');
 }
 
 export async function getMemeTokensMod(pagination = { first: 5000 }, search = null, mintableBy = null) {
@@ -114,7 +114,7 @@ export async function getMemeTokensMod(pagination = { first: 5000 }, search = nu
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'memetokens');
+    return gqlQuery(query, 'memeTokens');
 }
 
 export async function getBannedMemeTokens(pagination = { first: 5000 }, search = null) {
@@ -220,5 +220,5 @@ export async function getMemeTokensInReview(pagination = { first: 5000 }, search
         fetchPolicy: 'network-only',
     };
 
-    return gqlQuery(query, 'memetokensInReview');
+    return gqlQuery(query, 'memeTokensInReview');
 }
