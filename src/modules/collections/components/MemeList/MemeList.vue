@@ -28,7 +28,7 @@
             v-on="$listeners"
         >
             <div class="memelist_cards">
-                <collection-card
+                <meme-token-card
                     v-for="(collection, index) in collections"
                     :collection="collection"
                     :key="`${collection.contract}_${index}`"
@@ -41,13 +41,13 @@
 <script>
 import ASearchField from '@/common/components/ASearchField/ASearchField.vue';
 import FPagination from 'fantom-vue-components/src/components/FPagination/FPagination.vue';
-import CollectionCard from '@/modules/collections/components/CollectionCard/CollectionCard.vue';
+import MemeTokenCard from '@/modules/collections/components/MemeTokenCard/MemeTokenCard.vue';
 import FInfiniteScroll from 'fantom-vue-components/src/components/FInfiniteScroll/FInfiniteScroll.vue';
 import FIntersectionObserver from 'fantom-vue-components/src/components/FIntersectionObserver/FIntersectionObserver.vue';
 export default {
     name: 'MemeList',
     components: {
-        CollectionCard,
+        MemeTokenCard,
         FInfiniteScroll,
         ASearchField,
     },

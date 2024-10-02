@@ -25,12 +25,12 @@ export default {
                     label: this.$t('navigation.collections'),
                 },
                 {
-                    route: 'nft-create',
-                    label: this.$t('navigation.create'),
-                },
-                {
                     route: 'memepool',
                     label: this.$t('navigation.memepool'),
+                },				
+                {
+                    route: 'nft-create',
+                    label: this.$t('navigation.create'),
                 },
                 /*{
                     route: 'pg',

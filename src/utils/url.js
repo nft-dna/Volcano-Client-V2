@@ -25,6 +25,19 @@ export function getCollectionImageUrl(contract) {
 }
 
 /**
+ * @param {string} contract
+ * @return {string}
+ */
+export function getMemeTokenImageUrl(contract) {
+    if (!contract) {
+        return '';
+    }
+
+    return `${artionFApolloClient.getCurrentHttpProviderOrigin()}/images/memetoken/${contract}/`;
+}
+
+
+/**
  * @param {string} hash
  * @return {string}
  */

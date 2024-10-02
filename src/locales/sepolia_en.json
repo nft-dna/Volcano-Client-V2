@@ -485,6 +485,8 @@
         "alsoBeUsedForNavigation": "This image will also be used for navigation. 300x300 recommended.",
         "name": "@:name",
         "collectionName": "Collection Name",
+		"symbol": "Symbol",		
+		"collectionSymbol": "Collection Symbol",		
         "description": "Description",
         "provideYourDescription": "Provide your description for your collection",
         "royalty": "Royalty (%)",
@@ -627,6 +629,11 @@
         "label": "Search collections...",
         "placeholder": "Search collections..."
     },
+	
+    "memelist": {
+        "label": "Search meme tokens...",
+        "placeholder": "Search meme tokens..."
+    },		
 
     "nftcreate": {
         "collection": "Collection",

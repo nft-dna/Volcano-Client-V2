@@ -93,7 +93,7 @@
             field-size="large"
             :label="$t('collectioncreateform.enddate')"
         />
-		
+
         <f-form-input type="toggle" :label="$t('collectioncreateform.revealdateToogle')" name="revealdateToogle" />
         <f-form-input
             v-if="values.revealdateToogle"
@@ -469,8 +469,8 @@ export default {
             }
             return '';
         },
-		
-		revealdateValidator(value) {
+
+        revealdateValidator(value) {
             //alert(value);
             if (value == 0) return '';
             const now = dayjs().valueOf();
@@ -572,7 +572,7 @@ export default {
 
             let startdate = 0;
             let enddate = 0;
-			let revealdate = 0;
+            let revealdate = 0;
             if (vals.startdateToogle) {
                 startdate = dayjs(this.values.startdate).valueOf() / 1000;
             }
@@ -581,7 +581,7 @@ export default {
             }
             if (vals.revealdateToogle) {
                 revealdate = dayjs(this.values.revealdate).valueOf() / 1000;
-            }			
+            }
 
             const amount = await (vals.isErc1155Toogle
                 ? this.getErc1155FactoryContractFee()
@@ -604,8 +604,8 @@ export default {
                     vals.maxReplica,
                     startdate,
                     enddate,
-					revealdate,
-					revealdate ? vals.preRevealUri : "",
+                    revealdate,
+                    revealdate ? vals.preRevealUri : '',
                     web3
                 );
             } else {
@@ -622,8 +622,8 @@ export default {
                     vals.maxItems,
                     startdate,
                     enddate,
-					revealdate,
-					revealdate ? vals.preRevealUri : "",
+                    revealdate,
+                    revealdate ? vals.preRevealUri : '',
                     web3
                 );
             }
