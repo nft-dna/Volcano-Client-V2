@@ -200,7 +200,7 @@
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
 import AddCategory from '@/modules/collections/components/AddCategory/AddCategory.vue';
 import { notifications } from 'fantom-vue-components/src/plugins/notifications.js';
-import { uploadToken } from '@/utils/upload';
+import { uploadCollection } from '@/utils/upload';
 import { checkSignIn } from '@/modules/account/auth';
 import AButton from '@/common/components/AButton/AButton';
 import { focusElem } from 'fantom-vue-components/src/utils/aria.js';
@@ -313,9 +313,9 @@ export default {
                 instagramHandle: vals.instagramHandle,
             };
             try {
-                await uploadToken(collectionApplication, this.imageFile);
+                await uploadCollection(collectionApplication, this.imageFile);
             } catch (err) {
-                console.error('uploadToken failed', err);
+                console.error('uploadCollection failed', err);
                 notifications.add({
                     type: 'error',
                     text: this.$t('collectionregisterform.wasntUploaded') + err,
