@@ -638,6 +638,8 @@
     "nftcreate": {
         "collection": "Collection",
         "collectionErr": "Chosen collection does not allow to mint new tokens from your address or your balance is insufficient to cover the collection minting fee.",
+        "memetoken": "Meme Token",
+        "memetokenErr": "Chosen Meme token does not allow to mint new tokens or your balance is insufficient to cover the token fee.",
         "name": "@:name",
         "symbol": "Symbol",
         "tokenUri": "TokenUri",

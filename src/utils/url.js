@@ -36,7 +36,6 @@ export function getMemeTokenImageUrl(contract) {
     return `${artionFApolloClient.getCurrentHttpProviderOrigin()}/images/memetoken/${contract}/`;
 }
 
-
 /**
  * @param {string} hash
  * @return {string}

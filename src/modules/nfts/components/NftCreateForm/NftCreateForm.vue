@@ -55,6 +55,43 @@
                     </f-form-input>
 
                     <f-form-input
+                        ref="memetokens"
+                        type="a-dropdown-listbox"
+                        name="memetokenId"
+                        :label="$t('nftcreate.memetoken')"
+                        class="memetokens_list"
+                        :data="memetokens"
+                        :validator="memetokenValidator"
+                        :error-message="$t('nftcreate.memetokenErr')"
+                        required
+                    >
+                        <template #button-label="{ item }">
+                            <div class="flex ali-center gap-2">
+                                <f-image
+                                    v-if="item.img"
+                                    size="24px"
+                                    :src="item.img"
+                                    :alt="item.label"
+                                    aria-hidden="true"
+                                />
+                                <span>{{ item.label }}</span>
+                            </div>
+                        </template>
+                        <template #item="{ item }">
+                            <div class="flex ali-center gap-2">
+                                <f-image
+                                    v-if="item.img"
+                                    size="24px"
+                                    :src="item.img"
+                                    :alt="item.label"
+                                    aria-hidden="true"
+                                />
+                                <span>{{ item.label }}</span>
+                            </div>
+                        </template>
+                    </f-form-input>
+
+                    <f-form-input
                         :label="$t('nftcreate.name')"
                         field-size="large"
                         type="text"
@@ -156,6 +193,9 @@ import FMessage from 'fantom-vue-components/src/components/FMessage/FMessage.vue
 import AppIconset from '@/modules/app/components/AppIconset/AppIconset';
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
 import { getCollections } from '@/modules/collections/queries/collections.js';
+import { getCollection } from '@/modules/nfts/queries/collection.js';
+import { getMemeTokens } from '@/modules/collections/queries/memetokens.js';
+import { getMemeToken } from '@/modules/nfts/queries/memetoken.js';
 //import { uploadTokenData } from '@/utils/upload';
 import Web3 from 'web3';
 import contracts from '@/utils/artion-contracts-utils';
@@ -165,7 +205,7 @@ import { checkSignIn } from '@/modules/account/auth';
 import { setUnlockableContent } from '@/modules/nfts/mutations/unlockables';
 import { bFromWei, toHex } from '@/utils/big-number';
 import { estimateMintFeeGas } from '@/modules/nfts/queries/estimate-mint';
-import { getCollectionImageUrl } from '@/utils/url.js';
+import { getCollectionImageUrl, getMemeTokenImageUrl } from '@/utils/url.js';
 import { tokenExists } from '@/modules/nfts/queries/token';
 import appConfig from '@/app.config.js';
 import { imageValidator } from '@/common/components/AUploadArea/validators.js';
@@ -182,6 +222,8 @@ export default {
             },
             collections: [],
             collection: {},
+            memetokens: [],
+            memetoken: {},
             imageFile: null,
             fileError: '',
             progressMessage: '',
@@ -204,6 +246,28 @@ export default {
                 img: getCollectionImageUrl(edge.node.contract),
             };
         });
+		/*
+		if (Object.keys(this.collections).length > 0) {
+			this.$refs.collections.selectedIndex = 0;	
+			alert(JSON.stringify(this.collections[0]))
+			this.$refs.collections.validate();
+		}
+		*/
+        const memetokens = await getMemeTokens({ first: 5000 }, null, null);
+        this.memetokens = memetokens.edges.map(edge => {
+            return {
+                label: edge.node.name,
+                value: edge.node.contract,
+                img: getMemeTokenImageUrl(edge.node.contract),
+            };
+        });
+		/*
+		if (Object.keys(this.memetokens).length > 0) {
+			this.$refs.memetokens.selectedIndex = 0;
+			alert(JSON.stringify(this.memetokens[0]))
+			this.$refs.memetokens.validate();
+		}
+		*/
     },
 
     watch: {
@@ -211,6 +275,14 @@ export default {
             handler() {
                 this.$nextTick(() => {
                     this.$refs.collections.validate();
+                });
+            },
+            immediate: true,
+        },
+        ['values.memetokenId']: {
+            handler() {
+                this.$nextTick(() => {
+                    this.$refs.memetokens.validate();
                 });
             },
             immediate: true,
@@ -225,6 +297,7 @@ export default {
         },
 
         async collectionValidator(_collectionId) {
+			//alert('collectionValidator: ' + _collectionId);
             /* MM		
             const estimation = await this.getEstimation(_collectionId, 1000);
             console.log('collectionValidator', _collectionId, 'estimation error:', estimation.error);
@@ -232,8 +305,25 @@ export default {
             return estimation.error != null;
 			*/
             console.log('collectionValidator', _collectionId);
+            const collection = await getCollection(_collectionId);
+            console.log('collection', collection);
             await this.setFee(0);
-            return false;
+            return collection != null;
+        },
+
+        async memetokenValidator(_collectionId) {
+			//alert('memetokenValidator: ' + _collectionId);
+            /* MM		
+            const estimation = await this.getEstimation(_collectionId, 1000);
+            console.log('collectionValidator', _collectionId, 'estimation error:', estimation.error);
+            await this.setFee(estimation.platformFee);
+            return estimation.error != null;
+			*/
+            console.log('memetokenValidator', _collectionId);
+            const memetoken = await getMemeToken(_collectionId);
+            console.log('memetoken', memetoken);
+            await this.setFee(0);
+            return memetoken != null;
         },
 
         setTokenImage(_files) {

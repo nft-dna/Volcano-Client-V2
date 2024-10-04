@@ -27,7 +27,7 @@ export default {
                 {
                     route: 'memepool',
                     label: this.$t('navigation.memepool'),
-                },				
+                },
                 {
                     route: 'nft-create',
                     label: this.$t('navigation.create'),
