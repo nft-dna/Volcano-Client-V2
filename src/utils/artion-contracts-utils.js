@@ -2,9 +2,9 @@
 const ZERO_AMOUNT = '0x0';
 
 
- function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
+ function createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, useDecimalUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client, contract = process.env.VUE_APP_ERC721_FACTORY_CONTRACT_ADDRESS) {
 	
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC721TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri]])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC721TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, useDecimalUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri]])
 
     // return tx object
     return {
@@ -1318,7 +1318,12 @@ const createERC721TokenContractAbi = {
 					"internalType": "string",
 					"name": "baseUri",
 					"type": "string"
-				},
+				},				
+				{
+					"internalType": "bool",
+					"name": "useDecimalUri",
+					"type": "bool"
+				},				
 				{
 					"internalType": "string",
 					"name": "baseUriExt",

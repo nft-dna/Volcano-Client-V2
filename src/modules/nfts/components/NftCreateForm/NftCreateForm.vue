@@ -246,7 +246,7 @@ export default {
                 img: getCollectionImageUrl(edge.node.contract),
             };
         });
-		/*
+        /*
 		if (Object.keys(this.collections).length > 0) {
 			this.$refs.collections.selectedIndex = 0;	
 			alert(JSON.stringify(this.collections[0]))
@@ -261,7 +261,7 @@ export default {
                 img: getMemeTokenImageUrl(edge.node.contract),
             };
         });
-		/*
+        /*
 		if (Object.keys(this.memetokens).length > 0) {
 			this.$refs.memetokens.selectedIndex = 0;
 			alert(JSON.stringify(this.memetokens[0]))
@@ -297,7 +297,7 @@ export default {
         },
 
         async collectionValidator(_collectionId) {
-			//alert('collectionValidator: ' + _collectionId);
+            //alert('collectionValidator: ' + _collectionId);
             /* MM		
             const estimation = await this.getEstimation(_collectionId, 1000);
             console.log('collectionValidator', _collectionId, 'estimation error:', estimation.error);
@@ -312,7 +312,7 @@ export default {
         },
 
         async memetokenValidator(_collectionId) {
-			//alert('memetokenValidator: ' + _collectionId);
+            //alert('memetokenValidator: ' + _collectionId);
             /* MM		
             const estimation = await this.getEstimation(_collectionId, 1000);
             console.log('collectionValidator', _collectionId, 'estimation error:', estimation.error);
