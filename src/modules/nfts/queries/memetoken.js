@@ -5,17 +5,45 @@ import { gqlQuery } from '@/utils/gql.js';
  * @param {string} contract
  * @return {Promise<number|string|*|undefined|null>}
  */
-export async function getMemeToken(contract = '') {
+export async function getMemeToken(contract = '', user = '') {
     const query = {
         query: gql`
-            query GetMemeToken($contract: Address!) {
-                memeToken(contract: $contract) {
+            query GetMemeToken($contract: Address!, $user: Address!) {
+                memeToken(contract: $contract, user: $user) {
                     contract
                     name
+                    symbol
+                    description
+                    categories
+                    owner
+                    ownerUser {
+                        address
+                        username
+                        avatar
+                    }
+                    feeRecipientUser {
+                        address
+                        username
+                        avatar
+                    }
+                    royalty
+                    site
+                    discord
+                    telegram
+                    medium
+                    twitter
+                    instagram
+                    createdTime
+                    isInternal
+                    initialReserve
+                    blocksAmount
+                    blocksFee
+                    blocksMaxSupply
+                    canMint
                 }
             }
         `,
-        variables: { contract },
+        variables: { contract, user },
         fetchPolicy: 'network-only',
     };
 

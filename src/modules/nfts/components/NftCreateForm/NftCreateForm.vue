@@ -305,7 +305,7 @@ export default {
             return estimation.error != null;
 			*/
             console.log('collectionValidator', _collectionId);
-            const collection = await getCollection(_collectionId);
+            const collection = await getCollection(_collectionId, this.$wallet.account);
             console.log('collection', collection);
             await this.setFee(0);
             return collection != null;
@@ -320,7 +320,7 @@ export default {
             return estimation.error != null;
 			*/
             console.log('memetokenValidator', _collectionId);
-            const memetoken = await getMemeToken(_collectionId);
+            const memetoken = await getMemeToken(_collectionId, this.$wallet.account);
             console.log('memetoken', memetoken);
             await this.setFee(0);
             return memetoken != null;
