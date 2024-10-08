@@ -639,6 +639,7 @@
     },		
 
     "nftcreate": {
+		"memeToogle": "Switch to Meme Mint",
         "collection": "Collection",
         "collectionErr": "Chosen collection does not allow to mint new tokens from your address or your balance is insufficient to cover the collection minting fee.",
         "memetoken": "Meme Token",

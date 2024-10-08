@@ -23,7 +23,6 @@ export async function getCollection(contract = '') {
     return gqlQuery(query, 'collection');
 }
 
-
 export async function getCollectionDetails(contract = '', user = '') {
     const query = {
         query: gql`

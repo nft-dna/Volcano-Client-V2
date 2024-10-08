@@ -68,7 +68,6 @@ export async function getMemeTokenDetails(contract = '', user = '') {
     return gqlQuery(query, 'memeToken');
 }
 
-
 /**
  * MemeToken object.
  * @typedef {Object} MemeToken

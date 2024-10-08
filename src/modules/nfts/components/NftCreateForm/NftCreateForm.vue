@@ -17,7 +17,10 @@
         <div class="nftcreate_col">
             <div class="nftcreate_wrap">
                 <div class="nftcreate_panel">
+                    <f-form-input type="toggle" :label="$t('nftcreate.memeToogle')" name="memeToogle" />
+
                     <f-form-input
+                        v-if="!values.memeToogle"
                         ref="collections"
                         type="a-dropdown-listbox"
                         name="collectionId"
@@ -55,6 +58,7 @@
                     </f-form-input>
 
                     <f-form-input
+                        v-if="values.memeToogle"
                         ref="memetokens"
                         type="a-dropdown-listbox"
                         name="memetokenId"

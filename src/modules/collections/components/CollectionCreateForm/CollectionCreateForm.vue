@@ -142,7 +142,7 @@
             name="useBaseUriToogle"
             v-if="baseUriAvailable()"
         />
-		
+
         <f-form-input
             type="text"
             field-size="large"
@@ -153,13 +153,13 @@
             required
             validate-on-input
         />
-		
+
         <f-form-input
             type="toggle"
             :label="$t('collectioncreateform.useBaseUriDecimal')"
             name="useBaseUriDecimalToogle"
             v-if="baseUriDecimalAvailable()"
-        />				
+        />
 
         <div class="collectioncreateform__useBaseUridesc" v-if="baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridesc') }}
@@ -167,7 +167,7 @@
         <div class="collectioncreateform__useBaseUridescHex" v-if="!values.useBaseUriDecimalToogle && baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridescHex') }}
         </div>
-		<div class="collectioncreateform__useBaseUridescDec" v-if="values.useBaseUriDecimalToogle && baseUriNeeded()">
+        <div class="collectioncreateform__useBaseUridescDec" v-if="values.useBaseUriDecimalToogle && baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridescDec') }}
         </div>
 
@@ -458,10 +458,10 @@ export default {
         baseUriAvailable() {
             return !this.values.isErc1155Toogle && !this.values.publicMintableToogle;
         },
-		
+
         baseUriDecimalAvailable() {
             return this.baseUriNeeded();
-        },		
+        },
 
         startdateValidator(value) {
             //alert(value);
@@ -587,7 +587,7 @@ export default {
                     baseUri = baseUri.slice(0, idtokenIndex);
                 }
                 //alert(baseUri + ' - ' + baseUriExt);
-				useDecimalUri = vals.useBaseUriDecimalToogle;
+                useDecimalUri = vals.useBaseUriDecimalToogle;
             }
 
             let startdate = 0;
@@ -619,7 +619,7 @@ export default {
                     vals.feeRecipient, // FeeRecipient
                     baseUri,
                     usebaseUriOnly,
-					useDecimalUri,					
+                    useDecimalUri,
                     baseUriExt,
                     vals.maxItems,
                     vals.maxReplica,
