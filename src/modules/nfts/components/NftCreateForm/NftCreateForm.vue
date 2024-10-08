@@ -193,9 +193,9 @@ import FMessage from 'fantom-vue-components/src/components/FMessage/FMessage.vue
 import AppIconset from '@/modules/app/components/AppIconset/AppIconset';
 import AUploadArea from '@/common/components/AUploadArea/AUploadArea.vue';
 import { getCollections } from '@/modules/collections/queries/collections.js';
-import { getCollection } from '@/modules/nfts/queries/collection.js';
+import { getCollectionDetails } from '@/modules/nfts/queries/collection.js';
 import { getMemeTokens } from '@/modules/collections/queries/memetokens.js';
-import { getMemeToken } from '@/modules/nfts/queries/memetoken.js';
+import { getMemeTokenDetails } from '@/modules/nfts/queries/memetoken.js';
 //import { uploadTokenData } from '@/utils/upload';
 import Web3 from 'web3';
 import contracts from '@/utils/artion-contracts-utils';
@@ -305,10 +305,10 @@ export default {
             return estimation.error != null;
 			*/
             console.log('collectionValidator', _collectionId);
-            const collection = await getCollection(_collectionId, this.$wallet.account);
+            const collection = await getCollectionDetails(_collectionId, this.$wallet.account);
             console.log('collection', collection);
             await this.setFee(0);
-            return collection != null;
+            return collection == null;
         },
 
         async memetokenValidator(_collectionId) {
@@ -320,10 +320,10 @@ export default {
             return estimation.error != null;
 			*/
             console.log('memetokenValidator', _collectionId);
-            const memetoken = await getMemeToken(_collectionId, this.$wallet.account);
+            const memetoken = await getMemeTokenDetails(_collectionId, this.$wallet.account);
             console.log('memetoken', memetoken);
             await this.setFee(0);
-            return memetoken != null;
+            return memetoken == null;
         },
 
         setTokenImage(_files) {

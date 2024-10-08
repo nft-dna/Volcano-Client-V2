@@ -5,7 +5,26 @@ import { gqlQuery } from '@/utils/gql.js';
  * @param {string} contract
  * @return {Promise<number|string|*|undefined|null>}
  */
-export async function getCollection(contract = '', user = '') {
+export async function getCollection(contract = '') {
+    const query = {
+        query: gql`
+            query GetCollection($contract: Address!) {
+                collection(contract: $contract) {
+                    contract
+                    name
+                    symbol
+                }
+            }
+        `,
+        variables: { contract },
+        fetchPolicy: 'network-only',
+    };
+
+    return gqlQuery(query, 'collection');
+}
+
+
+export async function getCollectionDetails(contract = '', user = '') {
     const query = {
         query: gql`
             query GetCollection($contract: Address!, $user: Address!) {
@@ -42,7 +61,7 @@ export async function getCollection(contract = '', user = '') {
                     mintStartTime
                     mintEndTime
                     revealTime
-                    canMint
+                    canMint(user: $user)
                 }
             }
         `,

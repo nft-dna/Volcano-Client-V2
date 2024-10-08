@@ -142,7 +142,7 @@
             name="useBaseUriToogle"
             v-if="baseUriAvailable()"
         />
-
+		
         <f-form-input
             type="text"
             field-size="large"
@@ -153,9 +153,22 @@
             required
             validate-on-input
         />
+		
+        <f-form-input
+            type="toggle"
+            :label="$t('collectioncreateform.useBaseUriDecimal')"
+            name="useBaseUriDecimalToogle"
+            v-if="baseUriDecimalAvailable()"
+        />				
 
         <div class="collectioncreateform__useBaseUridesc" v-if="baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridesc') }}
+        </div>
+        <div class="collectioncreateform__useBaseUridescHex" v-if="!values.useBaseUriDecimalToogle && baseUriNeeded()">
+            {{ $t('collectioncreateform.useBaseUridescHex') }}
+        </div>
+		<div class="collectioncreateform__useBaseUridescDec" v-if="values.useBaseUriDecimalToogle && baseUriNeeded()">
+            {{ $t('collectioncreateform.useBaseUridescDec') }}
         </div>
 
         <f-form-input
@@ -445,6 +458,10 @@ export default {
         baseUriAvailable() {
             return !this.values.isErc1155Toogle && !this.values.publicMintableToogle;
         },
+		
+        baseUriDecimalAvailable() {
+            return this.baseUriNeeded();
+        },		
 
         startdateValidator(value) {
             //alert(value);
@@ -537,10 +554,11 @@ export default {
 			maxReplica
 			useBaseUriToogle
 			baseUri
+			useBaseUriDecimalToogle
 			royalty
 			feeRecipient
 			*/
-            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
+            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, useDecimalUri, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
             //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, useDecimalUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
             const web3 = new Web3();
 
@@ -561,7 +579,7 @@ export default {
             if (useBaseUri) {
                 baseUri = vals.baseUri;
                 //alert(baseUri);
-                const idtoken = '/{id}';
+                const idtoken = '{id}';
                 const idtokenIndex = baseUri.toLowerCase().indexOf(idtoken);
                 usebaseUriOnly = idtokenIndex === -1;
                 if (!usebaseUriOnly) {
@@ -569,6 +587,7 @@ export default {
                     baseUri = baseUri.slice(0, idtokenIndex);
                 }
                 //alert(baseUri + ' - ' + baseUriExt);
+				useDecimalUri = vals.useBaseUriDecimalToogle;
             }
 
             let startdate = 0;
@@ -600,6 +619,7 @@ export default {
                     vals.feeRecipient, // FeeRecipient
                     baseUri,
                     usebaseUriOnly,
+					useDecimalUri,					
                     baseUriExt,
                     vals.maxItems,
                     vals.maxReplica,

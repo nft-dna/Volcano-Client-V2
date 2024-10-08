@@ -108,10 +108,10 @@ function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAdd
 }
 
 	
- function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
+ function createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, useDecimalUri, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client, contract = process.env.VUE_APP_ERC1155_FACTORY_CONTRACT_ADDRESS) {
 
     // encode contract ABI with parameters
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC1155TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, usebaseUriOnly, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri]])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC1155TokenContractAbi,[nftName, nftSymbol, isprivate, mintFee, creatorFee, feeRecipient, [baseUri, usebaseUriOnly, useDecimalUri, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri]])
 
     // return tx object
     return {
@@ -1415,7 +1415,12 @@ const createERC1155TokenContractAbi = {
 					"internalType": "bool",
 					"name": "usebaseUriOnly",
 					"type": "bool"
-				},
+				},				
+				{
+					"internalType": "bool",
+					"name": "useDecimalUri",
+					"type": "bool"
+				},				
 				{
 					"internalType": "string",
 					"name": "baseUriExt",
