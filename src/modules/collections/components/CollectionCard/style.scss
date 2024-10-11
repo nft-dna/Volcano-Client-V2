@@ -13,6 +13,13 @@
 		text-align: center;
 		color: var(--f-doc-color);
 	}
+	
+	&_details {
+		#padding-top: var(--f-spacer-4);
+		width: 100%;
+		text-align: center;
+		#color: var(--f-doc-color);
+	}	
 
 	&_cont {
 		overflow: hidden;

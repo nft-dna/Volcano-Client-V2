@@ -360,6 +360,7 @@ export default {
             this.collectionApplication = {
                 contract: null,
                 name: vals.name,
+                symbol: vals.symbol,
                 description: vals.description,
                 royalty: vals.royalty ? vals.royalty : 0,
                 feeRecipient: vals.feeRecipient,

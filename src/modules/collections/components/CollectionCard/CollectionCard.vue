@@ -11,6 +11,9 @@
                 />
             </div>
         </router-link>
+        <router-link :to="{ name: 'nft-create', query: { collection: collection.contract } }">
+            <div class="collectioncard_details">Details</div>
+        </router-link>
     </div>
 </template>
 

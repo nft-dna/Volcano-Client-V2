@@ -53,6 +53,8 @@ export async function getCollectionDetails(contract = '', user = '') {
                     instagram
                     createdTime
                     isInternal
+                    isVerified
+                    IsOwnerOnly
                     isErc1155
                     hasBaseUri
                     maxItems

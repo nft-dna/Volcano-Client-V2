@@ -1,6 +1,6 @@
 <template>
     <div class="memetokencard">
-        <router-link :to="{ name: 'explore', query: { collections: collection.contract } }">
+        <router-link :to="{ name: 'nft-create', query: { memetoken: collection.contract } }">
             <div class="collectioncard_name">{{ collection.name }}</div>
             <div class="collectioncard_cont">
                 <f-image

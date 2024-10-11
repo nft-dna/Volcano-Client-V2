@@ -53,6 +53,7 @@ export async function getMemeTokenDetails(contract = '', user = '') {
                     instagram
                     createdTime
                     isInternal
+                    isVerified
                     initialReserve
                     blocksAmount
                     blocksFee

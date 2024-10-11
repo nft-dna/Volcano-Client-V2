@@ -1148,7 +1148,7 @@ function setApprovalForAll(nftAddress, operator, approved, web3Client) {
  * @param {Web3} web3Client Instance of an initialized Web3 client.
  * @return {string|null} The tokenId
  */
-function decodeMintedNftTokenId(receipt, web3Client) {
+function decodeMintedErc721TokenId(receipt, web3Client) {
     const mintedTopic = '0x997115af5924f5e38964c6d65c804d4cb85129b65e62eb20a8ca6329dbe57e18';
     const abiInputs = [
         {
@@ -1182,6 +1182,72 @@ function decodeMintedNftTokenId(receipt, web3Client) {
     const decoded = web3Client.eth.abi.decodeLog(abiInputs, log.data, log.topics.slice(1));
     console.log('decodedMinted', decoded);
     return decoded.tokenId;
+}
+
+function decodeMintedErc1155TokenId(receipt, web3Client) {
+    const mintedTopic = '0xd1390903c6e0d21c236d4f87b8f6b8ed0c107dd8ab79fc5aeb0b654bb99039bd';
+    const abiInputs = [
+		{
+			"indexed": false,
+			"internalType": "uint256",
+			"name": "tokenId",
+			"type": "uint256"
+		},
+		{
+			"indexed": false,
+			"internalType": "uint256",
+			"name": "amount",
+			"type": "uint256"
+		},
+		{
+			"indexed": false,
+			"internalType": "address",
+			"name": "beneficiary",
+			"type": "address"
+		},
+		{
+			"indexed": false,
+			"internalType": "string",
+			"name": "uri",
+			"type": "string"
+		},
+		{
+			"indexed": false,
+			"internalType": "bytes",
+			"name": "data",
+			"type": "bytes"
+		},
+		{
+			"indexed": false,
+			"internalType": "address",
+			"name": "minter",
+			"type": "address"
+		}
+    ];
+
+    const log = receipt.logs.find(log => log.topics.includes(mintedTopic));
+    if (!log) throw "Minted topic not present in the transaction log";
+    const decoded = web3Client.eth.abi.decodeLog(abiInputs, log.data, log.topics.slice(1));
+    console.log('decodedMinted', decoded);
+    return decoded.tokenId;
+}
+
+function decodeMintedErc20Block(receipt, web3Client) {
+    const mintedTopic = '0x0e9a1ec107d573764d20047a2ac52b16c549f7366e25e13cc1c8437d3fe98b5d';
+    const abiInputs = [
+		{
+			"indexed": false,
+			"internalType": "address",
+			"name": "to",
+			"type": "address"
+		}
+    ];
+
+    const log = receipt.logs.find(log => log.topics.includes(mintedTopic));
+    if (!log) throw "Minted topic not present in the transaction log";
+    const decoded = web3Client.eth.abi.decodeLog(abiInputs, log.data, log.topics.slice(1));
+    console.log('decodedMinted', decoded);
+    return decoded.to;
 }
 
 /**
@@ -1274,7 +1340,9 @@ export default {
     updateAuctionEndTime,
     randomPurchase,
     artionERC721Burn,
-    decodeMintedNftTokenId,
+    decodeMintedErc721TokenId,
+	decodeMintedErc1155TokenId,
+	decodeMintedErc20Block,
 	decodeContractCreatedAddress,
 	decodeMemeTokenCreatedAddress,
     setApprovalForAll,

@@ -34,14 +34,14 @@
             validate-on-input
         />
 
-        <f-form-input type="toggle" :label="$t('collectioncreateform.publicMintable')" name="publicMintableToogle" />
+        <f-form-input type="toggle" :label="$t('collectioncreateform.publicMintable')" name="publicMintableToggle" />
         <div class="collectioncreateform__publicMintabledesc">
             {{ $t('collectioncreateform.publicMintabledesc') }}
         </div>
 
         <f-form-input
             :label="$t('collectioncreateform.publicMintFee')"
-            v-if="values.publicMintableToogle"
+            v-if="values.publicMintableToggle"
             :validator="publicMintFeeValidator"
             validate-on-change
             validate-on-input
@@ -51,7 +51,7 @@
             field-size="large"
             required
         />
-        <div class="collectioncreateform__publicMintFeedesc" v-if="values.publicMintableToogle">
+        <div class="collectioncreateform__publicMintFeedesc" v-if="values.publicMintableToggle">
             {{ $t('collectioncreateform.publicMintFeedesc') }}
         </div>
 
@@ -68,9 +68,9 @@
             required
         />
 
-        <f-form-input type="toggle" :label="$t('collectioncreateform.startdateToogle')" name="startdateToogle" />
+        <f-form-input type="toggle" :label="$t('collectioncreateform.startdateToggle')" name="startdateToggle" />
         <f-form-input
-            v-if="values.startdateToogle"
+            v-if="values.startdateToggle"
             type="datetime"
             name="startdate"
             :validator="startdateValidator"
@@ -81,9 +81,9 @@
             :label="$t('collectioncreateform.startdate')"
         />
 
-        <f-form-input type="toggle" :label="$t('collectioncreateform.enddateToogle')" name="enddateToogle" />
+        <f-form-input type="toggle" :label="$t('collectioncreateform.enddateToggle')" name="enddateToggle" />
         <f-form-input
-            v-if="values.enddateToogle"
+            v-if="values.enddateToggle"
             type="datetime"
             name="enddate"
             :validator="enddateValidator"
@@ -94,9 +94,9 @@
             :label="$t('collectioncreateform.enddate')"
         />
 
-        <f-form-input type="toggle" :label="$t('collectioncreateform.revealdateToogle')" name="revealdateToogle" />
+        <f-form-input type="toggle" :label="$t('collectioncreateform.revealdateToggle')" name="revealdateToggle" />
         <f-form-input
-            v-if="values.revealdateToogle"
+            v-if="values.revealdateToggle"
             type="datetime"
             name="revealdate"
             :validator="revealdateValidator"
@@ -110,21 +110,21 @@
             type="text"
             field-size="large"
             :label="$t('collectioncreateform.preRevealUri')"
-            v-if="values.revealdateToogle"
+            v-if="values.revealdateToggle"
             name="preRevealUri"
             :placeholder="$t('collectioncreateform.preRevealUriExample')"
             required
             validate-on-input
         />
 
-        <f-form-input type="toggle" :label="$t('collectioncreateform.isErc1155')" name="isErc1155Toogle" />
+        <f-form-input type="toggle" :label="$t('collectioncreateform.isErc1155')" name="isErc1155Toggle" />
         <div class="collectioncreateform__isErc1155desc">
             {{ $t('collectioncreateform.isErc1155desc') }}
         </div>
 
         <f-form-input
             :label="$t('collectioncreateform.maxReplica')"
-            v-if="values.isErc1155Toogle"
+            v-if="values.isErc1155Toggle"
             :validator="maxReplicaValidator"
             validate-on-change
             validate-on-input
@@ -139,7 +139,7 @@
         <f-form-input
             type="toggle"
             :label="$t('collectioncreateform.useBaseUri')"
-            name="useBaseUriToogle"
+            name="useBaseUriToggle"
             v-if="baseUriAvailable()"
         />
 
@@ -157,17 +157,17 @@
         <f-form-input
             type="toggle"
             :label="$t('collectioncreateform.useBaseUriDecimal')"
-            name="useBaseUriDecimalToogle"
+            name="useBaseUriDecimalToggle"
             v-if="baseUriDecimalAvailable()"
         />
 
         <div class="collectioncreateform__useBaseUridesc" v-if="baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridesc') }}
         </div>
-        <div class="collectioncreateform__useBaseUridescHex" v-if="!values.useBaseUriDecimalToogle && baseUriNeeded()">
+        <div class="collectioncreateform__useBaseUridescHex" v-if="!values.useBaseUriDecimalToggle && baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridescHex') }}
         </div>
-        <div class="collectioncreateform__useBaseUridescDec" v-if="values.useBaseUriDecimalToogle && baseUriNeeded()">
+        <div class="collectioncreateform__useBaseUridescDec" v-if="values.useBaseUriDecimalToggle && baseUriNeeded()">
             {{ $t('collectioncreateform.useBaseUridescDec') }}
         </div>
 
@@ -418,7 +418,7 @@ export default {
         maxItemsValidator(_value) {
             if (_value === '') return true;
             _value = Number(_value);
-            if (this.values.publicMintableToogle) return !(_value > 0);
+            if (this.values.publicMintableToggle) return !(_value > 0);
             else return !(_value >= 0);
         },
 
@@ -452,11 +452,11 @@ export default {
         },
 
         baseUriNeeded() {
-            return this.values.useBaseUriToogle || this.values.isErc1155Toogle || this.values.publicMintableToogle;
+            return this.values.useBaseUriToggle || this.values.isErc1155Toggle || this.values.publicMintableToggle;
         },
 
         baseUriAvailable() {
-            return !this.values.isErc1155Toogle && !this.values.publicMintableToogle;
+            return !this.values.isErc1155Toggle && !this.values.publicMintableToggle;
         },
 
         baseUriDecimalAvailable() {
@@ -468,7 +468,7 @@ export default {
             if (value == 0) return '';
             const now = dayjs().valueOf();
             if (dayjs(value).valueOf() < now) return this.$t('collectioncreateform.badstartdate');
-            if (this.values.enddateToogle) {
+            if (this.values.enddateToggle) {
                 const end = dayjs(this.values.enddate).valueOf();
                 if (dayjs(value).valueOf() >= end) return this.$t('collectioncreateform.badstartdate');
             }
@@ -480,7 +480,7 @@ export default {
             if (value == 0) return '';
             const now = dayjs().valueOf();
             if (dayjs(value).valueOf() <= now) return this.$t('collectioncreateform.badenddate');
-            if (this.values.startdateToogle) {
+            if (this.values.startdateToggle) {
                 const start = dayjs(this.values.startdate).valueOf();
                 if (dayjs(value).valueOf() <= start) return this.$t('collectioncreateform.badenddate');
             }
@@ -528,6 +528,7 @@ export default {
             this.collectionApplication = {
                 contract: null,
                 name: vals.name,
+                symbol: vals.symbol,
                 description: vals.description,
                 royalty: vals.royalty ? vals.royalty : 0,
                 feeRecipient: vals.feeRecipient,
@@ -544,17 +545,17 @@ export default {
             /*
 			name
 			symbol
-			publicMintableToogle
+			publicMintableToggle
 			publicMintFee
 			maxItems
-			startdateToogle startdate
-			enddateToogle enddate
-			revealdateToogle revealdate preRevealUri
-			isErc1155Toogle
+			startdateToggle startdate
+			enddateToggle enddate
+			revealdateToggle revealdate preRevealUri
+			isErc1155Toggle
 			maxReplica
-			useBaseUriToogle
+			useBaseUriToggle
 			baseUri
-			useBaseUriDecimalToogle
+			useBaseUriDecimalToggle
 			royalty
 			feeRecipient
 			*/
@@ -562,8 +563,8 @@ export default {
             //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, useDecimalUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
             const web3 = new Web3();
 
-            let useBaseUri = vals.useBaseUriToogle;
-            if (vals.isErc1155Toogle || vals.publicMintableToogle) {
+            let useBaseUri = vals.useBaseUriToggle;
+            if (vals.isErc1155Toggle || vals.publicMintableToggle) {
                 if (vals.baseUri != null && vals.baseUri.length) {
                     useBaseUri = true;
                 } else {
@@ -586,35 +587,35 @@ export default {
                     baseUriExt = baseUri.slice(idtokenIndex + idtoken.length);
                     baseUri = baseUri.slice(0, idtokenIndex);
                 }
-                //alert(baseUri + ' - ' + baseUriExt);
-                useDecimalUri = vals.useBaseUriDecimalToogle;
+                console.log('uri', baseUri + ' - ' + baseUriExt);
+                useDecimalUri = vals.useBaseUriDecimalToggle;
             }
 
             let startdate = 0;
             let enddate = 0;
             let revealdate = 0;
-            if (vals.startdateToogle) {
+            if (vals.startdateToggle) {
                 startdate = dayjs(this.values.startdate).valueOf() / 1000;
             }
-            if (vals.enddateToogle) {
+            if (vals.enddateToggle) {
                 enddate = dayjs(this.values.enddate).valueOf() / 1000;
             }
-            if (vals.revealdateToogle) {
+            if (vals.revealdateToggle) {
                 revealdate = dayjs(this.values.revealdate).valueOf() / 1000;
             }
 
-            const amount = await (vals.isErc1155Toogle
+            const amount = await (vals.isErc1155Toggle
                 ? this.getErc1155FactoryContractFee()
                 : this.getErc721FactoryContractFee());
             //alert(amount);
 
-            if (vals.isErc1155Toogle) {
+            if (vals.isErc1155Toggle) {
                 this.tx = contracts.createERC1155Collection(
                     vals.name,
                     vals.symbol,
                     amount,
-                    !vals.publicMintableToogle, // isPrivate
-                    vals.publicMintableToogle ? toHex(bToTokenValue(vals.publicMintFee, 18)) : 0, // mintFee
+                    !vals.publicMintableToggle, // isPrivate
+                    vals.publicMintableToggle ? toHex(bToTokenValue(vals.publicMintFee, 18)) : 0, // mintFee
                     vals.royalty ? vals.royalty : 0, // creatorFee
                     vals.feeRecipient, // FeeRecipient
                     baseUri,
@@ -634,8 +635,8 @@ export default {
                     vals.name,
                     vals.symbol,
                     amount,
-                    !vals.publicMintableToogle, // isPrivate
-                    vals.publicMintableToogle ? toHex(bToTokenValue(vals.publicMintFee, 18)) : 0, // mintFee
+                    !vals.publicMintableToggle, // isPrivate
+                    vals.publicMintableToggle ? toHex(bToTokenValue(vals.publicMintFee, 18)) : 0, // mintFee
                     vals.royalty ? vals.royalty : 0, // creatorFee
                     vals.feeRecipient, // FeeRecipient
                     baseUri,
