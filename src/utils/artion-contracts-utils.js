@@ -1421,6 +1421,11 @@ const createERC721TokenContractAbi = {
 					"internalType": "string",
 					"name": "preRevealUri",
 					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "contractUri",
+					"type": "string"
 				}
 			],
 			"internalType": "struct VolcanoERC721Tradable.contractERC721Options",
@@ -1522,6 +1527,11 @@ const createERC1155TokenContractAbi = {
 				{
 					"internalType": "string",
 					"name": "preRevealUri",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "contractUri",
 					"type": "string"
 				}
 			],
