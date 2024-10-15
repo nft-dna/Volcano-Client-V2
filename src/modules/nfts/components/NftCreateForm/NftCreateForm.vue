@@ -93,7 +93,7 @@
                         </template>
                     </f-form-input>
 
-                    <div >
+                    <div>
                         <f-form-input
                             type="text"
                             field-size="large"
@@ -750,7 +750,7 @@ export default {
             }
 
             let tokenUri = val.tokenUri ? val.tokenUri : '';
-			let replica = val.replica ? val.replica : 1;
+            let replica = val.replica ? val.replica : 1;
             /*
 			this.progressMessage = this.$t('nftcreate.uploading');
             try {
