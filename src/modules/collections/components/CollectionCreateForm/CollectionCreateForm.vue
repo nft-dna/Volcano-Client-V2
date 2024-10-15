@@ -559,8 +559,8 @@ export default {
 			royalty
 			feeRecipient
 			*/
-            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, useDecimalUri, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
-            //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, useDecimalUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, web3Client
+            //createERC1155Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, usebaseUriOnly, useDecimalUri, baseUriExt, maxItems, maxItemSupply, mintStartTime, mintStopTime, revealTime, preRevealUri, contractUri, web3Client
+            //createERC721Collection(nftName, nftSymbol, amount, isprivate, mintFee, creatorFee, feeRecipient, baseUri, useDecimalUri, baseUriExt, maxItems, mintStartTime, mintStopTime, revealTime, preRevealUri, contractUri, web3Client
             const web3 = new Web3();
 
             let useBaseUri = vals.useBaseUriToggle;
@@ -628,6 +628,7 @@ export default {
                     enddate,
                     revealdate,
                     revealdate ? vals.preRevealUri : '',
+					''.
                     web3
                 );
             } else {
@@ -647,6 +648,7 @@ export default {
                     enddate,
                     revealdate,
                     revealdate ? vals.preRevealUri : '',
+					'',
                     web3
                 );
             }
