@@ -30,12 +30,16 @@ npm run lint --fix
 ```
 
 
-####
-# Works with node 17 and prior versions (should work on node 18 as well)
-####
-## linux
-# export NODE_OPTIONS=--openssl-legacy-provider
-## windows
-# set NODE_OPTIONS=--openssl-legacy-provider
-
-#NODE_OPTIONS=--openssl-legacy-provider npm run serve
+#### tips
+```
+Works with node 18 and prior versions
+```
+on linux cmd run
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+on windows cmd run
+set NODE_OPTIONS=--openssl-legacy-provider
+```
+or simply
+NODE_OPTIONS=--openssl-legacy-provider npm run serve
+```
