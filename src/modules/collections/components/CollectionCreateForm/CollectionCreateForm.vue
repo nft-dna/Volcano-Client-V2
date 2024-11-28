@@ -629,7 +629,7 @@ export default {
                     revealdate,
                     revealdate ? vals.preRevealUri : '',
                     '',
-					.web3
+                    web3
                 );
             } else {
                 this.tx = contracts.createERC721Collection(

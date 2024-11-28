@@ -1,7 +1,8 @@
 <template>
     <f-form v-model="values" class="nftcreate_form" @submit="onSubmit" :aria-label="$t('page.nftCreate.title')">
-        <!-- <div class="nftcreate_col">
-            <div>
+        <div class="nftcreate_col">
+            <!-- 
+			<div>
                 <a-upload-area
                     @input="setTokenImage"
                     :max-file-size="maxNFTSize"
@@ -13,11 +14,18 @@
                     JPG, PNG, BMP, GIF, SVG, Max 15mb.
                 </a-upload-area>
             </div>
-        </div> -->
+			 -->
+        </div>
         <div class="nftcreate_col">
-            <div class="nftcreate_wrap">
+            <!-- <div class="nftcreate_wrap"> -->
+            <div>
                 <div class="nftcreate_panel">
-                    <f-form-input type="toggle" :label="$t('nftcreate.memeToggle')" name="memeToggle" />
+                    <f-form-input
+                        type="toggle"
+                        :label="$t('nftcreate.memeToggle')"
+                        name="memeToggle"
+                        @change="onMemeToggle"
+                    />
 
                     <f-form-input
                         v-if="!values.memeToggle"
@@ -110,7 +118,7 @@
                         </f-form-input>
 
                         <div class="collectiondetail_collection">
-                            <collection-detail-info :info="this.currentselection" />
+                            <collection-detail-info :info="this.currentselection" ref="collectiondetail" />
                         </div>
                     </div>
 
@@ -199,7 +207,8 @@
                     type="submit"
                     size="large"
                     :loading="isLoading"
-                    v-if="this.currentselection && this.currentselection.canMint"
+                    v-if="this.currentselection"
+                    :disabled="this.canMint()"
                 >
                     {{ $t('nftcreate.mint') }}
                 </a-button>
@@ -232,6 +241,7 @@ import { tokenExists } from '@/modules/nfts/queries/token';
 import appConfig from '@/app.config.js';
 import { imageValidator } from '@/common/components/AUploadArea/validators.js';
 import CollectionDetailInfo from '@/modules/collections/components/CollectionDetailInfo/CollectionDetailInfo.vue';
+//import { clone } from 'fantom-vue-components/src/utils';
 
 export default {
     name: 'NftCreateForm',
@@ -247,8 +257,10 @@ export default {
             },
             collections: [],
             collection: {},
+            querycollection: null,
             memetokens: [],
             memetoken: {},
+            querymemetoken: null,
             currentselection: {},
             imageFile: null,
             fileError: '',
@@ -268,25 +280,60 @@ export default {
         let mintableBy = this.$wallet.account || '0x0000000000000000000000000000000000000000';
         console.log('loading collections mintable by', mintableBy);
         const collections = await getCollections({ first: 5000 }, null, mintableBy);
-        this.collections = collections.edges.map(edge => {
-            return {
-                label: edge.node.name,
-                value: edge.node.contract,
-                img: getCollectionImageUrl(edge.node.contract),
-            };
-        });
+        this.collections = [
+            {
+                label: 'Choose a collection',
+                value: '0x0000000000000000000000000000000000000000',
+                img: '',
+            },
+            ...collections.edges.map(edge => {
+                return {
+                    label: edge.node.name,
+                    value: edge.node.contract,
+                    img: getCollectionImageUrl(edge.node.contract),
+                };
+            }),
+        ];
         console.log('collections mintable by loaded');
 
         console.log('loading memetokens mintable by', mintableBy);
         const memetokens = await getMemeTokens({ first: 5000 }, null, null);
-        this.memetokens = memetokens.edges.map(edge => {
-            return {
-                label: edge.node.name,
-                value: edge.node.contract,
-                img: getMemeTokenImageUrl(edge.node.contract),
-            };
-        });
+        this.memetokens = [
+            {
+                label: 'Choose a meme',
+                value: '0x0000000000000000000000000000000000000000',
+                img: '',
+            },
+            ...memetokens.edges.map(edge => {
+                return {
+                    label: edge.node.name,
+                    value: edge.node.contract,
+                    img: getMemeTokenImageUrl(edge.node.contract),
+                };
+            }),
+        ];
         console.log('memetokens mintable by loaded');
+        if (this.querymemetoken) {
+            console.log('query memetoken selecting', this.querymemetoken);
+            this.values.memeToggle = true;
+            this.values.memetokenId = this.querymemetoken;
+            this.values.contract = this.querymemetoken;
+            //let met = this.memetokens.find(memetoken => memetoken.value.toLowerCase() === this.querymemetoken.toLowerCase());
+            //console.log('query memetoken selected', met);
+            //if (met)
+            //met.selected = true;
+            ////this.memetoken = met;
+        } else if (this.querycollection) {
+            console.log('query collection selecting', this.querycollection);
+            this.values.memeToggle = false;
+            this.values.collectionId = this.querycollection;
+            this.values.contract = this.querycollection;
+            //let col = this.collections.find(collection => collection.value.toLowerCase() === this.querycollection.toLowerCase());
+            //console.log('query collection selected', col);
+            //if (col)
+            //col.selected = true;
+            ////this.collection = col;
+        }
     },
 
     watch: {
@@ -311,13 +358,29 @@ export default {
 
         $route: {
             async handler(value) {
+                console.log('route: ', value);
                 if (!this.__ignoreRouteChange) {
                     this.__ignorePropertyChange = true;
-                    console.log('route: ' + toString(value) + ' params: ' + toString(this.$route.params));
-
+                    //console.log('route: ' + toString(value) + ' params: ' + toString(this.$route.params));
+                    //console.log('route-query: ', value.query);
+                    console.log('route-memetoken: ', value.query.memetoken);
+                    console.log('route-collection: ', value.query.collection);
+                    if (value.query.memetoken) {
+                        //let met = this.memetokens.find(memetoken => memetoken.value.toLowerCase() === value.query.memetoken.toLowerCase());
+                        //console.log('met', met);
+                        //this.memetoken = met;
+                        this.querymemetoken = value.query.memetoken;
+                    } else if (value.query.collection) {
+                        //let col = this.collections.find(collection => collection.value.toLowerCase() === value.query.collection.toLowerCase());
+                        //console.log('col', col);
+                        //this.collection = col;
+                        this.querycollection = value.query.collection;
+                    }
                     //let query;
                     //let transformCollectionQuery = await this.transformCollectionQuery(value.query, this.filters);
+                    //console.log('transformCollectionQuery: ', transformCollectionQuery);
                     //query = clone(value.query);
+                    //console.log('route-query: ', query);
                     //if (isArray(transformCollectionQuery)) {
                     //	query.collections = [...transformCollectionQuery];
                     //} else if (typeof transformCollectionQuery.collections === 'string') {
@@ -373,20 +436,24 @@ export default {
 
         onSelectedCollection(item) {
             console.log('onSelectedCollection');
-            this.onSelectedContract(item, false);
+            if (item && item.value != '0x0000000000000000000000000000000000000000')
+                this.onSelectedContract(item, false);
         },
 
         onSelectedMemeToken(item) {
             console.log('onSelectedMemeToken');
-            this.onSelectedContract(item, true);
+            if (item && item.value != '0x0000000000000000000000000000000000000000') this.onSelectedContract(item, true);
         },
 
         onSelectedContract(item, ismeme) {
-            this.values.memeToggle = ismeme;
-            this.values.contract = item.value;
+            if (item) {
+                this.values.memeToggle = ismeme;
+                this.values.contract = item.value;
+            }
         },
 
         async contractValidator(_contract) {
+            if (!_contract) return false;
             this.currentselection = {};
             const contract = await (this.values.memeToggle
                 ? getMemeTokenDetails(_contract, this.$wallet.account)
@@ -425,6 +492,15 @@ export default {
                 }
                 this.currentselection = contract;
             }
+
+			if (contract == null) {
+				console.log('setDetails1Closed');
+				this.$refs.collectiondetail.setDetails1Closed();
+			} else {
+				console.log('setDetails1Opened');
+				this.$refs.collectiondetail.setDetails1Opened();
+			}
+
             return contract == null;
         },
 
@@ -705,6 +781,17 @@ export default {
             this.fileError = fileError;
 
             this.imageFile = file;
+        },
+
+        onMemeToggle() {
+            console.log('onMemeToggle');
+            this.values.contract = null;
+        },
+
+        canMint() {
+            console.log('canMint currentselection', this.currentselection);
+            if (this.currentselection) console.log('canMint currentselection.canMint', this.currentselection.canMint);
+            return !(this.currentselection && this.currentselection.canMint);
         },
 
         async onSubmit(_data) {
