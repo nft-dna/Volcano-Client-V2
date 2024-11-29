@@ -1,6 +1,6 @@
 <template>
     <a-details-group class="collectiondetailinfo" rounded>
-        <a-details class="collectiondetailinfo_block tes-3" ref="collectiondetailinfo_details_1">
+        <a-details class="collectiondetailinfo_block tes-3" :open="info.contract && info.contract.length > 0">
             <template #label>
                 <div class="collectiondetail_details_wrap">
                     <h2><app-iconset icon="property" /> {{ $t('collectiondetail.properties') }}</h2>
@@ -125,7 +125,7 @@
             </template>
         </a-details>
 
-        <a-details class="collectiondetailinfo_block tes-3" v-if="info" ref="collectiondetailinfo_details_2">
+        <a-details class="collectiondetailinfo_block tes-3" v-if="info">
             <template #label>
                 <div class="collectiondetail_details_wrap">
                     <h2><app-iconset icon="about" /> {{ $t('collectiondetail.about') }} {{ info.name }}</h2>
@@ -140,7 +140,7 @@
         </a-details>
 
         <!-- -->
-        <a-details class="collectiondetailinfo_block tes-3" ref="collectiondetailinfo_details_3">
+        <a-details class="collectiondetailinfo_block tes-3">
             <template #label>
                 <div class="collectiondetail_details_wrap">
                     <h2><app-iconset icon="chain" /> {{ $t('collectiondetail.chainInfo') }}</h2>
@@ -192,12 +192,6 @@ export default {
     methods: {
         toInt,
         toBigNumber,
-		setDetails1Opened() { this.$refs.collectiondetailinfo_details_1.open = true; },
-		setDetails1Closed() { this.$refs.collectiondetailinfo_details_1.open = false; },
-		setDetails2Opened() { this.$refs.collectiondetailinfo_details_2.open = true; },
-		setDetails2Closed() { this.$refs.collectiondetailinfo_details_2.open = false; },
-		setDetails3Opened() { this.$refs.collectiondetailinfo_details_3.open = true; },
-		setDetails3Closed() { this.$refs.collectiondetailinfo_details_3.open = false; },
     },
 };
 </script>

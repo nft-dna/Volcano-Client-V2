@@ -382,7 +382,7 @@
         "isVerified": "Is Verified",
 		"standard": "Standard",
         "publicMint": "Mintable",
-        "creatorMintFee": "Mint Fee (ETH)",
+        "creatorMintFee": "Creator Mint Fee (ETH)",
         "platformMintFee": "Platform Fee (ETH)",
         "mintStartTime": "Mint Open Date",
         "mintEndTime": "Mint Close Date",

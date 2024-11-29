@@ -20,7 +20,7 @@ let appConfig = {
             // list of providers. if one of them is unavailable, another is randomly picked
             providers: [
                 {
-                    http: 'http://localhost:8080/graphql',
+                    //http: 'http://localhost:8080/graphql',
                     // for subscriptions
                     ws: '',
                 },
@@ -36,13 +36,15 @@ let appConfig = {
     },
     // app settings
     settings: {
-        // memo: adjust ./src/locales/en.json
         languages: [
             { label: 'English', value: 'en' },
             // { label: 'русский', value: 'ru' },
         ],
-        networkName: 'Magma Onyx',
+        //networkName: 'Magma Onyx',
+        networkName: 'UniSepolia Testnet',
+        //nativeToken: 'LAVA',
         nativeToken: 'ETH',
+        //wrappedToken: 'wLAVA',
         wrappedToken: 'wETH',
         defaultLanguage: 'en',
         mobileViewBreakpoint: '64em', // set also variable $breakpoint-mw in assets/scss/_variables.scss
@@ -59,8 +61,8 @@ let appConfig = {
         mainColor: '#ffffff',
         assetsVersion: '1',
     },
-    //appBasePath: '/volcano',
-    appBasePath: '/sepolia-volcano',
+    appBasePath: '/volcano',
+    //appBasePath: '/sepolia-volcano',
     //appBasePath: '',
     // if `true`, every route will be redirected to 'under maintenance' page
     underMaintenance: false,
@@ -68,17 +70,21 @@ let appConfig = {
     routerHashMode: true,
     // Opera chain id
     //chainId: '0x19f6d22c9',
-    chainId: '0xaa36a7',
+    //chainId: '0xaa36a7',
+    chainId: '0x515',
     // JSON-RPC endpointAdd
     // rpc: 'https://rpcapi.fantom.network/',
     //rpc: 'https://turbo.magma-rpc.com/',
-    rpc: 'https://rpc2.sepolia.org/',
+    //rpc: 'https://rpc2.sepolia.org/',
+    rpc: 'https://sepolia.unichain.org/',
     // used in links pointing to fantom explorer
     //explorerUrl: 'https://testnet.magma.foundation/',
-    explorerUrl: 'https://sepolia.etherscan.io/',
+    //explorerUrl: 'https://sepolia.etherscan.io/',
+    explorerUrl: 'https://sepolia.uniscan.xyz/',
     // used in links pointing to validators
     //explorerUrl2: 'https://magmascan.org/',
-    explorerUrl2: 'https://sepolia.etherscan.io/',
+    //explorerUrl2: 'https://sepolia.etherscan.io/',
+    explorerUrl2: 'https://sepolia.uniscan.xyz/',
     // default options for production build
     build: {
         // output dir for production build

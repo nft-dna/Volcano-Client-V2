@@ -447,6 +447,9 @@ export default {
 
         onSelectedContract(item, ismeme) {
             if (item) {
+                if (!this.values.contract || !item.value || this.values.contract != item.value) {
+                    this.currentselection = {};
+                }
                 this.values.memeToggle = ismeme;
                 this.values.contract = item.value;
             }
@@ -491,15 +494,9 @@ export default {
                     this.fee = bFromWei(contract.blocksFee).toNumber();
                 }
                 this.currentselection = contract;
+            } else {
+                this.currentselection = {};
             }
-
-			if (contract == null) {
-				console.log('setDetails1Closed');
-				this.$refs.collectiondetail.setDetails1Closed();
-			} else {
-				console.log('setDetails1Opened');
-				this.$refs.collectiondetail.setDetails1Opened();
-			}
 
             return contract == null;
         },
@@ -786,6 +783,7 @@ export default {
         onMemeToggle() {
             console.log('onMemeToggle');
             this.values.contract = null;
+            this.currentselection = {};
         },
 
         canMint() {
