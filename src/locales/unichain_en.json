@@ -1,0 +1,1084 @@
+{
+    "explore": "Explore",
+    "create": "Mint",
+	"memepool": "Meme",
+    "home": "Home",
+    "categories": "Categories",
+    "collections": "Collections",
+    "status": "Status",
+    "results": "results",
+    "your_profile": "Your Profile",
+    "nonZeroPrice": "Price must be non zero value",
+    "insufficientBalance": "Insufficient balance",
+    "insufficientTokenBalance": "Insufficient {token} Balance",
+    "startAuction": "Start Auction",
+    "updateAuction": "Update Auction",
+    "profile": "Profile",
+    "reservePrice": "Reserve Price",
+    "redeem": "Redeem",
+    "price": "Price",
+    "from": "From",
+    "unnamed": "Unnamed",
+    "balance": "Balance",
+    "wrapStation": "ETH / WETH Station",
+    "notice": "Notice",
+    "aproveSuccess": "Successfully approved",
+    "me": "Me",
+    "nftBanned": "NFT banned",
+    "nftUnbanned": "NFT unbanned",
+	"nftRefreshQueued": "NFT Metadata refresh queued",
+    "name": "Name",
+    "skipToContent": "Skip to content",
+    "mainNav": "Main",
+    "accountNav": "Account",
+    "registerCollection": "Register Collection",
+    "createCollection": "Create a Collection",
+	"createMemeToken": "Create a Meme Token",
+    "items": "Items",
+    "like": "Like",
+    "rtlDirection": "Right-to-left direction",
+    "selectedFilters": "Selected filters",
+    "maxFileSizeReached": "Max file size reached",
+    "badFileType": "Bad file type",
+
+    "navigation": {
+        "explore": "@:explore",
+        "collections": "@:collections",
+        "create": "@:create",
+        "memepool": "@:memepool",			
+        "drop": "The Drop",
+        "nfts": "The NFTs",
+        "myNfts": "My NFTs"
+    },
+
+    "category": {
+        "art": "Art",
+        "collectibles": "Collectibles",
+        "sports": "Sports",
+        "utility": "Utility",
+        "trading_cards": "Trading Cards",
+        "virtual_worlds": "Virtual Worlds",
+        "domain_names": "Domain Names"
+    },
+
+    "collection": {
+        "volcano": "Volcano"
+    },
+
+    "statuses": {
+        "buy_now": "Buy Now",
+        "has_bids": "Has Bids",
+        "has_offers": "Has Offers",
+        "on_auction": "On Auction"
+    },
+
+    "group": {
+        "all_items": "All Items",
+        "single_items": "Single Items"
+    },
+
+    "sort_by": {
+        "sort_by": "Sort by",
+        "recently_created": "Recently Created",
+        "oldest": "Oldest",
+        "recently_listed": "Recently Listed",
+        "recently_sold": "Recently Sold",
+        "ending_soon": "Ending Soon",
+        "highest_price": "Highest Price",
+        "lowest_price": "Lowest Price",
+        "highest_last_sale": "Highest Last Sale",
+        "mostly_viewed": "Mostly Viewed",
+        "mostly_liked": "Mostly Liked"
+    },
+
+    "activity_types": {
+        "all": "---",
+        "unknown": "Unknown",
+        "mint": "Mint",
+        "burn": "Burn",
+        "transfer": "Transfer",
+        "listing_created": "Listing Created",
+        "listing_updated": "Listing Updated",
+        "listing_cancelled": "Listing Cancelled",
+        "listing_sold": "Listing Sold",
+        "offer_created": "Offer Created",
+        "offer_cancelled": "Offer Cancelled",
+        "offer_sold": "Offer Sold",
+        "auction_created": "Auction Created",
+        "auction_bid": "Auction Bid",
+        "auction_bid_withdraw": "Auction Bid Withdraw",
+        "auction_cancelled": "Auction Cancelled",
+        "auction_resolved": "Auction Resolved",
+        "auction_updated": "Auction Updated"
+    },
+
+    "walletMenu": {
+        "profile": "@:profile",
+        "settings": "Settings",
+        "collection": "Register Existing Collection",
+        "newcollection": "Create a New Collection",
+        "newmemetoken": "Create a Meme Token",
+        "login": "Sign In",
+        "logout": "Sign Out"
+    },
+
+    "page": {
+        "404": {
+            "title": "Page not found"
+        },
+        "explore": {
+            "title": "Browse NFT's",
+            "filters": "Filters",
+            "nftList": "List of NFTs"
+        },
+        "collectionRegister": {
+            "title": "@:registerCollection"
+        },
+        "collectionCreate": {
+            "title": "@:createCollection"
+        },
+       "memeTokenCreate": {
+            "title": "@:createMemeToken"
+        },				
+        "nftCreate": {
+            "title": "Create NFT"
+        },
+        "accountSingleItems": {
+            "title": "Collected NFTs"
+        },
+        "accountCreated": {
+            "title": "Created NFTs"
+        },
+        "accountFavorited": {
+            "title": "Favorited NFTs"
+        },
+        "accountActivity": {
+            "title": "Activity"
+        },
+        "accountHidden": {
+            "title": "Hidden"
+        },
+        "accountOffers": {
+            "title": "Offers"
+        },
+        "accountMyOffers": {
+            "title": "My Offers"
+        },
+        "accountBannedTokens": {
+            "title": "Banned Tokens"
+        },
+        "accountCollections": {
+            "title": "Collections"
+        },
+        "pg": {
+            "title": "PG"
+        }
+    },
+
+    "undermaintenance": {
+        "text": "Hi! This page is currently under maintenance and will be back soon!",
+        "link_title": "Back to Home"
+    },
+
+    "appsectionnft": {
+        "title": "Trade without platform fees on Volcano",
+        "text": "Volcano is an NFT marketplace built on Unichain. Create and trade NFTs instantly with low network costs."
+    },
+
+    "appsectionabout": {
+        "title": "Why Volcano",
+        "card1": {
+            "title": "Easy Connect",
+            "text": "Using Metamask or CoinBase Wallet. Just click 'Connect Wallet' on the top right to start."
+        },
+        "card2": {
+            "title": "Super Fast",
+            "text": "Since Volcano runs on the Unichain Network, transactions are usually confirmed within 1-2 seconds."
+        },
+        "card3": {
+            "title": "Low Transaction Fees",
+            "text": "Transactions are usually just a few cents, allowing users to create and trade many NFTs without prohibitively high network fees."
+        },
+        "card4": {
+            "title": "Zero Platform Fees",
+            "text": "Trade NFTs via auction or direct offer without any fees taken by Volcano."
+        }
+    },
+
+    "appsectioncategories": {
+        "title": "Browse by category",
+        "allCategories": "Explore All NFTs"
+    },
+
+    "appsearchbar": {
+        "label": "Search items, collections and accounts",
+        "placeholder": "Search items, collections and accounts"
+    },
+
+    "apptextsearchresults": {
+        "collections": "Collections",
+        "accounts": "Accounts",
+        "items": "@:items"
+    },
+
+    "walletbutton": {
+        "connectWallet": "Connect Wallet"
+    },
+
+    "walletpicker": {
+        "connectToWallet": "Connect to a wallet"
+    },
+
+    "nftcard": {
+        "favorite": "Favorite",
+        "offerFor": "Offer for",
+        "price": "Price",
+        "lastPrice": "Last Price",
+        "minBid": "Min Bid",
+        "topBid": "Top Bid",
+        "left": "left",
+        "banUnban": "Ban/Unban"
+    },
+
+    "nfttradehistorygrid": {
+        "tradeHistory": "Trade History"
+    },
+
+    "nfthistorygrid": {
+        "price": "Price",
+        "event": "Event",
+        "from": "From",
+        "to": "To",
+        "date": "Date",
+        "showTx": "Show transaction in Network Scan",
+        "types": {
+            "LISTING_SOLD": "Sold in listing",
+            "LISTING_CREATED": "Listing created",
+            "LISTING_UPDATED": "Listing updated",
+            "LISTING_CANCELLED": "Listing cancelled",
+            "OFFER_CREATED": "Offer created",
+            "OFFER_CANCELLED": "Offer cancelled",
+            "OFFER_SOLD": "Sold in offer",
+            "AUCTION_CREATED": "Auction created",
+            "AUCTION_BID": "Auction bid",
+            "AUCTION_BID_WITHDRAW": "Auction bid withdraw",
+            "AUCTION_CANCELLED": "Auction cancelled",
+            "AUCTION_UPDATED": "Auction updated",
+            "AUCTION_RESOLVED": "Sold in auction",
+            "TRANSFER": "Transfer",
+            "MINT": "Minted",
+            "BURN": "Burned"
+        }
+    },
+
+    "nftitemactivityfilter": {
+        "filter": "Filter activities by type",
+        "sales": "Sales",
+        "transfers": "Transfers",
+        "listings": "Listings",
+        "offers": "Offers",
+        "auctions": "Auctions"
+    },
+
+    "nftMakeOfferForm": {
+        "price": "@:price",
+        "offerExpiration": "Offer Expiration",
+        "placeOffer": "Place Offer",
+        "nonZeroPrice": "@:nonZeroPrice",
+        "insufficientBalance": "@:insufficientBalance",
+        "badDate": "Bad date",
+        "makeOfferSuccess": "You have successfully submitted an offer"
+    },
+
+    "nftsellform": {
+        "price": "@:price",
+        "startingTime": "Starting At",
+        "listItem": "List Item",
+        "quantity": "Quantity",
+        "nonZeroPrice": "@:nonZeroPrice",
+        "nonZeroQuantity": "Quantity must be non zero value",
+        "badDate": "Bad date",
+        "needApproval": "Please confirm assigning permission to your tokens for Marketplace contract...",
+        "sellSuccess": "You have successfully listed this NFT"
+    },
+
+    "nftupdatelistingform": {
+        "price": "@:price",
+        "updateItem": "Update Item",
+        "updateSuccessful": "You have successfully updated your listing"
+    },
+
+    "nftstartauctionform": {
+        "reservePrice": "@:reservePrice",
+        "reservePriceInfo": "Reserve price is your desired one you want to get from this auction",
+        "startTime": "Start Time",
+        "auctionExpiration": "Auction Expiration",
+        "placeOffer": "Place Offer",
+        "nonZeroPrice": "@:nonZeroPrice",
+        "startAuction": "@:startAuction",
+        "updateAuction": "@:updateAuction",
+        "minBid": "Minimum bid should be equal to or greater than reserve price",
+        "badDate": "Bad date",
+        "fillDate": "Fill the date please",
+        "startDateLower": "Start date must be lower than end date",
+        "dateLowerNow": "Date must greater than now",
+        "dateLowerNowPlus5": "End date must be greater than now + 7 minutes",
+        "endDateGreater": "End date must be greater than start date",
+        "auctionTimeExceed": "The duration of the auction may not exceed {numDays} days",
+        "reservePriceDecreased": "Reserve price can only be decreased",
+        "startSuccess": "You have successfully started the auction",
+        "updatePriceSuccess": "You have successfully updated reserve price",
+        "updateStartTimeSuccess": "You have successfully updated start time",
+        "updateEndTimeSuccess": "You have successfully updated auction expiration",
+        "needApproval": "Please confirm assigning permission to your tokens for Auction contract...",
+        "approvalSuccess": "You have successfully made the token accessible for Auction contract"
+    },
+
+    "densityswitch": {
+        "largeDisplay": "Large Display",
+        "smallDisplay": "Small Display"
+    },
+
+    "avideo": {
+        "play": "Play video",
+        "pause": "Pause video"
+    },
+
+    "nftdetail": {
+        "owned": "Owned by",
+        "views": "views",
+        "favorites": "favorites",
+        "priceHistory": "Price History",
+        "listings": "Listings",
+        "directOffers": "Direct Offers",
+        "properties": "Properties",
+        "symbol": "Symbol",
+        "royalty": "Royalty",
+        "recipient": "Recipient",
+        "ipRights": "IP Rights",
+        "notAvailable": "Not available",
+        "collection": "Collection",
+        "nftCollection": "Unichain Powered NFT Collection",
+        "tokenId": "Token ID",
+        "about": "About",
+        "chainInfo": "Chain Info",
+        "network": "Network",
+        "networkName": "Unichain",		
+        "chainId": "Chain ID",
+		"chainIdName": "1301",
+        "fromCollection": "More from this collection",
+        "itemActivity": "Item Activity",
+        "attributes": "Attributes"
+    },
+	
+    "collectiondetail": {
+        "owned": "Owned by",
+        "properties": "Properties",
+        "symbol": "Symbol",
+        "royalty": "Royalty",
+        "recipient": "Recipient",
+        "ipRights": "IP Rights",
+        "createdTime": "Created",
+        "isVerified": "Is Verified",
+		"standard": "Standard",
+        "publicMint": "Mintable",
+        "creatorMintFee": "Creator Mint Fee (ETH)",
+        "platformMintFee": "Platform Fee (ETH)",
+        "mintStartTime": "Mint Open Date",
+        "mintEndTime": "Mint Close Date",
+        "revealTime": "Reveal Date",
+        "maxReplicaItems": "Erc1155 Max Replica",
+        "maxItems": "Max Total Supply",
+        "currentSupply": "Current Supply",
+        "allowSpecificUri": "Mint Uri Needed",
+        "initialReserve": "Creator Reserve (ETH)",
+        "blocksAmount": "Minting Block Tokens (ETH)",
+        "blocksFee": "Minting Block Liquidity (ETH)",
+        "blocksMaxSupply": "Max Blocks Supply",
+        "blocksSupply": "Minted Blocks",
+        "cap": "Max Token Supply (ETH)",
+        "supply": "Current Token Supply (ETH)",
+        "notAvailable": "Not available",
+        "collection": "Collection",
+        "contract": "Contract",
+        "about": "About",
+        "chainInfo": "Chain Info",
+        "network": "Network",
+        "networkName": "Unichain",		
+        "chainId": "Chain ID",
+		"chainIdName": "1301"
+    },		
+
+    "nftattributesgrid": {
+        "type": "Type",
+        "value": "Value",
+        "frequency": "Frequency"
+    },
+
+    "nftlike": {
+        "likeAdded": "You successfully added {token} to your favorites",
+        "likeRemoved": "You successfully removed {token} from your favorites"
+    },
+
+    "nftdetailprice": {
+        "currentPrice": "Current Price",
+        "buyNow": "Buy Now",
+        "buySuccessful": "You have successfully bought an item",
+        "makeOffer": "Make offer",
+        "offer": "Place your offer"
+    },
+
+    "nftauction": {
+        "reservePrice": "@:reservePrice",
+        "reserveNotMet": "Reserve price not met",
+        "saleEnds": "Sale ends",
+        "saleEnded": "Sale ended",
+        "saleStarts": "Sale starts",
+        "highestBid": "Highest Bid",
+        "youAreTopBidder": "You are the top bidder",
+        "topBidder": "Top Bidder",
+        "canWithdrawIn": "You can withdraw your bid {in}",
+        "reserveNotMetCanWithdrawAnytime": "Reserve not met - you can withdraw anytime"
+    },
+
+    "nftunlockable": {
+        "title": "This item has unlockable content",
+        "reveal": "Reveal Content",
+        "signInFirst": "You need to sign-in first"
+    },
+
+    "nftbid": {
+        "placeBid": "Place Bid"
+    },
+
+    "nftbidform": {
+        "price": "Price",
+        "place": "Place",
+        "nonZeroPrice": "@:nonZeroPrice",
+        "insufficientTokenBalance": "Insufficient {token} Balance",
+        "newBidIsBelowCurrent": "Bid is below current bid",
+        "newBidIsBelowMin": "Bid is below min bid",
+        "placeBidSuccessful": "You have successfully placed a bid"
+    },
+
+    "nfttransfer": {
+        "transfer": "Transfer",
+        "address": "Address of new owner",
+        "invalidAddress": "The address is not valid",
+        "transferSuccessful": "You have successfully transferred the token",
+        "inEscrow": "The token is listed or in an auction - please cancel the listing/auction before the transfer"
+    },
+	
+    "nftrefreshmetadata": {
+        "refreshmetadata": "Refresh Metadata"
+    },		
+
+    "ashareButton": {
+        "copy": "Copy Link",
+        "shareFacebook": "Share on Facebook",
+        "shareTwitter": "Share to Twitter",
+        "successCopied": "Copied!",
+        "checkOutAccount": "Check out this account on Volcano",
+        "checkOutItem": "Check out this item on Volcano",
+        "share": "Share"
+    },
+
+    "abpricefield": {
+        "balance": "@:balance",
+        "maxAmountReached": "Maximum amount reached"
+    },
+
+    "wrapstationform": {
+        "swapTokens": "Swap tokens",
+        "wrap": "Wrap",
+        "unwrap": "Unwrap",
+        "wrapSuccess": "You have successfully wrap ETH",
+        "unwrapSuccess": "You have successfully unwrap ETH"
+    },
+
+    "nftlistfilters": {
+        "groupFilters": "Group Filters",
+        "sortbyFilters": "Sort by Filters"
+    },
+
+    "pricefilter": {
+        "min": "Min",
+        "max": "Max",
+        "minimalPrice": "Minimum price",
+        "maximalPrice": "Maximum price",
+        "to": "to",
+        "apply": "Apply",
+        "minimumPriceError": "Minimum must be less than maximum",
+        "negativePriceError": "Price must be greater than 0"
+    },
+
+    "addcategory": {
+        "addCategory": "Add Category"
+    },
+
+    "collectionregisterform": {
+        "registerCollection": "@:registerCollection",
+        "useOwnerAddressOfCollection": "Please submit using the owner address of the collection. If you cannot use the owner address, please email us on contact@sepolia.foundation with the information below (and proof of collection ownership, such as from the collection's official email address).",
+        "logoImage": "Logo Image",
+        "alsoBeUsedForNavigation": "This image will also be used for navigation. 300x300 recommended.",
+        "name": "@:name",
+        "collectionName": "Collection Name",
+		"symbol": "Symbol",		
+		"collectionSymbol": "Collection Symbol",		
+        "description": "Description",
+        "provideYourDescription": "Provide your description for your collection",
+        "royalty": "Royalty (%)",
+        "royaltyErr": "Value should be between 1 and 100",
+        "royaltyTooltip": "Each NFT under this collection exchanged through Volcano will have a percentage of sale given to nominated wallet address.",
+        "feeRecipient": "Fee Recipient",
+        "feesTooltip": "The nominated Unichain Network wallet address to receive royalties from each sale in this collection.",
+        "contactEmail": "Contact Email",
+        "emailAddress": "Email Address",
+        "emailTooltip": "We will use this email to notify you about your collection application. This will not be shared with others.",
+        "enterCollection": "Enter your collection's address",
+        "enterWebsite": "Enter your website url",
+        "enterDiscord": "Enter your Discord url",
+        "enterTwitter": "Enter your Twitter profile link",
+        "enterInstagram": "Enter your Instagram profile link",
+        "enterMedium": "Enter your Medium profile link",
+        "enterTelegram": "Enter your Telegram profile link",
+        "category": "Category",
+        "submit": "Submit",
+        "wasntUploaded": "Sorry, something went wrong. Data of your token wasn't uploaded: ",
+        "success": "The collection registration was requested successfully .",
+        "signInFirst": "You need to sign-in first",
+        "invalidAddress": "Invalid address",
+        "invalidEmail": "Invalid email"
+    },
+	
+    "collectioncreateform": {
+        "createCollection": "@:createCollection",
+        "createCollectionDesc": "Create your collection",
+		"isErc1155": "Use Erc1155 standard (instead of Erc721)",
+		"isErc1155desc": " \n Allow collection Items to have more replicas (multiple instances allowed) \n Erc1155 collections may have a max replica counter for its items",
+		"useBaseUri": "Set a base URI url common to all items",
+		"baseUri": "Items Uri",		
+		"baseUriExample": "ipfs://site.com/{id}.json",
+		"useBaseUriDecimal": "Use decimal notation",
+		"useBaseUridesc": " \n Url to the token image or to the token json metadata \n An example of json metadata format is defined in: https://eips.ethereum.org/EIPS/eip-1155#metadata-extensions \n  \n Could be a fixed url like 'ipfs://site.com/items.jpg' or \n in a dynamic format like 'ipfs://site.com/{id}.json'. \n {id} will be automatically replaced by the current token item id",
+		"useBaseUridescHex": " \n i.e. for token id 250 will be solved as: \n ipfs://site.com/00000000000000000000000000000000000000000000000000000000000000fa.json  \n  (hex notation, lowercase, padded to 64 digits, first token id is 1). \n  \n Otherwise a different url could be specified on each item at minting time ('private' collections only)",
+		"useBaseUridescDec": " \n i.e. for token id 250 will be solved as: \n ipfs://site.com/250.json  \n  (decimal notation, without any padding, first token id is 1). \n  \n Otherwise a different url could be specified on each item at minting time ('private' collections only)",
+        "logoImage": "Logo Image",
+        "alsoBeUsedForNavigation": "This image will also be used for navigation. 300x300 recommended.",
+        "name": "@:name",
+        "collectionName": "Collection Name",
+        "description": "Description",
+        "provideYourDescription": "Provide your description for your collection",
+		"symbol": "Symbol",
+		"provideYourSymbol": "Collection Symbol",
+		"publicMintable": "Make Collection 'public mintable' by other marketplace users",
+		"publicMintabledesc": " \n Collection Items will be mintable by any markatplace user. \n Otherwise only the creator will be able to add new items to the current collection \n Public mintable collections must have a max mintable items counter (private ones may have it) \n Public mintable collections may have an optional mint fee returned to the collection creator for each new minted item \n All collections may have optionals start or end dates (a 'minting window')",		
+		"publicMintFee": "Items Mint Fee (in ETH, i.e. 0,01)",
+		"publicMintFeeErr": "Wrong mint fee value",
+		"publicMintFeedesc": "Optional fee that users will pay to collection creator when minting new items",
+		"maxItems": "Maximum number of collection Items (0 unlimited)",
+		"maxItemsValue": "0",
+		"maxItemsErr": "A maximum number of items for public mintable collection must be set, value must be a positive number",
+		"maxReplica": "Maximum number of Replicas for each collection item (0 unlimited)",
+		"maxReplicaValue": "1",
+		"maxReplicaErr": "Maximum number of Replicas must be a positive value number",	
+		"startdateToggle": "Set a minting start date",
+		"startdate": "Minting start date",
+		"badstartdate": "Invalid minting start date",
+		"enddateToggle": "Set a minting end date",
+		"enddate": "Minting end date (0 no limit)",		
+		"badenddate": "Invalid minting end date",
+		"revealdateToggle": "Set a 'Reveal' date",
+		"revealdate": "Real Uri url will be shown only after this date",
+		"preRevealUri": "Temporay Uri",
+		"preRevealUriExample": "ipfs://site.com/image.jpeg",
+		"badrevealdate": "Invalid reveal date",		
+        "royalty": "Royalty (%)",
+        "royaltyErr": "Value should be between 1 and 100",
+        "royaltyTooltip": "Each NFT under this collection exchanged through Volcano will have a percentage of sale given to nominated wallet address.",
+        "feeRecipient": "Fee Recipient",
+        "feesTooltip": "The nominated Magma Onyx Network wallet address to receive royalties from each sale in this collection.",
+        "contactEmail": "Contact Email",
+        "emailAddress": "Email Address",
+        "emailTooltip": "We will use this email to notify you about your collection application. This will not be shared with others.",
+        "enterCollection": "Enter your collection's address",
+        "enterWebsite": "Enter your website url",
+        "enterDiscord": "Enter your Discord url",
+        "enterTwitter": "Enter your Twitter profile link",
+        "enterInstagram": "Enter your Instagram profile link",
+        "enterMedium": "Enter your Medium profile link",
+        "enterTelegram": "Enter your Telegram profile link",
+        "category": "Category",
+        "submit": "Submit",
+        "wasntUploaded": "Sorry, something went wrong. Data of your token wasn't uploaded: ",
+        "success": "The collection registration was requested successfully .",
+        "signInFirst": "You need to sign-in first",
+        "signMint": "You need to sign the collection creation transaction",
+        "invalidAddress": "Invalid address",
+        "invalidEmail": "Invalid email"
+    },
+
+    "memetokencreateform": {
+        "createMemeToken": "@:createMemeToken",
+        "useOwnerAddressOfCollection": "Create your Erc-20 Meme",
+        "logoImage": "Logo Image",
+        "alsoBeUsedForNavigation": "This image will also be used for navigation. 300x300 recommended.",
+        "name": "@:name",
+        "collectionName": "Meme Name",
+        "description": "Description",
+        "provideYourDescription": "Provide your description for your meme token",
+		"symbol": "Symbol",
+		"provideYourSymbol": "Meme Symbol",
+		"uri": "URI url",
+		"provideUri": "ipfs://site.com/image.jpeg",
+        "initialReceiver": "Initial Receiver of Initial Amount Tokens",
+        "provideInitialReceiver": "Receiver address 0x...",
+        "initialAmount": "Initial Amount (in ETH) free minted to the Initial Receiver",
+        "provideInitialAmount": "1000",
+        "initialAmountErr": "Wrong Initial Amount",
+        "capAmount": "Max Circulating Supply Amount (in ETH)",
+        "provideCapAmount": "10000000000",
+        "capAmountErr": "Wrong Max Supply Amount",
+        "mintBlocks": "Mint Blocks",
+        "provideMintBlocks": "100000",
+        "mintBlocksErr": "Wrong Mint Blocks Value",
+		"mintBlocksdesc": "Each minted block will generate (capAmount - initialAmount)/mintBlocks tokens",
+        "mintBlocksFee": "Liquidity needed to mint each Block (in ETH)",
+        "provideMintBlocksFee": "0.1",
+        "mintBlocksFeeErr": "Wrong Mint Blocks Liquidity Value",
+		"mintBlocksFeedesc": "Each minted block liquidity will be added to the Dex liquidity pool (LP)",
+        "contactEmail": "Contact Email",
+        "emailAddress": "Email Address",
+        "emailTooltip": "We will use this email to notify you about your collection application. This will not be shared with others.",
+        "enterCollection": "Enter your collection's address",
+        "enterWebsite": "Enter your website url",
+        "enterDiscord": "Enter your Discord url",
+        "enterTwitter": "Enter your Twitter profile link",
+        "enterInstagram": "Enter your Instagram profile link",
+        "enterMedium": "Enter your Medium profile link",
+        "enterTelegram": "Enter your Telegram profile link",
+        "submit": "Submit",
+        "wasntUploaded": "Sorry, something went wrong. Data of your token wasn't uploaded: ",
+        "success": "The collection registration was requested successfully .",
+        "signInFirst": "You need to sign-in first",
+        "signMint": "You need to sign the collection creation transaction",
+        "invalidAddress": "Invalid address",
+        "invalidEmail": "Invalid email"
+    },	
+
+    "collectionlist": {
+        "label": "Search collections...",
+        "placeholder": "Search collections..."
+    },
+	
+    "memelist": {
+        "label": "Search meme tokens...",
+        "placeholder": "Search meme tokens..."
+    },		
+
+    "nftcreate": {
+		"memeToggle": "Switch to Meme Mint",
+		"uploadToggle": "Upload a new image and token's metadata",
+        "collection": "Collection",
+        "collectionErr": "Chosen collection does not allow to mint new tokens from your address or your balance is insufficient to cover the collection minting fee.",
+		"collectionsvalue": "Select a Collection",
+        "memetoken": "Meme Token",
+        "memetokenErr": "Chosen Meme token does not allow to mint new tokens or your balance is insufficient to cover the token fee.",		
+		"memetokensvalue": "Select a Meme",
+		"contractErr": "Chosen Meme or Collection does not allow to mint new tokens from your address or your balance is insufficient to cover the collection minting fee.",
+        "name": "@:name",
+        "symbol": "Symbol",
+        "tokenUri": "TokenUri",
+		"tokenUriPlaceholder": "ipfs://..",		
+        "description": "Description",
+        "royalty": "Royalty (%)",
+        "royaltyErr": "Value should be between 1 and 100",
+        "royaltyTooltip": "If you set a royalty here, you will get X percent of sales price each time an NFT is sold on our platform.",
+        "linkToIp": "Link to IP Rights Document (Optional)",
+        "linkToIpTooltip": "Link to the document which proves your ownership of this image.",
+        "linkToIpPlaceholder": "Enter Link",
+        "unlockContent": "Unlockable Content",
+        "mint": "Mint",
+		"replica": "How many copies do you want?",
+        "fileError": "Pick an image file please",
+        "signInFirst": "You need to sign-in first",
+        "signMint": "Please confirm the minting transaction in your wallet...",
+        "wasntUploaded": "Sorry, something went wrong. Data of your token wasn't uploaded: ",
+        "noNewTokenId": "Sorry, something went wrong. The token was minted, but unable to get new token id.",
+        "unlockableNotAttached": "Sorry, something went wrong. The token was minted, but the unlockable content was not attached.",
+        "mintingError": "Minting transaction failed. The token was not minted.",
+        "royaltyError": "Registering royalty transaction failed. The token was minted, but royalty was not set.",
+        "scanWaiting": "The token was successfully minted. Waiting for server-side token processing - this can take a while...",
+        "success": "The token was successfully created.",
+        "messageMintNft": "{fee} ETH are charged to create a new NFT.",
+		"messageMintBlock": "{fee} ETH are charged to the Dex Liquidity Pool.",
+        "estimatingFeeGas": "Estimating necessary fee for minting and the transaction...",
+        "uploading": "Uploading file and token data into IPFS...",
+        "waitingForTokenId": "Waiting for the minting transaction receipt with the token ID..."
+    },
+
+    "nftredeem": {
+        "updateShippingDetails": "Update Shipping Details",
+        "understandRedeeming": "I understand that redeeming will burn and destroy the digital NFT",
+        "fillOutForm": "Please fill out the form below, making sure the information you provide is accurate.",
+        "note": "Note: reedeeming the rewards will burn (destroy) the digital NFT.",
+        "redeemingSuccessful": "You successfully redeem NFT {name}",
+        "redeem": "@:redeem"
+    },
+
+    "pgModal": {
+        "heading": "Place a bid"
+    },
+    "pgSuccessNotification": {
+        "header": "Congrats!",
+        "highestBidder": "The TX went through!  Please check if you are the highest bidder.",
+        "mintedNFT": "You minted",
+        "continue": "Continue"
+    },
+
+    "pgBidForm": {
+        "currentBid": "Current bid",
+        "minNextBid": "Min bid",
+        "balance": "@:balance",
+        "termsAndConditionsAgreement": "By checking this box, I agree to Volcano's",
+        "termsAndConditionsLink": "Terms of Service",
+        "placeBid": "Place bid",
+        "newBidIsBelowCurrent": "Bid is below current bid",
+        "newBidIsBelowMin": "Bid is below min bid",
+        "mustBeNumber": "Bid must be number",
+        "bidMustBeDivisibleByHundred": "Bid must be in {amount} ETH increments minimum",
+        "insufficientBalance": "@:insufficientBalance"
+    },
+
+    "pgDrop": {
+        "paragraph1": "Three unique NFTs redeemable for a race-worn <span class=\"blue\">Pierre Gasly helmet</span>, a <span class=\"blue\">signed promotion helmet</span>, a <span class=\"blue\">VIP experience</span> and three <span class=\"blue\">meet and greet</span>.",
+        "paragraph2": "A limited edition 350 NFTs drop redeemable for <span class=\"blue\">signed caps</span> and <span class=\"blue\">limited edition T-shirts</span>."
+    },
+
+    "pgFooter": {
+        "privacy": "Privacy Policy",
+        "termsAndConditions": "Terms and Conditions",
+        "cookiePolicy": "Cookie Policy"
+    },
+
+    "pgAccountSettings": {
+        "accountSettings": "Account Settings"
+    },
+
+    "pgNftCard": {
+        "currentBid": "Current Bid",
+        "noBids": "no bids",
+        "endsIn": "Auction Ending in",
+        "startsIn": "Auction Starting in",
+        "startingPrice": "Starting Price",
+        "days": "days",
+        "hours": "hours",
+        "minutes": "minutes",
+        "seconds": "seconds",
+        "hasEnded": "Auction has ended",
+        "price": "@:price",
+        "minted": "Minted",
+        "insufficientBalance": "@:insufficientTokenBalance"
+    },
+
+    "nftDirectOffersGrid": {
+        "accept": "Accept",
+        "withdraw": "Withdraw",
+        "from": "@:from",
+        "price": "@:price",
+        "expires": "Expires",
+        "withdrawSuccess": "You have successfully withdraw an offer",
+        "acceptSuccess": "You have successfully accepted an offer",
+        "cantAccept": "Cancel auction first to accept this offer",
+        "status": "@:status"
+    },
+
+    "nftpricehistory": {
+        "priceTrends": "Price Trends by Date",
+        "price": "Price"
+    },
+
+    "nftlistingsgrid": {
+        "from": "@:from",
+        "price": "@:price",
+        "status": "@:status",
+        "buy": "Buy",
+        "cancel": "Cancel",
+        "successfulBuy": "You have successfully bought an item",
+        "successfulCancel": "You have successfully canceled the listing",
+        "saleStarts": "The sale starts"
+    },
+
+    "itemstatuses": {
+        "closed": "Closed",
+        "expired": "Expired",
+        "inactive": "Inactive"
+    },
+
+    "account": {
+        "account": "Account",
+        "unnamed": "@:unnamed",
+        "copy": "Copy",
+        "collected": "Collected",
+        "created": "Created",
+        "favorited": "Favorited",
+        "hidden": "Hidden",
+        "activity": "Activity",
+        "offers": "Offers",
+        "myOffers": "My Offers",
+        "filter": "Filter",
+        "filters": "Filters",
+        "bannedTokens": "Banned Tokens",
+        "collections": "Collections",
+        "accountContent": "Account content"
+    },
+
+    "accountsettings": {
+        "title": "SETTINGS",
+        "profile": "@:profile",
+        "notifications": "Notifications",
+        "offers": "Offers",
+        "appearance": "Appearance",
+        "navigation": "Account settings navigation"
+    },
+
+    "notifications": {
+        "sBundleBuy": "Bundle Purchased",
+        "sBundleBuyDesc": "You have purchased a bundle.",
+        "sBundleSell": "Bundle Sold",
+        "sBundleSellDesc": "Your bundle is sold.",
+        "sBundleOffer": "Get a new offer for your bundle",
+        "sBundleOfferDesc": "You get an offer for your bundle.",
+        "sBundleOfferCancel": "An offer to you bundle called off",
+        "sBundleOfferCancelDesc": "An offer to your bundle is canceled.",
+        "sNftAuctionPrice": "Your bid's Auction Price update",
+        "sNftAuctionPriceDesc": "The bid price to your auction is updated.",
+        "sNftBidToAuction": "A bid to your NFT auction",
+        "sNftBidToAuctionDesc": "You get a bid to your auction.",
+        "sNftBidToAuctionCancel": "A bid to your NFT called off",
+        "sNftBidToAuctionCancelDesc": "A bid to your auction is canceled.",
+        "sAuctionWin": "You won the auction",
+        "sAuctionWinDesc": "You purchased an nft in auction.",
+        "sAuctionOfBidCancel": "Your bid's auction called off",
+        "sAuctionOfBidCancelDesc": "An auction you made a bid is canceled.",
+        "sNftSell": "NFT Sold",
+        "sNftSellDesc": "Your nft item is sold.",
+        "sNftBuy": "NFT Purchased",
+        "sNftBuyDesc": "You purchased a new nft item.",
+        "sNftOffer": "Get a new offer for your NFT",
+        "sNftOfferDesc": "You get an offer to your nft item.",
+        "sNftOfferCancel": "An offer to your NFT called off",
+        "sNftOfferCancelDesc": "An offer to your nft item is canceled.",
+        "fBundleCreation": "New bundle creation by follower",
+        "fBundleCreationDesc": "Created a new bundle.",
+        "fBundleList": "Bundle Listing by follower",
+        "fBundleListDesc": "Listed a bundle for sale.",
+        "fBundlePrice": "Bundle Price Update by follower",
+        "fBundlePriceDesc": "Updated the bundle sale price.",
+        "fNftAuctionPrice": "NFT Auction Price update by follower",
+        "fNftAuctionPriceDesc": "Updated auction price.",
+        "fNftList": "NFT Listing by follower",
+        "fNftListDesc": "Listed an nft item for sale.",
+        "fNftAuction": "New NFT Auction",
+        "fNftAuctionDesc": "Started a new auction.",
+        "fNftPrice": "NFT Price Update by follower",
+        "fNftPriceDesc": "Updated nft item price on sale.",
+        "successMessage": "Notification settings updated!",
+        "save": "Save"
+    },
+
+    "accountsettingsprofile": {
+        "title": "Profile Settings"
+    },
+
+    "accountactivitylist": {
+        "event": "Event",
+        "item": "Item",
+        "price": "Price",
+        "qty": "Quantity",
+        "from": "Initiator",
+        "to": "Recipient",
+        "date": "Date",
+        "filter": "Activity filter"
+    },
+
+    "accountoffersgrid": {
+        "item": "Item",
+        "price": "Price",
+        "qty": "Quantity",
+        "from": "From",
+        "deadline": "Deadline"
+    },
+
+    "accountfollow": {
+        "follow": "Follow",
+        "unFollow": "Unfollow",
+        "followers": "Followers",
+        "following": "Following",
+        "subscribed": "You successfully subscribed",
+        "unsubscribed": "You successfully cancel your subscription",
+        "follows": "Follows",
+        "followings": "Followings"
+    },
+
+    "accountprofileform": {
+        "username": "Username",
+        "enterUsername": "Enter username",
+        "bio": "Bio",
+        "enterBio": "Enter Bio!",
+        "email": "Email Address",
+        "enterEmail": "Enter Email",
+        "emailInvalid": "Entered email is not valid!",
+        "enterTwitter": "YourTwitterHandle",
+        "enterInst": "YourInstagramHandle",
+        "enterWeb": "yoursite.io",
+        "wallet": "Wallet Address",
+        "profileImg": "Profile Image",
+        "profileBanner": "Profile Banner",
+        "address": "Token redemption address",
+        "fullname": "Full name",
+        "phone": "Phone (for delivery)",
+        "street": "Address - 1th line",
+        "apartment": "Address - 2nd line",
+        "city": "City",
+        "country": "Country",
+        "state": "State / Province / Region",
+        "zip": "ZIP / Postal code",
+        "enterFullname": "Full name",
+        "enterPhone": "Phone number",
+        "enterStreet": "Street address or PO box",
+        "enterCity": "City",
+        "enterApartment": "Apt, building, floor, etc.",
+        "enterState": "State / Province / Region",
+        "enterCountry": "Country",
+        "enterZip": "ZIP / Postal code",
+        "save": "Save",
+        "saveOk": "Profile saved successfully"
+    },
+
+    "accountshippingaddressform": {
+        "address": "Address",
+        "fullname": "Fullname",
+        "phone": "Phone",
+        "street": "Street",
+        "apartment": "Apartment",
+        "city": "City",
+        "country": "Country",
+        "state": "State",
+        "zip": "Zip",
+        "save": "Save",
+        "savedSuccessfully": "Shipping address saved successfully"
+    },
+
+    "accountcollectionsgrid": {
+        "name": "@:name",
+        "owner": "Owner",
+        "description": "Description",
+        "royalty": "Royalty",
+        "feeRecipient": "Royalty recipient",
+        "social": "Social",
+        "contract": "Contract",
+        "createdTime": "Registered",
+        "changedTime": "Changed",
+        "actions": "Actions",
+        "filterEnabled": "Enabled Collections",
+        "filterInReview": "Collections in Review",
+        "filterBanned": "Banned Collections",
+        "search": "Search Collections",
+        "ban": {
+            "button": "Ban",
+            "confirm": "Are you sure you want to ban {name}?",
+            "success": "Collection banned"
+        },
+        "unban": {
+            "button": "Unban",
+            "confirm": "Are you sure you want to unban {name}?",
+            "success": "Collection unbanned"
+        },
+        "approve": {
+            "button": "Approve",
+            "confirm": "Are you sure you want to approve {name}?",
+            "success": "Collection approved"
+        },
+        "decline": {
+            "button": "Decline",
+            "confirm": "Are you sure you want to decline {name}? This will permanently remove the registration request.",
+            "success": "Collection declined"
+        },
+        "filter": "Collections filter"
+    },
+
+    "nftresultauction": {
+        "acceptBid": "Accept Highest Bid",
+        "acceptBidSuccessful": "You have successfully accepted the highest bid",
+        "resultSuccessful": "You have successfully resulted the auction",
+        "resultAuction": "Result Auction"
+    },
+
+    "nftcancelauction": {
+        "cancelAuction": "Cancel Auction",
+        "cancelSuccessful": "You have successfully canceled the auction",
+        "highestBidAboveReservePrice": "Highest bid is currently above reserve price"
+    },
+
+    "nftwithdrawbid": {
+        "withdrawBid": "Withdraw Bid",
+        "withdrawBidSuccessful": "You have successfully withdrawn the bid"
+    },
+
+    "nftcancellisting": {
+        "cancelListing": "Cancel Listing",
+        "cancelSuccessful": "You have successfully canceled the listing"
+    },
+
+    "nftupdatelisting": {
+        "updateListing": "Update Listing",
+        "updateItem": "Update Your Listing"
+    },
+
+    "nftsellbutton": {
+        "sell": "Sell"
+    },
+
+    "nftsellwindow": {
+        "sellItem": "Sell Item"
+    },
+
+    "nftstartauctionbutton": {
+        "startAuction": "@:startAuction"
+    },
+
+    "nftstartauctionwindow": {
+        "title": "@:startAuction"
+    },
+
+    "nftupdateauctionbutton": {
+        "updateAuction": "@:updateAuction"
+    },
+
+    "nftupdateauctionwindow": {
+        "title": "@:updateAuction"
+    },
+
+    "notificationsettings": {
+        "title": "Notification Settings"
+    },
+
+    "appearancesettings": {
+        "title": "Appearance Settings",
+        "darkMode": "Dark Mode",
+        "autoDarkMode": "Auto Dark Mode",
+        "autoDarkModeInfo": "Sets the dark theme according to the system settings"
+    },
+
+    "notificationsettingsform": {
+        "minimumBid": "Minimum Bid Threshold",
+        "recieveWhenPriceEqualOrGreater": "Receive notifications only when you receive offers with a value greater than or equal to this amount of ETH. "
+    },
+
+    "view_not_found": {
+        "404": "404",
+        "text": "Oooooops! We couldn’t find the page you’re looking for :(",
+        "link_title": "Back to home"
+    }
+}

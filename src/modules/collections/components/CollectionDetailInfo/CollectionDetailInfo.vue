@@ -46,7 +46,7 @@
                 </div>
                 <div class="collectiondetailinfo_row">
                     <span>{{ $t('collectiondetail.contract') }}:</span>
-                    <a :href="'https://sepolia.etherscan.io/address/' + info.contract" target="_blank">{{
+                    <a :href="'https://sepolia.uniscan.xyz/address/' + info.contract" target="_blank">{{
                         'sepolia explorer'
                     }}</a>
                 </div>
