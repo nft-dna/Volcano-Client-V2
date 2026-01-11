@@ -160,9 +160,9 @@ function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAdd
     };
 }
 
- function createERC20TokenContract(nftName, nftSymbol, amount, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, web3Client, contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS) {
+ function createERC20TokenContract(nftName, nftSymbol, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, stakingAmount, amount, web3Client, contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS) {
 	
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC20TokenContractAbi,[nftName, nftSymbol, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(createERC20TokenContractAbi,[nftName, nftSymbol, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, stakingAmount])
 
     // return tx object
     return {
@@ -173,9 +173,9 @@ function createERC721TokenWithRoyalty(toAddress, tokenUri, amount, collectionAdd
     };
 }
 
- function mintERC20TokenBlock(token, receiver, amount, web3Client, contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS) {
+ function mintERC20TokenBlocks(token, receiver, count, refund, amount, web3Client, contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS) {
 	
-    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(mintERC20TokenBlockAbi,[token, receiver])
+    const encodedAbi = web3Client.eth.abi.encodeFunctionCall(mintERC20TokenBlocksAbi,[token, receiver, count, refund])
 
     // return tx object
     return {
@@ -1233,14 +1233,20 @@ function decodeMintedErc1155TokenId(receipt, web3Client) {
 }
 
 function decodeMintedErc20Block(receipt, web3Client) {
-    const mintedTopic = '0x0e9a1ec107d573764d20047a2ac52b16c549f7366e25e13cc1c8437d3fe98b5d';
+    const mintedTopic = '0x50bb62406ff32b2601952fa6d2b8bf6f088dfb08752b3657f13f2f9a9acb27ca';
     const abiInputs = [
 		{
 			"indexed": false,
 			"internalType": "address",
 			"name": "to",
 			"type": "address"
-		}
+		},
+        {
+			"indexed": false,
+			"internalType": "uint256",
+			"name": "count",
+			"type": "uint256"
+        }
     ];
 
     const log = receipt.logs.find(log => log.topics.includes(mintedTopic));
@@ -1320,7 +1326,7 @@ export default {
     createERC1155Collection,
     createERC1155Token,
 	createERC20TokenContract,
-	mintERC20TokenBlock,
+	mintERC20TokenBlocks,
     registerTokenRoyalty,
     listItem,
     cancelListing,
@@ -1554,46 +1560,51 @@ const createERC1155TokenContractAbi = {
 
 const createERC20TokenContractAbi = {
 	"inputs": [
-		{
-			"internalType": "string",
-			"name": "_name",
-			"type": "string"
-		},
-		{
-			"internalType": "string",
-			"name": "_symbol",
-			"type": "string"
-		},
-		{
-			"internalType": "string",
-			"name": "_uri",
-			"type": "string"
-		},
-		{
-			"internalType": "address",
-			"name": "_initialReceiver",
-			"type": "address"
-		},
-		{
-			"internalType": "uint256",
-			"name": "_initialAmount",
-			"type": "uint256"
-		},
-		{
-			"internalType": "uint256",
-			"name": "_capAmount",
-			"type": "uint256"
-		},
-		{
-			"internalType": "uint256",
-			"name": "_mintBlocks",
-			"type": "uint256"
-		},
-		{
-			"internalType": "uint256",
-			"name": "_mintBlocksFee",
-			"type": "uint256"
-		}
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_symbol",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_uri",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_initialReceiver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_initialAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_capAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_mintBlocks",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_mintBlocksFee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_stakingAmount",
+          "type": "uint256"
+        }
 	],
 	"name": "createTokenContract",
 	"outputs": [
@@ -1607,7 +1618,7 @@ const createERC20TokenContractAbi = {
 	"type": "function"	
 }
 
-const mintERC20TokenBlockAbi = {
+const mintERC20TokenBlocksAbi = {
 	"inputs": [
 		{
 			"internalType": "address",
@@ -1618,9 +1629,19 @@ const mintERC20TokenBlockAbi = {
 			"internalType": "address",
 			"name": "to",
 			"type": "address"
-		}
+		},
+        {
+          "internalType": "uint256",
+          "name": "count",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "refund",
+          "type": "bool"
+        }
 	],
-	"name": "mintTokenBlock",
+	"name": "mintTokenBlocks",
 	"outputs": [],
 	"stateMutability": "payable",
 	"type": "function"	

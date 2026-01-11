@@ -79,6 +79,19 @@
         />
 
         <f-form-input
+            :label="$t('memetokencreateform.stakingAmount')"
+            :validator="stakingAmountValidator"
+            validate-on-change
+            validate-on-input
+            :placeholder="$t('memetokencreateform.providestakingAmount')"
+            :error-message="$t('memetokencreateform.stakingAmountErr')"
+            type="number"
+            name="stakingAmount"
+            field-size="large"
+            required
+        />
+
+        <f-form-input
             :label="$t('memetokencreateform.initialReceiver')"
             type="text"
             name="initialReceiver"
@@ -301,13 +314,19 @@ export default {
         initialAmountValidator(_value) {
             if (_value === '') return true;
             _value = Number(_value);
-            return !(_value >= 0);
+            return !(_value >= 0 && _value < Number(this.values.capAmount) - Number(this.values.stakingAmount));
+        },
+
+        stakingAmountValidator(_value) {
+            if (_value === '') return true;
+            _value = Number(_value);
+            return !(_value >= 0 && _value < Number(this.values.capAmount) - Number(this.values.initialAmount));
         },
 
         capAmountValidator(_value) {
             if (_value === '') return true;
             _value = Number(_value);
-            return !(_value >= Number(this.values.initialAmount));
+            return !(_value >= Number(this.values.initialAmount) + Number(this.values.stakingAmount));
         },
 
         emailValidator(_value) {
@@ -379,17 +398,18 @@ export default {
             const amount = await this.getErc20FactoryContractFee();
             //alert(amount);
 
-            //createERC20TokenContract(nftName, nftSymbol, amount, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, web3Client)
+            //createERC20TokenContract(nftName, nftSymbol, uri, initialReceiver, initialAmount, capAmount, mintBlocks, mintBlocksFee, stakingAmount, amount, web3Client)
             this.tx = contracts.createERC20TokenContract(
                 vals.name,
                 vals.symbol,
-                amount,
                 vals.uri,
                 vals.initialReceiver,
                 toHex(bToTokenValue(vals.initialAmount, 18)), //vals.initialAmount,
                 toHex(bToTokenValue(vals.capAmount, 18)), //vals.capAmount,
                 vals.mintBlocks,
                 toHex(bToTokenValue(vals.mintBlocksFee, 18)), //vals.mintBlocksFee,
+                toHex(bToTokenValue(vals.stakingAmount, 18)), //vals.stakingAmount,
+                amount,
                 web3
             );
 

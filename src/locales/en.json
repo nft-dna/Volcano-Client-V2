@@ -33,7 +33,7 @@
     "accountNav": "Account",
     "registerCollection": "Register Collection",
     "createCollection": "Create a Collection",
-	"createMemeToken": "Create a Meme Token",	
+	"createMemeToken": "Create a Meme Token",
     "items": "Items",
     "like": "Like",
     "rtlDirection": "Right-to-left direction",
@@ -43,7 +43,7 @@
 
     "navigation": {
         "explore": "@:explore",
-        "collections": "@:collections",	
+        "collections": "@:collections",
         "create": "@:create",
         "memepool": "@:memepool",			
         "drop": "The Drop",
@@ -139,7 +139,7 @@
         },
        "memeTokenCreate": {
             "title": "@:createMemeToken"
-        },		
+        },				
         "nftCreate": {
             "title": "Create NFT"
         },
@@ -182,7 +182,7 @@
 
     "appsectionnft": {
         "title": "Trade without platform fees on Volcano",
-        "text": "Volcano is an NFT marketplace built on Sepolia. Create and trade NFTs instantly with low network costs."
+        "text": "Volcano is an NFT marketplace built on Unichain. Create and trade NFTs instantly with low network costs."
     },
 
     "appsectionabout": {
@@ -193,7 +193,7 @@
         },
         "card2": {
             "title": "Super Fast",
-            "text": "Since Volcano runs on the Sepolia Network, transactions are usually confirmed within 1-2 seconds."
+            "text": "Since Volcano runs on the Unichain Network, transactions are usually confirmed within 1-2 seconds."
         },
         "card3": {
             "title": "Low Transaction Fees",
@@ -358,14 +358,14 @@
         "ipRights": "IP Rights",
         "notAvailable": "Not available",
         "collection": "Collection",
-        "nftCollection": "Sepolia Powered NFT Collection",
+        "nftCollection": "Unichain Powered NFT Collection",
         "tokenId": "Token ID",
         "about": "About",
         "chainInfo": "Chain Info",
         "network": "Network",
-        "networkName": "Sepolia",		
+        "networkName": "Unichain",		
         "chainId": "Chain ID",
-		"chainIdName": "11155111",
+		"chainIdName": "1301",
         "fromCollection": "More from this collection",
         "itemActivity": "Item Activity",
         "attributes": "Attributes"
@@ -375,13 +375,12 @@
         "owned": "Owned by",
         "properties": "Properties",
         "symbol": "Symbol",
-		"owner": "Owner",
         "royalty": "Royalty",
         "recipient": "Recipient",
         "ipRights": "IP Rights",
         "createdTime": "Created",
         "isVerified": "Is Verified",
-        "standard": "Standard",
+		"standard": "Standard",
         "publicMint": "Mintable",
         "creatorMintFee": "Creator Mint Fee (ETH)",
         "platformMintFee": "Platform Fee (ETH)",
@@ -405,10 +404,10 @@
         "about": "About",
         "chainInfo": "Chain Info",
         "network": "Network",
-        "networkName": "Sepolia",		
+        "networkName": "Unichain",		
         "chainId": "Chain ID",
-		"chainIdName": "11155111"
-    },	
+		"chainIdName": "1301"
+    },		
 
     "nftattributesgrid": {
         "type": "Type",
@@ -472,7 +471,7 @@
 	
     "nftrefreshmetadata": {
         "refreshmetadata": "Refresh Metadata"
-    },	
+    },		
 
     "ashareButton": {
         "copy": "Copy Link",
@@ -525,14 +524,14 @@
         "name": "@:name",
         "collectionName": "Collection Name",
 		"symbol": "Symbol",		
-		"collectionSymbol": "Collection Symbol",
+		"collectionSymbol": "Collection Symbol",		
         "description": "Description",
         "provideYourDescription": "Provide your description for your collection",
         "royalty": "Royalty (%)",
         "royaltyErr": "Value should be between 1 and 100",
         "royaltyTooltip": "Each NFT under this collection exchanged through Volcano will have a percentage of sale given to nominated wallet address.",
         "feeRecipient": "Fee Recipient",
-        "feesTooltip": "The nominated Sepolia Network wallet address to receive royalties from each sale in this collection.",
+        "feesTooltip": "The nominated Unichain Network wallet address to receive royalties from each sale in this collection.",
         "contactEmail": "Contact Email",
         "emailAddress": "Email Address",
         "emailTooltip": "We will use this email to notify you about your collection application. This will not be shared with others.",
@@ -593,7 +592,7 @@
 		"revealdate": "Real Uri url will be shown only after this date",
 		"preRevealUri": "Temporay Uri",
 		"preRevealUriExample": "ipfs://site.com/image.jpeg",
-		"badrevealdate": "Invalid reveal date",
+		"badrevealdate": "Invalid reveal date",		
         "royalty": "Royalty (%)",
         "royaltyErr": "Value should be between 1 and 100",
         "royaltyTooltip": "Each NFT under this collection exchanged through Volcano will have a percentage of sale given to nominated wallet address.",
@@ -618,7 +617,7 @@
         "invalidAddress": "Invalid address",
         "invalidEmail": "Invalid email"
     },
-	
+
     "memetokencreateform": {
         "createMemeToken": "@:createMemeToken",
         "useOwnerAddressOfCollection": "Create your Erc-20 Meme",
@@ -640,10 +639,13 @@
         "capAmount": "Max Circulating Supply Amount (in ETH)",
         "provideCapAmount": "10000000000",
         "capAmountErr": "Wrong Max Supply Amount",
+        "stakingAmount": "Staking Pool Supply Amount (in ETH)",
+        "provideStakingAmount": "1000000",
+        "stakingAmountErr": "Wrong Staking Supply Amount",
         "mintBlocks": "Mint Blocks",
         "provideMintBlocks": "100000",
         "mintBlocksErr": "Wrong Mint Blocks Value",
-		"mintBlocksdesc": "Each minted block will generate (capAmount - initialAmount)/mintBlocks tokens",
+		"mintBlocksdesc": "Each minted block will generate (capAmount - initialAmount - stakingAmount)/mintBlocks tokens",
         "mintBlocksFee": "Liquidity needed to mint each Block (in ETH)",
         "provideMintBlocksFee": "0.1",
         "mintBlocksFeeErr": "Wrong Mint Blocks Liquidity Value",
@@ -684,13 +686,13 @@
         "collectionErr": "Chosen collection does not allow to mint new tokens from your address or your balance is insufficient to cover the collection minting fee.",
 		"collectionsvalue": "Select a Collection",
         "memetoken": "Meme Token",
-        "memetokenErr": "Chosen Meme token does not allow to mint new tokens or your balance is insufficient to cover the token fee.",
+        "memetokenErr": "Chosen Meme token does not allow to mint new tokens or your balance is insufficient to cover the token fee.",		
 		"memetokensvalue": "Select a Meme",
 		"contractErr": "Chosen Meme or Collection does not allow to mint new tokens from your address or your balance is insufficient to cover the collection minting fee.",
         "name": "@:name",
         "symbol": "Symbol",
         "tokenUri": "TokenUri",
-		"tokenUriPlaceholder": "ipfs://..",
+		"tokenUriPlaceholder": "ipfs://..",		
         "description": "Description",
         "royalty": "Royalty (%)",
         "royaltyErr": "Value should be between 1 and 100",

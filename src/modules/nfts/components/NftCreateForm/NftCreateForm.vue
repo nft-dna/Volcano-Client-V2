@@ -860,9 +860,12 @@ export default {
             const web3 = new Web3();
 
             if (this.currentselection.isMeme) {
-                this.tx = contracts.mintERC20TokenBlock(
+                //mintERC20TokenBlocks(token, receiver, count, refund, amount, web3Client)
+                this.tx = contracts.mintERC20TokenBlocks(
                     this.currentselection.contract,
                     this.$wallet.account, // receiver
+                    1,
+                    true,
                     this.currentselection.blocksFee, // blockFee,
                     web3,
                     this.currentselection.factory // contract = process.env.VUE_APP_ERC20_FACTORY_CONTRACT_ADDRESS
