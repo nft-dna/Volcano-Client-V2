@@ -481,6 +481,9 @@ export default {
                     contract.initialReserveEth = contract.initialReserve
                         ? bFromWei(contract.initialReserve).toNumber()
                         : null;
+                    contract.stakingPoolSizeEth = contract.stakingPoolSize
+                        ? bFromWei(contract.stakingPoolSize).toNumber()
+                        : null;						
                     contract.blocksAmountEth = contract.blocksAmount
                         ? bFromWei(contract.blocksAmount).toNumber()
                         : null;

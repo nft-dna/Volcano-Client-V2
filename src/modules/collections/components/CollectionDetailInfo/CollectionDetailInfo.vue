@@ -105,6 +105,9 @@
                     <span>{{ $t('collectiondetail.initialReserve') }}:</span><span>{{ info.initialReserveEth }}</span>
                 </div>
                 <div class="collectiondetailinfo_row" v-if="info.isMeme">
+                    <span>{{ $t('collectiondetail.stakingPoolSize') }}:</span><span>{{ info.stakingPoolSizeEth }}</span>
+                </div>				
+                <div class="collectiondetailinfo_row" v-if="info.isMeme">
                     <span>{{ $t('collectiondetail.blocksAmount') }}:</span><span>{{ info.blocksAmountEth }}</span>
                 </div>
                 <div class="collectiondetailinfo_row" v-if="info.isMeme">

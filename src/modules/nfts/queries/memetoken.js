@@ -55,6 +55,7 @@ export async function getMemeTokenDetails(contract = '', user = '') {
                     isInternal
                     isVerified
                     initialReserve
+					stakingPoolSize
                     blocksAmount
                     blocksFee
                     blocksMaxSupply

@@ -392,6 +392,7 @@
         "currentSupply": "Current Supply",
         "allowSpecificUri": "Mint Uri Needed",
         "initialReserve": "Creator Reserve (ETH)",
+		"stakingPoolSize": "Initial Staking Pool Size (ETH)",
         "blocksAmount": "Minting Block Tokens (ETH)",
         "blocksFee": "Minting Block Liquidity (ETH)",
         "blocksMaxSupply": "Max Blocks Supply",
