@@ -83,7 +83,7 @@
             :validator="stakingAmountValidator"
             validate-on-change
             validate-on-input
-            :placeholder="$t('memetokencreateform.providestakingAmount')"
+            :placeholder="$t('memetokencreateform.provideStakingAmount')"
             :error-message="$t('memetokencreateform.stakingAmountErr')"
             type="number"
             name="stakingAmount"

@@ -714,7 +714,7 @@
         "scanWaiting": "The token was successfully minted. Waiting for server-side token processing - this can take a while...",
         "success": "The token was successfully created.",
         "messageMintNft": "{fee} LAVA are charged to create a new NFT.",
-		"messageMintBlock": "{fee} LAVA are charged to the Dex Liquidity Pool.",
+		"messageMintBlock": "{fee} LAVA are charged to feed the Dex Liquidity Pool.",
         "estimatingFeeGas": "Estimating necessary fee for minting and the transaction...",
         "uploading": "Uploading file and token data into IPFS...",
         "waitingForTokenId": "Waiting for the minting transaction receipt with the token ID..."
