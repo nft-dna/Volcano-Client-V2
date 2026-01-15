@@ -483,7 +483,7 @@ export default {
                         : null;
                     contract.stakingPoolSizeEth = contract.stakingPoolSize
                         ? bFromWei(contract.stakingPoolSize).toNumber()
-                        : null;						
+                        : null;
                     contract.blocksAmountEth = contract.blocksAmount
                         ? bFromWei(contract.blocksAmount).toNumber()
                         : null;

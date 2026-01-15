@@ -24,6 +24,14 @@ export async function getMemeToken(contract = '') {
 }
 
 export async function getMemeTokenDetails(contract = '', user = '') {
+    if (user === '') {
+        console.warn('User address is empty, using ZERO_ADDRESS. Is Wallet connected ?');
+        user = '0x0000000000000000000000000000000000000000';
+    }
+
+    if (contract === '') {
+        throw new Error('Invalid contract address');
+    }	
     const query = {
         query: gql`
             query getMemeTokenDetails($contract: Address!, $user: Address!) {
@@ -55,7 +63,7 @@ export async function getMemeTokenDetails(contract = '', user = '') {
                     isInternal
                     isVerified
                     initialReserve
-					stakingPoolSize
+                    stakingPoolSize
                     blocksAmount
                     blocksFee
                     blocksMaxSupply
