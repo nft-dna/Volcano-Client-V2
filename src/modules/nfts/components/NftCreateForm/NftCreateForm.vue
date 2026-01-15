@@ -462,17 +462,24 @@ export default {
                 ? getMemeTokenDetails(_contract, this.$wallet.account)
                 : getCollectionDetails(_contract, this.$wallet.account));
             console.log('contract', contract);
+            const account = this.$wallet?.account ?? null;
+            const isConnected = Boolean(account);
+            if (!isConnected) {
+                this.$notify?.warning('Please connect your wallet');
+            }
             if (contract != null) {
                 contract.isMeme = this.values.memeToggle;
-                contract.factory = await this.getContractFactory(contract);
+                contract.factory = isConnected ? await this.getContractFactory(contract) : null;
                 if (!contract.isMeme) {
-                    contract.mintFee = await this.collectionCreatorFee(_contract);
+                    contract.mintFee = isConnected ? await this.collectionCreatorFee(_contract) : null;
                     contract.mintFeeEth = contract.mintFee ? bFromWei(contract.mintFee).toNumber() : null;
-                    contract.platformFee = await this.collectionPlatformFee(contract);
+                    contract.platformFee = isConnected ? await this.collectionPlatformFee(contract) : null;
                     contract.platformFeeEth = contract.platformFee ? bFromWei(contract.platformFee).toNumber() : null;
                     contract.maxReplicaItems = contract.maxItemCount ? Number(contract.maxItemCount) : null;
                     contract.maxItems = contract.maxItems ? Number(contract.maxItems) : null;
-                    contract.currentSupply = await this.collectionCurrentSupply(_contract, contract.isErc1155);
+                    contract.currentSupply = isConnected
+                        ? await this.collectionCurrentSupply(_contract, contract.isErc1155)
+                        : null;
                     if (contract.platformFee && contract.mintFee) {
                         let totFee = toBigNumber(contract.platformFee).plus(toBigNumber(contract.mintFee));
                         this.fee = bFromWei(totFee).toNumber();
@@ -489,10 +496,10 @@ export default {
                         : null;
                     contract.blocksFeeEth = contract.blocksFee ? bFromWei(contract.blocksFee).toNumber() : null;
                     contract.blocksMaxSupply = contract.blocksMaxSupply ? Number(contract.blocksMaxSupply) : null;
-                    contract.blocksSupply = await this.memeBlocksSupply(_contract);
-                    contract.cap = await this.memeTotalSupply(_contract);
+                    contract.blocksSupply = isConnected ? await this.memeBlocksSupply(_contract) : null;
+                    contract.cap = isConnected ? await this.memeTotalSupply(_contract) : null;
                     contract.capEth = contract.cap ? bFromWei(contract.cap).toNumber() : null;
-                    contract.supply = await this.memeCurrentSupply(_contract);
+                    contract.supply = isConnected ? await this.memeCurrentSupply(_contract) : null;
                     contract.supplyEth = contract.supply ? bFromWei(contract.supply).toNumber() : null;
                     this.fee = bFromWei(contract.blocksFee).toNumber();
                 }

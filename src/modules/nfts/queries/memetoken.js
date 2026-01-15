@@ -31,7 +31,7 @@ export async function getMemeTokenDetails(contract = '', user = '') {
 
     if (contract === '') {
         throw new Error('Invalid contract address');
-    }	
+    }
     const query = {
         query: gql`
             query getMemeTokenDetails($contract: Address!, $user: Address!) {

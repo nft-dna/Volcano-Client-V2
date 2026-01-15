@@ -67,12 +67,10 @@ export default {
     },
 
     data() {
-		return {
-			factor: null,
-			dValue: this.value !== null && this.value !== undefined
-				? String(this.value)
-				: '',
-		};
+        return {
+            factor: null,
+            dValue: this.value !== null && this.value !== undefined ? String(this.value) : '',
+        };
     },
 
     computed: {
@@ -100,10 +98,10 @@ export default {
         },
 
         dValue(value) {
-			const n = parseFloat(value);
-			if (!isNaN(n)) {		
-				this.$emit('change', value);
-			}
+            const n = parseFloat(value);
+            if (!isNaN(n)) {
+                this.$emit('change', value);
+            }
         },
     },
 
